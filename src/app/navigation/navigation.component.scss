@@ -1,0 +1,60 @@
+.navigation-panel {
+    width: calc(100vw - 16px);
+    height: 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px;
+    border-bottom: 1px solid gray;
+}
+
+.logo-box {
+    h2 {
+        margin: 0;
+        color: #B00810;
+        font-weight: 700;
+    }
+}
+
+.links-box {
+    display: flex;
+
+    a {
+        color: #f6f6ffc9;
+        text-decoration: none;
+        margin-right: 16px;
+
+        &:last-child {
+            margin-right: 0;
+        }
+
+        &:hover {
+            color: #B00810;  
+        }
+    }
+}
+
+.user-box {
+    border-radius: 100%;
+    height: 48px;
+    display: flex;
+    align-items: center;
+
+    button {
+        margin-right: 12px;
+
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+
+    .profile-btn {
+        width: 48px;
+        height: 48px;
+        border-radius: 100%;
+
+        &:hover {
+            cursor: pointer;  
+        }
+    }
+}

@@ -1,1 +1,29 @@
-<p>navigation works!</p>
+<div class="navigation-panel">
+    <div class="logo-box">
+        <h2>VIDEOFLIX</h2>
+    </div>
+
+    <div class="links-box">
+        <a href="">HOME</a>
+        <a href="">MOVIE</a>
+        <a href="">SERIES</a>
+        <a href="">MY LIST</a>
+    </div>
+
+    <div class="user-box">
+        <button mat-icon-button>
+            <mat-icon>upload</mat-icon>
+        </button>
+
+        <button mat-icon-button>
+            <mat-icon>search</mat-icon>
+        </button>
+
+        <img src="assets/img/profile.png" [matMenuTriggerFor]="userOptions" class="profile-btn">
+
+        <mat-menu #userOptions="matMenu">
+        <button mat-menu-item>Edit User</button>
+        <button mat-menu-item>Logout</button>
+        </mat-menu>
+    </div>
+</div>
