@@ -1,0 +1,19 @@
+<div class="upload-container">
+    <h3>Upload File</h3>
+
+    <form>
+        <mat-form-field appearance="outline">
+            <mat-label>Title</mat-label>
+            <input matInput placeholder="Write Video Title" [(ngModel)]="title" [ngModelOptions]="{standalone: true}">
+        </mat-form-field>
+    
+        <mat-form-field appearance="outline">
+            <mat-label>Description</mat-label>
+            <input matInput placeholder="Write Video Description" [(ngModel)]="description" [ngModelOptions]="{standalone: true}">
+        </mat-form-field>
+
+        <input type="file" class="file-upload" [(ngModel)]="file" (change)="uploadFile()" [ngModelOptions]="{standalone: true}">
+
+        <button mat-button (click)="saveVideo()">Save</button>
+    </form>
+</div>

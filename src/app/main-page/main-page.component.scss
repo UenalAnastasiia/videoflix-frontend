@@ -1,6 +1,6 @@
 .main-container {
-    height: 100vh;
+    height: var(--content-height);
     width: 100vw;
-    background: #06070D;
-    color: #f6f6ffc9;
+    background: var(--bg-dark);
+    color: var(--headers-light);
 }

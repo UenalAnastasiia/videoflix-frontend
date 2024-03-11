@@ -1,7 +1,11 @@
 import { Routes } from '@angular/router';
 import { MainPageComponent } from './main-page/main-page.component';
+import { UploadFileComponent } from './upload-file/upload-file.component';
+import { LoginComponent } from './auth/components/login/login.component';
 
 export const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: '/main' },
-  { path: 'main', component: MainPageComponent }
+  { path: '', pathMatch: 'full', redirectTo: '/login' },
+  { path: 'login', component: LoginComponent },
+  { path: 'home', component: MainPageComponent },
+  { path: 'upload', component: UploadFileComponent }
 ];

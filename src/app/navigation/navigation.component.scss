@@ -5,7 +5,9 @@
     justify-content: space-between;
     align-items: center;
     padding: 8px;
-    border-bottom: 1px solid gray;
+    border-bottom: 1px solid #969494;
+    color: var(--headers-light);
+    background: var(--bg-dark);
 }
 
 .logo-box {
@@ -20,7 +22,7 @@
     display: flex;
 
     a {
-        color: #f6f6ffc9;
+        color: var(--headers-light);
         text-decoration: none;
         margin-right: 16px;
 

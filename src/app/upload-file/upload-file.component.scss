@@ -1,0 +1,15 @@
+.upload-container {
+    background: var(--bg-dark);
+    height: var(--content-height);
+    color: var(--headers-light);
+
+    form {
+        display: flex;
+        flex-direction: column;
+        width: 40vw;
+
+        button {
+            width: fit-content;
+        }
+    }
+}
