@@ -1,7 +1,28 @@
 <div class="slider-container">
     @if (showCover) {
-        <img class="img-slideshow" src='{{ "http://127.0.0.1:8000" + videos[nextCover].cover_picture }}'>
-        <img class="img-slideshow" src='{{ "http://127.0.0.1:8000" + videos[currentCover].cover_picture }}'>
-        <img class="img-slideshow" src='{{ "http://127.0.0.1:8000" + videos[lastCover].cover_picture }}'>
+        <div class="next-last-cover pos-rel out-animation">
+            <img class="img-slideshow next-cover-rotate" src='{{ "http://127.0.0.1:8000" + videos[nextCover].cover_picture }}'>
+            <p class="title-pos next-cover-rotate">{{ videos[nextCover].title }}</p>
+        </div>
+
+        <div class="pos-rel out-animation">
+            <img class="img-slideshow" src='{{ "http://127.0.0.1:8000" + videos[currentCover].cover_picture }}'>
+            <div class="current-title-pos">
+                <p>{{ videos[currentCover].title }}</p>
+                <button mat-fab extended color="warn">
+                    <mat-icon>play_arrow</mat-icon>
+                    Watch
+                </button>
+                <button mat-fab extended style="background: yellow;">
+                    <mat-icon>add_circle</mat-icon>
+                    Add List
+                </button>
+            </div>
+        </div>
+        
+        <div class="next-last-cover ml-last pos-rel out-animation">
+            <img class="img-slideshow last-cover-rotate" src='{{ "http://127.0.0.1:8000" + videos[lastCover].cover_picture }}'>
+            <p class="title-pos last-cover-rotate">{{ videos[lastCover].title }}</p>
+        </div>
     }
 </div>

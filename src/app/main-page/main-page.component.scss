@@ -1,6 +1,7 @@
 .main-container {
-    height: var(--content-height);
+    height: calc(var(--content-height) - 24px);
     width: 100vw;
     background: var(--bg-dark);
     color: var(--headers-light);
+    padding-top: 24px;
 }
