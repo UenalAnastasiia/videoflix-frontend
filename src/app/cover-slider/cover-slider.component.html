@@ -1,11 +1,11 @@
 <div class="slider-container">
     @if (showCover) {
-        <div class="next-last-cover pos-rel out-animation">
+        <div class="next-last-cover pos-rel">
             <img class="img-slideshow next-cover-rotate" src='{{ "http://127.0.0.1:8000" + videos[nextCover].cover_picture }}'>
             <p class="title-pos next-cover-rotate">{{ videos[nextCover].title }}</p>
         </div>
 
-        <div class="pos-rel out-animation">
+        <div class="pos-rel">
             <img class="img-slideshow" src='{{ "http://127.0.0.1:8000" + videos[currentCover].cover_picture }}'>
             <div class="current-title-pos">
                 <p>{{ videos[currentCover].title }}</p>
@@ -20,7 +20,7 @@
             </div>
         </div>
         
-        <div class="next-last-cover ml-last pos-rel out-animation">
+        <div class="next-last-cover ml-last pos-rel">
             <img class="img-slideshow last-cover-rotate" src='{{ "http://127.0.0.1:8000" + videos[lastCover].cover_picture }}'>
             <p class="title-pos last-cover-rotate">{{ videos[lastCover].title }}</p>
         </div>

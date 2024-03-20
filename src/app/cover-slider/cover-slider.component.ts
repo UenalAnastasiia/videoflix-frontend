@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import {MatButtonModule} from '@angular/material/button';
-import {MatIconModule} from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-cover-slider',
@@ -14,13 +14,14 @@ export class CoverSliderComponent implements OnInit {
   nextCover: number = 2;
   currentCover = 1;
   lastCover: number = 0;
-  showCover = false;
+  showCover = true;
 
   ngOnInit() {
-    setTimeout(() => {
-      this.showCover = true;
-      // this.slideCover();
-    }, 1000);
+    this.slideCover();
+    // setTimeout(() => {
+    //   this.showCover = true;
+    //   this.slideCover();
+    // }, 1000);
   }
 
 
@@ -32,11 +33,6 @@ export class CoverSliderComponent implements OnInit {
       this.currentCover = this.currentCover % this.videos.length;
       this.lastCover = this.lastCover % this.videos.length;
       this.nextCover = this.nextCover % this.videos.length;
-      this.showCover = false;
-
-      setTimeout(() => {
-        this.showCover = true;
-      }, 100);
     }, 5000);
   }
 }

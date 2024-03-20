@@ -1,5 +1,18 @@
 <div class="main-container">
-    <div>
-        <app-cover-slider [videos]="videos"></app-cover-slider>
-    </div>
+    @if (showContent && !error) {
+        <div>
+            <app-cover-slider [videos]="videos"></app-cover-slider>
+            <app-video-tabs [categories]="categories" [videos]="videos"></app-video-tabs>
+        </div>
+    } @else {
+        <div>
+            <h1>Loading...</h1>
+        </div>
+    }
+
+    @if (error) {
+        <div>
+            <h1>Please reload the page or try later...</h1>
+        </div>
+    }
 </div>

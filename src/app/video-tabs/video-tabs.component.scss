@@ -1,0 +1,80 @@
+.tabs-container {
+    display: flex;
+    margin-top: 5vw;
+    margin-left: 2vw;
+    margin-right: 2vw;
+
+    .mat-mdc-tab-header {
+        width: fit-content;
+        z-index: 1;
+    }
+
+    img {
+        border-radius: 24px;
+    }
+
+    .mdc-fab {
+        width: 32px !important;
+        height: 32px !important;
+    }
+}
+
+.video-box {
+    display: flex;
+    padding-top: 24px;
+    border-top: 1px solid #ffffff42;
+}
+
+.mat-mdc-tab-group, .mat-mdc-tab-nav-bar {
+    --mdc-tab-indicator-active-indicator-color: var(--flix-red);
+    --mat-tab-header-active-label-text-color: var(--flix-red);
+    --mat-tab-header-active-ripple-color: var(--flix-red);
+    --mat-tab-header-inactive-ripple-color: var(--flix-red);
+    --mat-tab-header-active-focus-label-text-color: var(--flix-red);
+    --mat-tab-header-active-hover-label-text-color: var(--flix-red);
+    --mat-tab-header-active-focus-indicator-color: var(--flix-red);
+    --mat-tab-header-active-hover-indicator-color: var(--flix-red);
+}
+
+.mat-primary {
+    --mat-full-pseudo-checkbox-selected-icon-color: var(--flix-red);
+    --mat-minimal-pseudo-checkbox-selected-checkmark-color: var(--flix-red);
+}
+
+.mat-mdc-tab-label-container {
+    width: fit-content;
+    max-width: 90vw;
+}
+
+mat-tab.mat-tab-label-active{
+    border-bottom: 6px solid var(--flix-red);
+}
+
+.mdc-tab-indicator .mdc-tab-indicator__content {
+    color: var(--flix-red) !important;
+    border-color: var(--flix-red) !important;
+    border-top-width: 5px !important;
+    border-top-right-radius: 5px !important;
+    border-top-left-radius: 5px !important;
+}
+
+.pos-rel {
+    position: relative;
+    margin: 6px;
+}
+
+.pos-abs {
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    p {
+        font-size: 18px;
+        font-weight: 600;
+        margin-right: 8px;
+        margin-bottom: 0;
+    }
+}

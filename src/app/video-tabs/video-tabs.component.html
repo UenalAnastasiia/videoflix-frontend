@@ -1,0 +1,37 @@
+<mat-tab-group class="tabs-container">
+    <mat-tab label="All">
+        <div class="video-box">
+            @for (video of videos; track video.id) {
+                <div class="pos-rel">
+                    <img style="width: 300px" src='{{ "http://127.0.0.1:8000" + video.cover_picture }}'>
+                    <div class="pos-abs">
+                        <p>{{ video.title }}</p>
+                        <button mat-fab color="warn" (click)="openVideo(video.video_file)">
+                            <mat-icon>play_circle</mat-icon>
+                        </button>
+                    </div>
+                </div>
+            }
+        </div>
+    </mat-tab>
+
+    @for (category of categories; track category.id) {
+        <mat-tab label="{{ category.name }}">
+           <div class="video-box">
+                @for (video of videos; track video.id) {
+                    @if (video.category === category.id) {
+                        <div class="pos-rel">
+                            <img style="width: 300px" src='{{ "http://127.0.0.1:8000" + video.cover_picture }}'>
+                            <div class="pos-abs">
+                                <p>{{ video.title }}</p>
+                                <button mat-fab color="warn">
+                                    <mat-icon>play_circle</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                    }
+                }
+           </div>
+        </mat-tab>
+    }
+</mat-tab-group>

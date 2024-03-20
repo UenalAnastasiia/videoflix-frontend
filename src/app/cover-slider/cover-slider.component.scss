@@ -36,9 +36,6 @@
     color: white;
     font-size: 32px;
     font-weight: 600;
-    background: #ffffff2e;
-    padding: 4px;
-    border-radius: 24px;
 }
 
 .current-title-pos {
@@ -74,18 +71,4 @@
             margin-right: 0 !important;
         }
     }
-}
-
-.out-animation {
-    animation: out 5s ease 1s forwards 1;
-}
-
-@keyframes in {
-    from {opacity: 0;}
-    to {opacity: 1;}
-}
-
-@keyframes out {
-    from {opacity: 1;}
-    to {opacity: 0.5;}
 }

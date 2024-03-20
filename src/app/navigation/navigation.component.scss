@@ -13,7 +13,7 @@
 .logo-box {
     h2 {
         margin: 0;
-        color: #B00810;
+        color: var(--flix-red);
         font-weight: 700;
     }
 }
@@ -31,7 +31,7 @@
         }
 
         &:hover {
-            color: #B00810;  
+            color: var(--flix-red);  
         }
     }
 }
