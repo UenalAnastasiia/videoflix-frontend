@@ -19,10 +19,18 @@
     }
 }
 
-.video-box {
+.content-div {
     display: flex;
+    align-items: center;
     padding-top: 24px;
     border-top: 1px solid #ffffff42;
+    overflow-x: hidden;
+}
+
+.video-box {
+    display: flex;
+    width: 95%;
+    overflow-x: hidden;
 }
 
 .mat-mdc-tab-group, .mat-mdc-tab-nav-bar {
@@ -77,4 +85,12 @@ mat-tab.mat-tab-label-active{
         margin-right: 8px;
         margin-bottom: 0;
     }
+}
+
+.mr-16 {
+    margin-right: 16px;
+}
+
+.ml-22 {
+    margin-left: 22px;
 }
