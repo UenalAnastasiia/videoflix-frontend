@@ -25,7 +25,7 @@ export class LoginComponent {
       console.log(resp);
       //localStorage.setItem('token', resp['token']);
       localStorage.setItem('token', JSON.stringify({token: resp['token'], id: resp['user_id']}));
-      this.router.navigateByUrl('/home');
+      this.router.navigateByUrl('/videoflix');
     } catch(e) {
       alert('Error in Login. Wrong username or Password.')
       console.error('Error in fetch token: ', e);    

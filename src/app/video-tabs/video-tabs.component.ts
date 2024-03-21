@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostListener, Input, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output, ViewChild, ViewEncapsulation } from '@angular/core';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon'
@@ -18,6 +18,7 @@ export class VideoTabsComponent implements OnInit {
   @ViewChild('content') content: ElementRef<any>;
   @Input() categories: any;
   @Input() videos: any;
+  @Output() overviewData = new EventEmitter<string>();
   scrollAmount: number = 0;
   step: number = 100;
 
@@ -41,9 +42,14 @@ export class VideoTabsComponent implements OnInit {
   }
 
 
-  openVideo(file: string) {
-    let playerDialog = this.dialog.open(VideoPlayerComponent);
-    playerDialog.componentInstance.videoURL = `http://127.0.0.1:8000/${file}`;
+  // openVideo(file: string) {
+  //   let playerDialog = this.dialog.open(VideoPlayerComponent);
+  //   playerDialog.componentInstance.videoURL = `http://127.0.0.1:8000/${file}`;
+  // }
+
+
+  openVideoOverview(data: any) {
+    this.overviewData.emit(data);
   }
 
 

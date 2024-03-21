@@ -4,12 +4,13 @@ import { lastValueFrom } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { CoverSliderComponent } from '../cover-slider/cover-slider.component';
 import { VideoTabsComponent } from '../video-tabs/video-tabs.component';
+import { VideoOverviewComponent } from '../video-overview/video-overview.component';
 
 
 @Component({
   selector: 'app-main-page',
   standalone: true,
-  imports: [CoverSliderComponent, VideoTabsComponent],
+  imports: [CoverSliderComponent, VideoTabsComponent, VideoOverviewComponent],
   templateUrl: './main-page.component.html',
   styleUrl: './main-page.component.scss'
 })
@@ -18,6 +19,8 @@ export class MainPageComponent implements OnInit {
   categories: any = [];
   showContent: boolean = false;
   error: boolean = false;
+  videoOverviewData: any = [];
+  showVideoOverview: boolean = false;
 
   constructor(private http: HttpClient) { }
 
@@ -46,5 +49,11 @@ export class MainPageComponent implements OnInit {
   loadCategories() {
     const url = environment.baseURL + '/category/';
     return lastValueFrom(this.http.get(url));
+  }
+
+
+  showVideoOverviewData(value: any) {
+    this.videoOverviewData.push(value);
+    this.showVideoOverview = true;
   }
 }

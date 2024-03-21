@@ -11,7 +11,8 @@
                         <img style="width: 300px; height: 142px" src='{{ "http://127.0.0.1:8000" + video.cover_picture }}'>
                         <div class="pos-abs">
                             <p>{{ video.title }}</p>
-                            <button mat-fab color="warn" (click)="openVideo(video.video_file)">
+                            <!-- <button mat-fab color="warn" (click)="openVideo(video.video_file)"> -->
+                            <button mat-fab color="warn" (click)="openVideoOverview(video)">
                                 <mat-icon>play_circle</mat-icon>
                             </button>
                         </div>
@@ -39,7 +40,7 @@
                                 <img style="width: 300px" src='{{ "http://127.0.0.1:8000" + video.cover_picture }}'>
                                 <div class="pos-abs">
                                     <p>{{ video.title }}</p>
-                                    <button mat-fab color="warn" (click)="openVideo(video.video_file)">
+                                    <button mat-fab color="warn" (click)="openVideoOverview(video)">
                                         <mat-icon>play_circle</mat-icon>
                                     </button>
                                 </div>
