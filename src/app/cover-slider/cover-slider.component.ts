@@ -11,28 +11,20 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class CoverSliderComponent implements OnInit {
   @Input() videos: any;
-  nextCover: number = 2;
-  currentCover = 1;
-  lastCover: number = 0;
+  coverIndex = [4, 3, 2, 1, 0];
   showCover = true;
 
   ngOnInit() {
     this.slideCover();
-    // setTimeout(() => {
-    //   this.showCover = true;
-    //   this.slideCover();
-    // }, 1000);
   }
 
 
   slideCover() {
     setInterval(() => {
-      this.currentCover++;
-      this.lastCover++;
-      this.nextCover++;
-      this.currentCover = this.currentCover % this.videos.length;
-      this.lastCover = this.lastCover % this.videos.length;
-      this.nextCover = this.nextCover % this.videos.length;
+      for (let index = 0; index < this.coverIndex.length; index++) {
+        this.coverIndex[index]++;
+        this.coverIndex[index] = this.coverIndex[index] % this.videos.length;
+      }
     }, 5000);
   }
 }

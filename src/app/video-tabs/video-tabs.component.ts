@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, ElementRef, HostListener, Input, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon'
@@ -26,6 +26,19 @@ export class VideoTabsComponent implements OnInit {
 
 
   ngOnInit() { }
+
+
+  @HostListener('window:keydown.ArrowRight', ['$event'])
+  @HostListener('window:keydown.ArrowLeft', ['$event'])
+  handleKeyDown(event: KeyboardEvent) {
+    if (event.key === 'ArrowRight') {
+      this.sideScroll('right');
+    }
+
+    if (event.key === 'ArrowLeft') {
+      this.sideScroll('left');
+    }
+  }
 
 
   openVideo(file: string) {
