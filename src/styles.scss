@@ -14,3 +14,15 @@ body {
     --headers-light: #f6f6ffc9;
     --flix-red: #B00810;
 }
+
+.main-container {
+    height: calc(var(--content-height) - 2vw);
+    width: 100vw;
+    background: var(--bg-dark);
+    color: var(--headers-light);
+    padding-top: 2vw;
+}
+
+.pos-rel {
+    position: relative;
+}

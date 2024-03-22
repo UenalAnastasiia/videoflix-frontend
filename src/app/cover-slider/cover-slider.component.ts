@@ -1,6 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { APIService } from '../../services/api.service';
+import { Router } from '@angular/router';
+import { SharedService } from 'src/services/shared.service';
 
 @Component({
   selector: 'app-cover-slider',
@@ -14,6 +17,10 @@ export class CoverSliderComponent implements OnInit {
   coverIndex = [4, 3, 2, 1, 0];
   showCover = true;
 
+
+  constructor(private API: APIService, private router: Router, private shared: SharedService) { }
+
+
   ngOnInit() {
     this.slideCover();
   }
@@ -26,5 +33,21 @@ export class CoverSliderComponent implements OnInit {
         this.coverIndex[index] = this.coverIndex[index] % this.videos.length;
       }
     }, 5000);
+  }
+
+
+  openVideoOverview(data: any) {
+    this.router.navigateByUrl('/overview');
+    this.shared.pushOverviewData(data);
+  }
+
+
+  addVideoToMyList(videoID: number) {
+    let body = {
+      'list': videoID, 
+      'creator': 1
+    };  
+
+    this.API.postVideoToList(body);
   }
 }

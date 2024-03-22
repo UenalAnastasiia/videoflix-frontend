@@ -1,13 +1,9 @@
 <div class="main-container">
     @if (showContent && !error) {
-        @if (!showVideoOverview) {
-            <div>
-                <app-cover-slider [videos]="videos"></app-cover-slider>
-                <app-video-tabs [categories]="categories" [videos]="videos" (overviewData)="showVideoOverviewData($event)"></app-video-tabs>
-            </div>
-        } @else {
-            <app-video-overview [overviewData]="videoOverviewData"></app-video-overview>
-        }
+        <div>
+            <app-cover-slider [videos]="videos"></app-cover-slider>
+            <app-video-tabs [categories]="categories" [videos]="videos"></app-video-tabs>
+        </div>
     } @else {
         <div>
             <h1>Loading...</h1>

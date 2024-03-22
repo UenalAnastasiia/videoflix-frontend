@@ -1,10 +1,8 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { lastValueFrom } from 'rxjs';
-import { environment } from 'src/environments/environment';
 import { CoverSliderComponent } from '../cover-slider/cover-slider.component';
 import { VideoTabsComponent } from '../video-tabs/video-tabs.component';
 import { VideoOverviewComponent } from '../video-overview/video-overview.component';
+import { APIService } from '../../services/api.service';
 
 
 @Component({
@@ -19,16 +17,15 @@ export class MainPageComponent implements OnInit {
   categories: any = [];
   showContent: boolean = false;
   error: boolean = false;
-  videoOverviewData: any = [];
-  showVideoOverview: boolean = false;
 
-  constructor(private http: HttpClient) { }
+
+  constructor(private API: APIService) { }
 
 
   async ngOnInit() {
     try {
-      this.videos = await this.loadVideos();
-      this.categories = await this.loadCategories();
+      this.videos = await this.API.loadVideos();
+      this.categories = await this.API.loadCategories();
     } catch(e) {
       console.log('Error by loading videos')
       this.error = true;
@@ -37,23 +34,5 @@ export class MainPageComponent implements OnInit {
         this.showContent = true;
       }, 1000);
     }
-  }
-
-
-  loadVideos() {
-    const url = environment.baseURL + '/videos/';
-    return lastValueFrom(this.http.get(url));
-  }
-
-
-  loadCategories() {
-    const url = environment.baseURL + '/category/';
-    return lastValueFrom(this.http.get(url));
-  }
-
-
-  showVideoOverviewData(value: any) {
-    this.videoOverviewData.push(value);
-    this.showVideoOverview = true;
   }
 }

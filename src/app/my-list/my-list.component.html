@@ -1,0 +1,22 @@
+<div class="main-container my-list-container">
+    <h2>My List</h2>
+    @if (showContent) {
+        <div class="video-box">
+            @for (video of videoList; track video.id) {
+                <div class="pos-rel">
+                    <img style="width: 300px; height: 142px" src='{{ "http://127.0.0.1:8000" + video.cover_picture }}'>
+                    <div class="pos-abs">
+                        <p>{{ video.title }}</p>
+                        <button mat-fab color="warn" (click)="openVideoOverview(video)">
+                            <mat-icon>play_circle</mat-icon>
+                        </button>
+                    </div>
+                </div>
+            }
+        </div>
+    } @else {
+        <div>
+            My List is empty...
+        </div>
+    }
+</div>

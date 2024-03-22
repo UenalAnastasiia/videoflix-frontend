@@ -11,11 +11,11 @@
         <img class="img-slideshow" src='{{ "http://127.0.0.1:8000" + videos[coverIndex[2]].cover_picture }}'>
         <div class="current-title-pos">
             <p>{{ videos[coverIndex[2]].title }}</p>
-            <button mat-fab extended color="warn">
+            <button mat-fab extended color="warn" (click)="openVideoOverview(videos[coverIndex[2]])">
                 <mat-icon>play_arrow</mat-icon>
                 Watch
             </button>
-            <button mat-fab extended style="background: yellow;">
+            <button mat-fab extended style="background: yellow;" (click)="addVideoToMyList(videos[coverIndex[2]].id)">
                 <mat-icon>add_circle</mat-icon>
                 Add List
             </button>
