@@ -4,6 +4,7 @@ import { UploadFileComponent } from './upload-file/upload-file.component';
 import { LoginComponent } from './auth/components/login/login.component';
 import { MyListComponent } from './my-list/my-list.component';
 import { VideoOverviewComponent } from './video-overview/video-overview.component';
+import { MoviesComponent } from './movies/movies.component';
 
 
 export const routes: Routes = [
@@ -12,5 +13,6 @@ export const routes: Routes = [
   { path: 'videoflix', component: MainPageComponent },
   { path: 'upload', component: UploadFileComponent },
   { path: 'mylist', component: MyListComponent },
-  { path: 'overview', component: VideoOverviewComponent }
+  { path: 'overview', component: VideoOverviewComponent },
+  { path: 'movies', component: MoviesComponent }
 ];

@@ -1,0 +1,24 @@
+<div>
+    <table class="alp-table">
+        <tbody>
+            <tr *ngFor="let row of alphabet | chunk: 5">
+                <td class="alp-row" *ngFor="let column of row">
+                    <div>
+                        {{ column.toUpperCase() }}
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <button mat-icon-button>
+        <mat-icon>space_bar</mat-icon>
+    </button>
+
+    <button mat-icon-button>
+        <mat-icon>backspace</mat-icon>
+    </button>
+
+    <button mat-icon-button>
+        <mat-icon>delete</mat-icon>
+    </button>
+</div>

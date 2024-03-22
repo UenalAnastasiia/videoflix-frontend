@@ -1,0 +1,14 @@
+<div class="main-container movies-container">
+    <app-alphabet-table></app-alphabet-table>
+
+    <div class="content-box">
+        @for (video of videoData; track video.id) {
+            <div class="pos-rel">
+                <img style="width: 200px; height: 142px" src='{{ "http://127.0.0.1:8000" + video.cover_picture }}'>
+                <div class="pos-abs">
+                    <p>{{ video.title }}</p>
+                </div>
+            </div>
+        }
+    </div> 
+</div>

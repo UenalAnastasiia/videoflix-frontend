@@ -1,0 +1,37 @@
+.alp-table {
+    border-collapse: collapse;
+    width: 300px;
+    margin-left: 6px;
+    background-color: #fff;
+    margin-top: 100px;
+    color: black;
+}
+    
+.alp-table thead th {
+    text-align: center;
+    border: 2px solid #dee2e6;
+    width: 14.2%;
+}
+
+.alp-table td {
+    border: 1px solid #dee2e6;
+    border-right: 1px solid #dee2e6;
+}
+
+.alp-table th {
+    border-right: 1px solid #dee2e6;
+}
+
+.alp-table td,
+.alp-table th {
+    padding: 0.5rem;
+    vertical-align: center;
+    text-align: center;
+    font-weight: 600;
+}
+
+.alp-row {
+    height: 2vh;
+    max-height: 2vh;
+    cursor: pointer;
+}
