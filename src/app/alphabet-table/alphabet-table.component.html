@@ -3,22 +3,23 @@
         <tbody>
             <tr *ngFor="let row of alphabet | chunk: 5">
                 <td class="alp-row" *ngFor="let column of row">
-                    <div>
+                    <div (click)="getSearchValue(column)">
                         {{ column.toUpperCase() }}
                     </div>
                 </td>
             </tr>
         </tbody>
     </table>
-    <button mat-icon-button>
+    
+    <button mat-icon-button (click)="addSpaceToValue()">
         <mat-icon>space_bar</mat-icon>
     </button>
 
-    <button mat-icon-button>
+    <button mat-icon-button (click)="removeElementFromValue()">
         <mat-icon>backspace</mat-icon>
     </button>
 
-    <button mat-icon-button>
+    <button mat-icon-button (click)="deleteValue()">
         <mat-icon>delete</mat-icon>
     </button>
 </div>

@@ -1,17 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { AlphabetTableComponent } from '../alphabet-table/alphabet-table.component';
 import { APIService } from 'src/services/api.service';
+import { CommonModule } from '@angular/common';
+import { SearchFilterPipe } from 'src/pipes/search-filter.pipe';
+import { FormsModule } from '@angular/forms';
 
 
 @Component({
   selector: 'app-movies',
   standalone: true,
-  imports: [AlphabetTableComponent],
+  imports: [AlphabetTableComponent, CommonModule, SearchFilterPipe, FormsModule],
   templateUrl: './movies.component.html',
   styleUrl: './movies.component.scss'
 })
 export class MoviesComponent implements OnInit {
-  searchInput: string;
+  searchValue: string;
   videoData: any = [];
   error: boolean = false;
   showContent: boolean = false;
@@ -31,6 +34,11 @@ export class MoviesComponent implements OnInit {
         this.showContent = true;
       }, 1000);
     }
+  }
+
+
+  showSearchInput(value: string) {
+    this.searchValue = value;
   }
 
 }
