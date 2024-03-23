@@ -1,4 +1,37 @@
 <div class="main-container">
-    <p>{{ overviewData[0].title }}</p>
-    <button (click)="playVideo()">Play</button>
+    @if (showContent) {
+        <div class="pos-rel">
+            <img class="img" src='{{ "http://127.0.0.1:8000" + overviewData.cover_picture }}'>
+    
+            <div class="info-box">
+                <p>{{ overviewData.title }}</p>
+                <span class="category-span">{{ videoCategory }}</span>
+                <span>{{ overviewData.description }}</span>
+                <div class="btn-box">
+                    <button mat-fab extended style="background: var(--flix-red); color: white" (click)="playVideo()">
+                        <mat-icon>play_arrow</mat-icon>
+                        Watch
+                    </button>
+                    @if (!listExist) {
+                        <button mat-fab extended style="background: yellow;" matTooltip="My List">
+                            <mat-icon>add_circle</mat-icon>
+                            Add List
+                        </button>
+                    } @else {
+                        <button mat-fab extended style="background: yellow;" matTooltip="My List">
+                            <mat-icon>remove</mat-icon>
+                            Remove List
+                        </button>
+                    }
+
+
+                    <button mat-fab extended style="background: #5a1eb7; color: white" >
+                        <mat-icon>info</mat-icon>
+                        Info
+                    </button>
+                </div>
+            </div>
+        </div>
+    }
+    
 </div>

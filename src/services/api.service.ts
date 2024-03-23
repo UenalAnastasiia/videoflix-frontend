@@ -23,6 +23,14 @@ export class APIService {
   }
 
 
+  async getCategory(id: number) {
+    const url = environment.baseURL + `/category/${id}/`;
+    let resp = await lastValueFrom(this.http.get(url));
+    let category = resp[0].name;
+    return category;
+  }
+
+
   loadMyList(userID: number) {
     const url = environment.baseURL + `/list/${userID}/`;
     return lastValueFrom(this.http.get(url));
