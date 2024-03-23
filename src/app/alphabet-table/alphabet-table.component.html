@@ -10,16 +10,18 @@
             </tr>
         </tbody>
     </table>
-    
-    <button mat-icon-button (click)="addSpaceToValue()">
-        <mat-icon>space_bar</mat-icon>
-    </button>
 
-    <button mat-icon-button (click)="removeElementFromValue()">
-        <mat-icon>backspace</mat-icon>
-    </button>
+    <div class="btn-box">
+        <button mat-icon-button (click)="addSpaceToValue()" matTooltip="add space">
+            <mat-icon>space_bar</mat-icon>
+        </button>
 
-    <button mat-icon-button (click)="deleteValue()">
-        <mat-icon>delete</mat-icon>
-    </button>
+        <button mat-icon-button (click)="removeElementFromValue()" matTooltip="delete last element">
+            <mat-icon>backspace</mat-icon>
+        </button>
+
+        <button mat-icon-button (click)="deleteValue()" matTooltip="delete search input">
+            <mat-icon>delete</mat-icon>
+        </button>
+    </div>
 </div>

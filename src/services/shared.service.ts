@@ -10,6 +10,7 @@ export class SharedService {
 
 
   pushOverviewData(data) {
+    this.videoOverviewData = [];
     this.videoOverviewData.push(data);
   }
 

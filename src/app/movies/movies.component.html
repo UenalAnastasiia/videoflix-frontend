@@ -1,18 +1,22 @@
 <div class="main-container movies-container">
-    <app-alphabet-table (updateValue)="showSearchInput($event)"></app-alphabet-table>
+    <div class="div-width">
+        <app-alphabet-table (updateValue)="showSearchInput($event)"></app-alphabet-table>
 
-    <span>
-        <input [readonly]="true" type="text" placeholder="Enter Movie Name..." [(ngModel)]="searchValue">
-    </span>
-
-    <div class="content-box">
-        @for (video of videoData | searchFilter: searchValue; track video.id) {
-            <div class="pos-rel">
-                <img style="width: 200px; height: 142px" src='{{ "http://127.0.0.1:8000" + video.cover_picture }}'>
-                <div class="pos-abs">
-                    <p>{{ video.title }}</p>
-                </div>
+        <div class="search-content-box">
+            <div class="input-span">
+                <input [readonly]="true" type="text" placeholder="Search Movie Name..." [(ngModel)]="searchValue" matTooltip="use table to search film name">
             </div>
-        }
-    </div> 
+
+            <div class="content-box">
+                @for (video of videoData | searchFilter: searchValue; track video.id) {
+                    <div class="pos-rel" (click)="openVideoOverview(video)">
+                        <img style="width: 200px; height: 142px" src='{{ "http://127.0.0.1:8000" + video.cover_picture }}'>
+                        <div class="pos-abs">
+                            <p>{{ video.title }}</p>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div> 
+    </div>
 </div>

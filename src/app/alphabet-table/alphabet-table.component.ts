@@ -3,12 +3,13 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { ChunkPipe } from 'src/pipes/chunk-pipe';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 
 @Component({
   selector: 'app-alphabet-table',
   standalone: true,
-  imports: [CommonModule, ChunkPipe, MatButtonModule, MatIconModule],
+  imports: [CommonModule, ChunkPipe, MatButtonModule, MatIconModule, MatTooltipModule],
   templateUrl: './alphabet-table.component.html',
   styleUrl: './alphabet-table.component.scss'
 })

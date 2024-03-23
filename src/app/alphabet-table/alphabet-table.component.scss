@@ -1,10 +1,8 @@
 .alp-table {
-    border-collapse: collapse;
     width: 300px;
     margin-left: 6px;
-    background-color: #fff;
     margin-top: 100px;
-    color: black;
+    color: white;
 }
     
 .alp-table thead th {
@@ -34,4 +32,11 @@
     height: 2vh;
     max-height: 2vh;
     cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.6);
+    border-radius: 16px;
+}
+
+.btn-box {
+    display: flex;
+    justify-content: center;
 }

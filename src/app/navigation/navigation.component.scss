@@ -8,6 +8,18 @@
     border-bottom: 1px solid #969494;
     color: var(--headers-light);
     background: var(--bg-dark);
+
+    .mat-mdc-button {
+        color: white !important;
+    }
+
+    .cdk-focused {
+        color: var(--flix-red) !important;
+    }
+}
+
+.active {
+    color: var(--flix-red) !important;
 }
 
 .logo-box {

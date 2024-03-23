@@ -4,12 +4,15 @@ import { APIService } from 'src/services/api.service';
 import { CommonModule } from '@angular/common';
 import { SearchFilterPipe } from 'src/pipes/search-filter.pipe';
 import { FormsModule } from '@angular/forms';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { Router } from '@angular/router';
+import { SharedService } from 'src/services/shared.service';
 
 
 @Component({
   selector: 'app-movies',
   standalone: true,
-  imports: [AlphabetTableComponent, CommonModule, SearchFilterPipe, FormsModule],
+  imports: [AlphabetTableComponent, CommonModule, SearchFilterPipe, FormsModule, MatTooltipModule],
   templateUrl: './movies.component.html',
   styleUrl: './movies.component.scss'
 })
@@ -20,7 +23,7 @@ export class MoviesComponent implements OnInit {
   showContent: boolean = false;
 
 
-  constructor(private API: APIService) { }
+  constructor(private API: APIService, private router: Router, private shared: SharedService) { }
 
 
   async ngOnInit() {
@@ -39,6 +42,12 @@ export class MoviesComponent implements OnInit {
 
   showSearchInput(value: string) {
     this.searchValue = value;
+  }
+
+
+  openVideoOverview(data: any) {
+    this.router.navigateByUrl('/overview');
+    this.shared.pushOverviewData(data);
   }
 
 }
