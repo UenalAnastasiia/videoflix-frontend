@@ -4,6 +4,7 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { SharedService } from 'src/services/shared.service';
 import { APIService } from 'src/services/api.service';
 import { MatIconModule } from '@angular/material/icon';
+import { SnackbarService } from '../../UI/snackbar/snackbar.service';
 
 @Component({
   selector: 'app-video-overview',
@@ -19,7 +20,7 @@ export class VideoOverviewComponent implements OnInit {
   listExist: boolean = false;
   myList: any = [];
 
-  constructor(public dialog: MatDialog, private shared: SharedService, private API: APIService) {}
+  constructor(public dialog: MatDialog, private shared: SharedService, private API: APIService, private messageService: SnackbarService) {}
 
   ngOnInit() {
     this.getOverview();
@@ -68,14 +69,17 @@ export class VideoOverviewComponent implements OnInit {
     };  
 
     this.API.postVideoToList(body);
+    this.messageService.showSnackMessage('Added!');
     this.listExist = true;
   }
 
 
-  removeVideoFromMyList() {
+  async removeVideoFromMyList() {
+    this.myList = await this.API.getMyList(1);
     let idString = this.overviewData.id.toString();
     let listID = this.myList.find((o: { list: string; }) => o.list === idString);
     this.API.deleteVideoFromList(listID.id);
+    this.messageService.showSnackMessage('Removed!');
     this.listExist = false;
   }
 }

@@ -26,3 +26,11 @@ body {
 .pos-rel {
     position: relative;
 }
+
+.mat-mdc-snack-bar-container {
+    &.red-snackbar {
+      --mdc-snackbar-container-color: var(--flix-red);
+      --mdc-snackbar-supporting-text-color: white;
+      width: 120px !important;
+    }
+}

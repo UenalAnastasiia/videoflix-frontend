@@ -4,6 +4,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { APIService } from '../../services/api.service';
 import { Router } from '@angular/router';
 import { SharedService } from 'src/services/shared.service';
+import { SnackbarService } from '../../UI/snackbar/snackbar.service';
 
 @Component({
   selector: 'app-cover-slider',
@@ -20,7 +21,7 @@ export class CoverSliderComponent implements OnInit {
   myList: any = [];
 
 
-  constructor(private API: APIService, private router: Router, private shared: SharedService) { }
+  constructor(private API: APIService, private router: Router, private shared: SharedService, private messageService: SnackbarService) { }
 
 
   async ngOnInit() {
@@ -63,14 +64,17 @@ export class CoverSliderComponent implements OnInit {
     };  
 
     this.API.postVideoToList(body);
+    this.messageService.showSnackMessage('Added!');
     this.listExist = true;
   }
 
 
   async removeVideoFromMyList(videoID) {
     let idString = videoID.toString();
+    this.myList = await this.API.getMyList(1);
     let listID = this.myList.find((o: { list: string; }) => o.list === idString);
     this.API.deleteVideoFromList(listID.id);
+    this.messageService.showSnackMessage('Removed!');
     this.listExist = false;
   }
 }

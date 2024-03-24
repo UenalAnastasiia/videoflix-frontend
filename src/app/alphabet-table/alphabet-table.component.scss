@@ -1,14 +1,12 @@
 .alp-table {
-    width: 300px;
     margin-left: 6px;
-    margin-top: 100px;
+    margin-top: 50px;
     color: white;
 }
     
 .alp-table thead th {
     text-align: center;
     border: 2px solid #dee2e6;
-    width: 14.2%;
 }
 
 .alp-table td {
@@ -22,18 +20,23 @@
 
 .alp-table td,
 .alp-table th {
-    padding: 0.5rem;
+    padding: 4px;
     vertical-align: center;
     text-align: center;
     font-weight: 600;
 }
 
 .alp-row {
-    height: 2vh;
-    max-height: 2vh;
+    height: 34px;
+    max-height: 34px;
+    width: 34px;
     cursor: pointer;
     background-color: rgba(255, 255, 255, 0.6);
-    border-radius: 16px;
+    border-radius: 50%;
+
+    &:hover {
+        transform: scale(1.1);
+    }
 }
 
 .btn-box {
