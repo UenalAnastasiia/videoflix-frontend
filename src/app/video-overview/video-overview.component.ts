@@ -57,7 +57,7 @@ export class VideoOverviewComponent implements OnInit {
 
   playVideo() {
     let playerDialog = this.dialog.open(VideoPlayerComponent);
-    playerDialog.componentInstance.videoURL = `http://127.0.0.1:8000/${this.overviewData.video_file}`;
+    playerDialog.componentInstance.videoURL = `http://127.0.0.1:8000${this.overviewData.video_file}`;
   }
 
 
