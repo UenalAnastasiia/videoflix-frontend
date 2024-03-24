@@ -17,6 +17,7 @@ export class VideoOverviewComponent implements OnInit {
   showContent: boolean = false;
   videoCategory: string = '';
   listExist: boolean = false;
+  myList: any = [];
 
   constructor(public dialog: MatDialog, private shared: SharedService, private API: APIService) {}
 
@@ -45,8 +46,9 @@ export class VideoOverviewComponent implements OnInit {
 
   async checkMyList(id: number) {
     let resp = [];
-    let idString = id.toString()
-    resp.push(await this.API.loadMyList(1));
+    let idString = id.toString();
+    this.myList = await this.API.loadMyList(1);
+    resp.push(this.myList);
 
     let exist = !!resp[0].find((o: { list: string; }) => o.list === idString);
     exist ? this.listExist = true : this.listExist = false;
@@ -56,5 +58,24 @@ export class VideoOverviewComponent implements OnInit {
   playVideo() {
     let playerDialog = this.dialog.open(VideoPlayerComponent);
     playerDialog.componentInstance.videoURL = `http://127.0.0.1:8000/${this.overviewData.video_file}`;
+  }
+
+
+  addVideoToMyList() {
+    let body = {
+      'list': this.overviewData.id, 
+      'creator': 1
+    };  
+
+    this.API.postVideoToList(body);
+    this.listExist = true;
+  }
+
+
+  removeVideoFromMyList() {
+    let idString = this.overviewData.id.toString();
+    let listID = this.myList.find((o: { list: string; }) => o.list === idString);
+    this.API.deleteVideoFromList(listID.id);
+    this.listExist = false;
   }
 }

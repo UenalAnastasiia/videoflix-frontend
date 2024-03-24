@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { lastValueFrom } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
@@ -46,5 +47,11 @@ export class APIService {
   postVideoToList(body: { list: number; creator: number; }) {
     const url = environment.baseURL + '/list/';
     lastValueFrom(this.http.post(url, body));
+  }
+
+
+  deleteVideoFromList(id: number) {
+    const url = environment.baseURL + `/list/${id}/`;
+    lastValueFrom(this.http.delete(url));
   }
 }

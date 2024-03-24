@@ -13,12 +13,12 @@
                         Watch
                     </button>
                     @if (!listExist) {
-                        <button mat-fab extended style="background: yellow;" matTooltip="My List">
+                        <button mat-fab extended style="background: yellow;" matTooltip="My List" (click)="addVideoToMyList()">
                             <mat-icon>add_circle</mat-icon>
                             Add List
                         </button>
                     } @else {
-                        <button mat-fab extended style="background: yellow;" matTooltip="My List">
+                        <button mat-fab extended style="background: yellow;" matTooltip="My List" (click)="removeVideoFromMyList()">
                             <mat-icon>remove</mat-icon>
                             Remove List
                         </button>
