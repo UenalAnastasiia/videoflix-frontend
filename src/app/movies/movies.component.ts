@@ -28,7 +28,7 @@ export class MoviesComponent implements OnInit {
 
   async ngOnInit() {
     try {
-      this.videoData = await this.API.loadVideos();
+      this.videoData = await this.API.getAllVideos();
     } catch(e) {
       console.log('Error by loading videos')
       this.error = true;

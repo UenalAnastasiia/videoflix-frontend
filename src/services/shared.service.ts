@@ -9,7 +9,7 @@ export class SharedService {
   constructor() { }
 
 
-  pushOverviewData(data) {
+  pushOverviewData(data: any) {
     this.videoOverviewData = [];
     this.videoOverviewData.push(data);
   }
@@ -17,5 +17,10 @@ export class SharedService {
 
   getVideoOverviewData() {
     return this.videoOverviewData;
+  }
+
+
+  findItemInArray(arr: any[], id: string) {
+    return !!arr[0].find((o: { list: string; }) => o.list === id);
   }
 }

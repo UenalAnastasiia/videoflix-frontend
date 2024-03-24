@@ -8,23 +8,24 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class APIService {
+  myList: any = [];
 
   constructor(private http: HttpClient) { }
 
 
-  loadVideos() {
+  getAllVideos() {
     const url = environment.baseURL + '/videos/';
     return lastValueFrom(this.http.get(url));
   }
 
 
-  loadCategories() {
+  getAllCategories() {
     const url = environment.baseURL + '/category/';
     return lastValueFrom(this.http.get(url));
   }
 
 
-  async getCategory(id: number) {
+  async getCategoryName(id: number) {
     const url = environment.baseURL + `/category/${id}/`;
     let resp = await lastValueFrom(this.http.get(url));
     let category = resp[0].name;
@@ -32,13 +33,14 @@ export class APIService {
   }
 
 
-  loadMyList(userID: number) {
+  getMyList(userID: number) {
     const url = environment.baseURL + `/list/${userID}/`;
+    this.myList = lastValueFrom(this.http.get(url));
     return lastValueFrom(this.http.get(url));
   }
 
 
-  loadVideoFromList(videoID: number) {
+  getVideoFromList(videoID: number) {
     const url = environment.baseURL + `/videos/${videoID}/`;
     return lastValueFrom(this.http.get(url));
   }

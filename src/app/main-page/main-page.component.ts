@@ -24,8 +24,8 @@ export class MainPageComponent implements OnInit {
 
   async ngOnInit() {
     try {
-      this.videos = await this.API.loadVideos();
-      this.categories = await this.API.loadCategories();
+      this.videos = await this.API.getAllVideos();
+      this.categories = await this.API.getAllCategories();
     } catch(e) {
       console.log('Error by loading videos')
       this.error = true;

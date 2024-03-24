@@ -30,14 +30,14 @@ export class VideoOverviewComponent implements OnInit {
     let respData = this.shared.getVideoOverviewData();
 
     if (respData === undefined || respData.length === 0) {
-      let resp = await this.API.loadVideos();
+      let resp = await this.API.getAllVideos();
       this.overviewData = resp[0];
-      this.videoCategory = await this.API.getCategory(resp[0].category);
+      this.videoCategory = await this.API.getCategoryName(resp[0].category);
       this.checkMyList(resp[0].id);
       setTimeout(() => { this.showContent = true }, 1000);
     } else {
       this.overviewData = respData[0];
-      this.videoCategory = await this.API.getCategory(respData[0].category);
+      this.videoCategory = await this.API.getCategoryName(respData[0].category);
       this.checkMyList(respData[0].id);
       setTimeout(() => { this.showContent = true }, 1000);
     }
@@ -47,10 +47,10 @@ export class VideoOverviewComponent implements OnInit {
   async checkMyList(id: number) {
     let resp = [];
     let idString = id.toString();
-    this.myList = await this.API.loadMyList(1);
+    this.myList = await this.API.getMyList(1);
     resp.push(this.myList);
 
-    let exist = !!resp[0].find((o: { list: string; }) => o.list === idString);
+    let exist = this.shared.findItemInArray(resp, idString);
     exist ? this.listExist = true : this.listExist = false;
   }
 

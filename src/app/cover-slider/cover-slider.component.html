@@ -15,10 +15,21 @@
                 <mat-icon>play_arrow</mat-icon>
                 Watch
             </button>
-            <button mat-fab extended style="background: yellow;" (click)="addVideoToMyList(videos[coverIndex[2]].id)">
+            @if (!listExist) {
+                <button mat-fab extended style="background: yellow;" matTooltip="My List" (click)="addVideoToMyList(videos[coverIndex[2]].id)">
+                    <mat-icon>add_circle</mat-icon>
+                    Add List
+                </button>
+            } @else {
+                <button mat-fab extended style="background: yellow;" matTooltip="My List" (click)="removeVideoFromMyList(videos[coverIndex[2]].id)">
+                    <mat-icon>remove</mat-icon>
+                    Remove List
+                </button>
+            }
+            <!-- <button mat-fab extended style="background: yellow;" (click)="addVideoToMyList(videos[coverIndex[2]].id)">
                 <mat-icon>add_circle</mat-icon>
                 Add List
-            </button>
+            </button> -->
         </div>
     </div>
 

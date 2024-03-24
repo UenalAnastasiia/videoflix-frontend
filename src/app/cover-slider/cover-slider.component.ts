@@ -15,13 +15,17 @@ import { SharedService } from 'src/services/shared.service';
 export class CoverSliderComponent implements OnInit {
   @Input() videos: any;
   coverIndex = [4, 3, 2, 1, 0];
-  showCover = true;
+  showCover: boolean = true;
+  listExist: boolean;
+  myList: any = [];
 
 
   constructor(private API: APIService, private router: Router, private shared: SharedService) { }
 
 
-  ngOnInit() {
+  async ngOnInit() {
+    this.myList = await this.API.getMyList(1);
+    this.checkMyList(this.videos[2].id);
     this.slideCover();
   }
 
@@ -31,8 +35,18 @@ export class CoverSliderComponent implements OnInit {
       for (let index = 0; index < this.coverIndex.length; index++) {
         this.coverIndex[index]++;
         this.coverIndex[index] = this.coverIndex[index] % this.videos.length;
+        this.checkMyList(this.videos[this.coverIndex[2]].id);
       }
     }, 5000);
+  }
+
+
+  checkMyList(id: number) {
+    let resp = [];
+    let idString = id.toString();
+    resp.push(this.myList);
+    let exist = this.shared.findItemInArray(resp, idString);
+    exist ? this.listExist = true : this.listExist = false;
   }
 
 
@@ -49,5 +63,14 @@ export class CoverSliderComponent implements OnInit {
     };  
 
     this.API.postVideoToList(body);
+    this.listExist = true;
+  }
+
+
+  async removeVideoFromMyList(videoID) {
+    let idString = videoID.toString();
+    let listID = this.myList.find((o: { list: string; }) => o.list === idString);
+    this.API.deleteVideoFromList(listID.id);
+    this.listExist = false;
   }
 }

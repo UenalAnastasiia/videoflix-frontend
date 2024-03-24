@@ -24,7 +24,7 @@ export class MyListComponent implements OnInit {
 
   async ngOnInit() {
     try {
-      this.myList = await this.API.loadMyList(1);
+      this.myList = await this.API.getMyList(1);
     } catch(e) {
       console.log('Error by loading List')
       this.error = true;
@@ -36,7 +36,7 @@ export class MyListComponent implements OnInit {
 
   async loadVideos(data: any) {
     for (let index = 0; index < data.length; index++) {
-      let resp = await this.API.loadVideoFromList(data[index].list);
+      let resp = await this.API.getVideoFromList(data[index].list);
       this.videoList.push(resp[0]);
     }
 
