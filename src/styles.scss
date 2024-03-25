@@ -23,6 +23,14 @@ body {
     padding-top: 2vw;
 }
 
+.loading-box {
+    height: 70vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .pos-rel {
     position: relative;
 }
@@ -34,3 +42,26 @@ body {
       width: 120px !important;
     }
 }
+
+*::-webkit-scrollbar {
+    display: block;
+    width: 12px;
+    height: 10px;
+  }
+  
+  *::-webkit-scrollbar-button {
+    display: none;
+  }
+  
+  *::-webkit-scrollbar-track {
+    background-color: #8e393d78;
+  }
+  
+  *::-webkit-scrollbar-track-piece {
+    background-color: var(--bg-dark);
+  }
+  
+  *::-webkit-scrollbar-thumb {
+    background-color: #8e393d78;
+    border-radius: 24px;
+  }

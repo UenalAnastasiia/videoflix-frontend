@@ -5,11 +5,12 @@ import { SharedService } from 'src/services/shared.service';
 import { APIService } from 'src/services/api.service';
 import { MatIconModule } from '@angular/material/icon';
 import { SnackbarService } from '../../UI/snackbar/snackbar.service';
+import { LoadingSpinnerComponent } from 'src/UI/loading-spinner/loading-spinner.component';
 
 @Component({
   selector: 'app-video-overview',
   standalone: true,
-  imports: [VideoPlayerComponent, MatDialogModule, MatIconModule],
+  imports: [VideoPlayerComponent, MatDialogModule, MatIconModule, LoadingSpinnerComponent],
   templateUrl: './video-overview.component.html',
   styleUrl: './video-overview.component.scss'
 })

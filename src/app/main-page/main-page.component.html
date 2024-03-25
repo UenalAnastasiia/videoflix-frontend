@@ -5,8 +5,8 @@
             <app-video-tabs [categories]="categories" [videos]="videos"></app-video-tabs>
         </div>
     } @else {
-        <div>
-            <h1>Loading...</h1>
+        <div class="loading-box">
+            <app-loading-spinner></app-loading-spinner>
         </div>
     }
 

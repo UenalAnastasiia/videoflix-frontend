@@ -3,12 +3,13 @@ import { CoverSliderComponent } from '../cover-slider/cover-slider.component';
 import { VideoTabsComponent } from '../video-tabs/video-tabs.component';
 import { VideoOverviewComponent } from '../video-overview/video-overview.component';
 import { APIService } from '../../services/api.service';
+import { LoadingSpinnerComponent } from 'src/UI/loading-spinner/loading-spinner.component';
 
 
 @Component({
   selector: 'app-main-page',
   standalone: true,
-  imports: [CoverSliderComponent, VideoTabsComponent, VideoOverviewComponent],
+  imports: [CoverSliderComponent, VideoTabsComponent, VideoOverviewComponent, LoadingSpinnerComponent],
   templateUrl: './main-page.component.html',
   styleUrl: './main-page.component.scss'
 })

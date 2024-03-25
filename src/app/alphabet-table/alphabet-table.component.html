@@ -1,7 +1,7 @@
 <div>
     <table class="alp-table">
         <tbody>
-            <tr *ngFor="let row of alphabet | chunk: 5">
+            <tr *ngFor="let row of alphabet | chunk: 6">
                 <td class="alp-row" *ngFor="let column of row">
                     <div (click)="getSearchValue(column)">
                         {{ column.toUpperCase() }}
