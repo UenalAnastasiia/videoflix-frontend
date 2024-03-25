@@ -24,25 +24,35 @@ export class VideoOverviewComponent implements OnInit {
   constructor(public dialog: MatDialog, private shared: SharedService, private API: APIService, private messageService: SnackbarService) {}
 
   ngOnInit() {
-    this.getOverview();
+    this.checkOverview();
   }
 
 
-  async getOverview() {
+  async checkOverview() {
     let respData = this.shared.getVideoOverviewData();
 
     if (respData === undefined || respData.length === 0) {
-      let resp = await this.API.getAllVideos();
-      this.overviewData = resp[0];
-      this.videoCategory = await this.API.getCategoryName(resp[0].category);
-      this.checkMyList(resp[0].id);
-      setTimeout(() => { this.showContent = true }, 1000);
+      this.getFirstVideoFromAPI();
     } else {
-      this.overviewData = respData[0];
-      this.videoCategory = await this.API.getCategoryName(respData[0].category);
-      this.checkMyList(respData[0].id);
-      setTimeout(() => { this.showContent = true }, 1000);
+      this.getVideoOverview(respData);
     }
+  }
+
+
+  async getFirstVideoFromAPI() {
+    let resp = await this.API.getAllVideos();
+    this.overviewData = resp[0];
+    this.videoCategory = await this.API.getCategoryName(resp[0].category);
+    this.checkMyList(resp[0].id);
+    setTimeout(() => { this.showContent = true }, 1000);
+  }
+
+
+  async getVideoOverview(respData: Object) {
+    this.overviewData = respData[0];
+    this.videoCategory = await this.API.getCategoryName(respData[0].category);
+    this.checkMyList(respData[0].id);
+    setTimeout(() => { this.showContent = true }, 1000);
   }
 
 
