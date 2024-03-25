@@ -1,6 +1,14 @@
 .my-list-container {
     display: flex;
     flex-direction: column;
+    padding-left: 5vw;
+    width: 95vw !important;
+
+    h2 {
+        margin-left: 16px;
+        font-size: 28px;
+        font-weight: 700;
+    }
 
     img {
         border-radius: 24px;
@@ -14,7 +22,8 @@
     .video-box {
         display: flex;
         flex-wrap: wrap;
-        width: 95%;
+        width: 85vw;
+        max-width: 85vw;
         overflow-x: hidden;
     }
 
@@ -38,5 +47,9 @@
             margin-right: 8px;
             margin-bottom: 0;
         }
+    }
+
+    .empty-list {
+        margin-left: 16px;
     }
 }

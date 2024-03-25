@@ -80,7 +80,7 @@ export class VideoOverviewComponent implements OnInit {
     };  
 
     this.API.postVideoToList(body);
-    this.messageService.showSnackMessage('Added!');
+    this.messageService.showSnackMessage('Added to my list!');
     this.listExist = true;
   }
 
@@ -90,7 +90,7 @@ export class VideoOverviewComponent implements OnInit {
     let idString = this.overviewData.id.toString();
     let listID = this.myList.find((o: { list: string; }) => o.list === idString);
     this.API.deleteVideoFromList(listID.id);
-    this.messageService.showSnackMessage('Removed!');
+    this.messageService.showSnackMessage('Removed from my list!');
     this.listExist = false;
   }
 }

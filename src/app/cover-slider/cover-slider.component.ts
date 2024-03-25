@@ -64,7 +64,7 @@ export class CoverSliderComponent implements OnInit {
     };  
 
     this.API.postVideoToList(body);
-    this.messageService.showSnackMessage('Added!');
+    this.messageService.showSnackMessage('Added to my list!');
     this.listExist = true;
   }
 
@@ -74,7 +74,7 @@ export class CoverSliderComponent implements OnInit {
     this.myList = await this.API.getMyList(1);
     let listID = this.myList.find((o: { list: string; }) => o.list === idString);
     this.API.deleteVideoFromList(listID.id);
-    this.messageService.showSnackMessage('Removed!');
+    this.messageService.showSnackMessage('Removed from my list!');
     this.listExist = false;
   }
 }

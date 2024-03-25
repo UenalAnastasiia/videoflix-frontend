@@ -14,7 +14,7 @@ import { SharedService } from 'src/services/shared.service';
 })
 export class MyListComponent implements OnInit {
   myList: Object = [];
-  showContent: boolean = false;
+  showContent: boolean = true;
   error: boolean = false;
   videoList: any = [];
 
