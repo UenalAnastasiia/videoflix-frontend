@@ -4,8 +4,8 @@ import { routes } from './app.routes';
 
 import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptors } from '@angular/common/http';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { AuthService } from './auth/components/services/auth.service';
-import { AuthIntercepterService } from './auth/components/services/auth-intercepter.service';
+import { AuthService } from './auth/services/auth.service';
+import { AuthIntercepterService } from './auth/services/auth-intercepter.service';
 import { IMAGE_CONFIG } from '@angular/common';
 
 export const appConfig: ApplicationConfig = {

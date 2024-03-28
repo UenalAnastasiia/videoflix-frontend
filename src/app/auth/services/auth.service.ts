@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { lastValueFrom } from 'rxjs';
+import { Observable, lastValueFrom } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -40,4 +40,11 @@ export class AuthService {
     //   //this.userImg
     // } 
   }
+
+
+  register(body): Observable<any> {
+    const url = environment.baseURL + '/register/';
+    return this.http.post(url, body);
+  }
+
 }
