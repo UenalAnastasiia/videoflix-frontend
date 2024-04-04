@@ -14,46 +14,53 @@ export class APIService {
 
 
   getAllVideos() {
-    const url = environment.baseURL + '/videos/';
-    return lastValueFrom(this.http.get(url));
+    const endpoint = environment.baseURL + '/videos/';
+    return lastValueFrom(this.http.get(endpoint));
   }
 
 
   getAllCategories() {
-    const url = environment.baseURL + '/category/';
-    return lastValueFrom(this.http.get(url));
+    const endpoint = environment.baseURL + '/category/';
+    return lastValueFrom(this.http.get(endpoint));
   }
 
 
   async getCategoryName(id: number) {
-    const url = environment.baseURL + `/category/${id}/`;
-    let resp = await lastValueFrom(this.http.get(url));
+    const endpoint = environment.baseURL + `/category/${id}/`;
+    let resp = await lastValueFrom(this.http.get(endpoint));
     let category = resp[0].name;
     return category;
   }
 
 
   getMyList(userID: number) {
-    const url = environment.baseURL + `/list/${userID}/`;
-    this.myList = lastValueFrom(this.http.get(url));
-    return lastValueFrom(this.http.get(url));
+    const endpoint = environment.baseURL + `/list/${userID}/`;
+    this.myList = lastValueFrom(this.http.get(endpoint));
+    return lastValueFrom(this.http.get(endpoint));
   }
 
 
   getVideoFromList(videoID: number) {
-    const url = environment.baseURL + `/videos/${videoID}/`;
-    return lastValueFrom(this.http.get(url));
+    const endpoint = environment.baseURL + `/videos/${videoID}/`;
+    return lastValueFrom(this.http.get(endpoint));
+  }
+
+
+  async postVideoToDB(uploadData: FormData) {
+    const endpoint = environment.baseURL + '/videos/';
+    let res = await lastValueFrom(this.http.post(endpoint, uploadData));
+    console.log('Upload ', res);
   }
 
 
   postVideoToList(body: { list: number; creator: number; }) {
-    const url = environment.baseURL + '/list/';
-    lastValueFrom(this.http.post(url, body));
+    const endpoint = environment.baseURL + '/list/';
+    lastValueFrom(this.http.post(endpoint, body));
   }
 
 
   deleteVideoFromList(id: number) {
-    const url = environment.baseURL + `/list/${id}/`;
-    lastValueFrom(this.http.delete(url));
+    const endpoint = environment.baseURL + `/list/${id}/`;
+    lastValueFrom(this.http.delete(endpoint));
   }
 }

@@ -4,16 +4,35 @@
     <form>
         <mat-form-field appearance="outline">
             <mat-label>Title</mat-label>
-            <input matInput placeholder="Write Video Title" [(ngModel)]="title" [ngModelOptions]="{standalone: true}">
+            <input matInput placeholder="Write Video Title" [formControl]="title">
         </mat-form-field>
-    
+
         <mat-form-field appearance="outline">
             <mat-label>Description</mat-label>
-            <input matInput placeholder="Write Video Description" [(ngModel)]="description" [ngModelOptions]="{standalone: true}">
+            <input matInput placeholder="Write Video Description" [formControl]="description">
         </mat-form-field>
 
-        <input type="file" class="file-upload" [(ngModel)]="file" (change)="uploadFile()" [ngModelOptions]="{standalone: true}">
+        <mat-form-field style="width: 100%;">
+			<mat-label>Video File</mat-label>
+			<button mat-icon-button matPrefix (click)="video_input.click()">
+                <mat-icon>attach_file</mat-icon>
+            </button>
 
-        <button mat-button (click)="saveVideo()">Save</button>
+			<input type="text" readonly matInput [formControl]="displayVideo"/>
+			<input type="file" multiple hidden #video_input (change)="handleVideoUploadInput($event)"/>
+		</mat-form-field>
+
+        <mat-form-field style="width: 100%;">
+			<mat-label>Cover Image File</mat-label>
+			<button mat-icon-button matPrefix (click)="cover_input.click()">
+                <mat-icon>attach_file</mat-icon>
+            </button>
+
+			<input type="text" readonly matInput [formControl]="displayCover"/>
+			<input type="file" multiple hidden #cover_input (change)="handleCoverUploadInput($event)"/>
+		</mat-form-field>
+
+        <button mat-button [disabled]="!displayVideo.valid || !displayCover.valid || !title.valid || !description.valid"
+            (click)="saveVideoRequest()">Save</button>
     </form>
 </div>
