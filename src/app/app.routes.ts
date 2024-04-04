@@ -6,6 +6,7 @@ import { MyListComponent } from './my-list/my-list.component';
 import { VideoOverviewComponent } from './video-overview/video-overview.component';
 import { MoviesComponent } from './movies/movies.component';
 import { RegisterComponent } from './auth/components/register/register.component';
+import { PasswordResetComponent } from './auth/components/password-reset/password-reset.component';
 
 
 export const routes: Routes = [
@@ -16,5 +17,6 @@ export const routes: Routes = [
   { path: 'upload', component: UploadFileComponent },
   { path: 'mylist', component: MyListComponent },
   { path: 'overview', component: VideoOverviewComponent },
-  { path: 'movies', component: MoviesComponent }
+  { path: 'movies', component: MoviesComponent },
+  { path: 'password-reset/:token', component: PasswordResetComponent }
 ];

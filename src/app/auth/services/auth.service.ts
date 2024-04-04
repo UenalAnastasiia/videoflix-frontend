@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, lastValueFrom } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -42,8 +42,24 @@ export class AuthService {
   }
 
 
-  register(body): Observable<any> {
-    const url = environment.baseURL + '/register/';
+  register(body: any): Observable<any> {
+    const url = environment.baseURL + '/register/'; 
+    return this.http.post(url, body);
+  }
+
+
+  sendMailForPasswordReset(body: { email: string; }) {
+    const url = environment.baseURL + '/password_reset/';
+    lastValueFrom(this.http.post(url, body));
+  }
+
+
+  resetPasswordInDB(token: string, newPassword: string): Observable<any> {
+    const url = `${environment.baseURL}/password_reset/confirm/`;
+    const body = {
+      token: token,
+      password: newPassword
+    };
     return this.http.post(url, body);
   }
 

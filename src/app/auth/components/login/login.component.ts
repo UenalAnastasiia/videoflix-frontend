@@ -16,6 +16,10 @@ import { FormsModule } from '@angular/forms';
 export class LoginComponent {
   username: string = '';
   password: string = '';
+  email: string = '';
+  uidb64: string;
+  token: string;
+  newPassword: string;
 
   constructor(private authService: AuthService, private router: Router) { }
 
@@ -30,5 +34,13 @@ export class LoginComponent {
       alert('Error in Login. Wrong username or Password.')
       console.error('Error in fetch token: ', e);    
     }
+  }
+
+
+  sendMailForPasswordReset() {
+    const body = {
+      "email": this.email
+    };
+    this.authService.sendMailForPasswordReset(body);
   }
 }
