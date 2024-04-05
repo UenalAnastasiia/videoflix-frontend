@@ -21,21 +21,21 @@
         <mat-form-field style="width: 100%;" appearance="outline">
 			<mat-label>Video File</mat-label>
 			<button mat-icon-button matPrefix (click)="video_input.click()">
-                <mat-icon>attach_file</mat-icon>
+                <mat-icon>folder_open</mat-icon>
             </button>
 
-			<input type="text" readonly matInput [formControl]="displayVideo"/>
-			<input type="file" multiple hidden #video_input (change)="handleVideoUploadInput($event)"/>
+			<input type="text" readonly matInput placeholder="Choose Video File" [formControl]="displayVideo"/>
+			<input type="file" accept="video/mp4" multiple hidden #video_input (change)="handleVideoUploadInput($event)"/>
 		</mat-form-field>
 
         <mat-form-field style="width: 100%;" appearance="outline">
 			<mat-label>Cover Image File</mat-label>
 			<button mat-icon-button matPrefix (click)="cover_input.click()">
-                <mat-icon>attach_file</mat-icon>
+                <mat-icon>folder_open</mat-icon>
             </button>
 
-			<input type="text" readonly matInput [formControl]="displayCover"/>
-			<input type="file" multiple hidden #cover_input (change)="handleCoverUploadInput($event)"/>
+			<input type="text" readonly matInput placeholder="Choose Cover Image File" [formControl]="displayCover"/>
+			<input type="file" accept="image/png, image/jpeg" multiple hidden #cover_input (change)="handleCoverUploadInput($event)"/>
 		</mat-form-field>
 
         <mat-form-field class="example-chip-list" appearance="outline">
