@@ -4,15 +4,21 @@
     <form>
         <mat-form-field appearance="outline">
             <mat-label>Title</mat-label>
+            <button mat-icon-button matPrefix disabled>
+                <mat-icon>notes</mat-icon>
+            </button>
             <input matInput placeholder="Write Video Title" [formControl]="title">
         </mat-form-field>
 
         <mat-form-field appearance="outline">
             <mat-label>Description</mat-label>
+            <button mat-icon-button matPrefix disabled>
+                <mat-icon>notes</mat-icon>
+            </button>
             <input matInput placeholder="Write Video Description" [formControl]="description">
         </mat-form-field>
 
-        <mat-form-field style="width: 100%;">
+        <mat-form-field style="width: 100%;" appearance="outline">
 			<mat-label>Video File</mat-label>
 			<button mat-icon-button matPrefix (click)="video_input.click()">
                 <mat-icon>attach_file</mat-icon>
@@ -22,7 +28,7 @@
 			<input type="file" multiple hidden #video_input (change)="handleVideoUploadInput($event)"/>
 		</mat-form-field>
 
-        <mat-form-field style="width: 100%;">
+        <mat-form-field style="width: 100%;" appearance="outline">
 			<mat-label>Cover Image File</mat-label>
 			<button mat-icon-button matPrefix (click)="cover_input.click()">
                 <mat-icon>attach_file</mat-icon>
@@ -31,6 +37,34 @@
 			<input type="text" readonly matInput [formControl]="displayCover"/>
 			<input type="file" multiple hidden #cover_input (change)="handleCoverUploadInput($event)"/>
 		</mat-form-field>
+
+        <mat-form-field class="example-chip-list" appearance="outline">
+            <mat-label>Categories</mat-label>
+            <button mat-icon-button matPrefix disabled>
+                <mat-icon>format_list_bulleted</mat-icon>
+            </button>
+            <mat-chip-grid #chipGrid>
+                @for (category of categories; track category) {
+                    <mat-chip-row (removed)="removeCategory(category)">
+                        {{category}}
+                        <button matChipRemove [attr.aria-label]="'remove ' + category">
+                            <mat-icon>cancel</mat-icon>
+                        </button>
+                    </mat-chip-row>
+                }
+            </mat-chip-grid>
+
+            <input placeholder="New Category..." #categoryInput [formControl]="categoryCtrl"
+                [matChipInputFor]="chipGrid" [matAutocomplete]="auto"
+                [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                (matChipInputTokenEnd)="addCategory($event)"/>
+
+            <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selectedCategories($event)">
+                @for (category of filteredCategories | async; track category.id) {
+                    <mat-option [value]="category">{{category.name}}</mat-option>
+                }
+            </mat-autocomplete>
+          </mat-form-field>
 
         <button mat-button [disabled]="!displayVideo.valid || !displayCover.valid || !title.valid || !description.valid"
             (click)="saveVideoRequest()">Save</button>
