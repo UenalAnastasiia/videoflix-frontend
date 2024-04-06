@@ -63,4 +63,10 @@ export class APIService {
     const endpoint = environment.baseURL + `/list/${id}/`;
     lastValueFrom(this.http.delete(endpoint));
   }
+
+
+  postCategoryToDB(body) {
+    const endpoint = environment.baseURL + '/category/';
+    return lastValueFrom(this.http.post(endpoint, body));
+  }
 }

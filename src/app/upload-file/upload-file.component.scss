@@ -12,4 +12,8 @@
             width: fit-content;
         }
     }
+    
+    ::ng-deep .mat-mdc-standard-chip:not(.mdc-evolution-chip--disabled) {
+        background-color: #ffdad49e !important;
+    }
 }

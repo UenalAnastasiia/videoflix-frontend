@@ -51,12 +51,17 @@
     opacity: 0.3;
 }
 
-.category-span {
-    font-size: 18px !important;
-    padding: 6px;
-    border: 1px solid white;
-    width: fit-content;
-    height: fit-content;
-    border-radius: 24px;
-    font-weight: 700;
+.category-div {
+    margin-bottom: 32px;
+
+    span {
+        font-size: 18px !important;
+        padding: 6px;
+        border: 1px solid white;
+        width: fit-content;
+        height: fit-content;
+        border-radius: 24px;
+        font-weight: 700;
+        margin-right: 12px;
+    }
 }

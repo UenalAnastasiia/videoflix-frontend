@@ -17,7 +17,7 @@ import { LoadingSpinnerComponent } from 'src/UI/loading-spinner/loading-spinner.
 export class VideoOverviewComponent implements OnInit {
   @Input() overviewData: any;
   showContent: boolean = false;
-  videoCategory: string = '';
+  videoCategory: any = [];
   listExist: boolean = false;
   myList: any = [];
 
@@ -42,17 +42,26 @@ export class VideoOverviewComponent implements OnInit {
   async getFirstVideoFromAPI() {
     let resp = await this.API.getAllVideos();
     this.overviewData = resp[0];
-    this.videoCategory = await this.API.getCategoryName(resp[0].category);
+    this.loadCategories(resp[0]);
     this.checkMyList(resp[0].id);
     setTimeout(() => { this.showContent = true }, 1000);
   }
 
 
-  async getVideoOverview(respData: Object) {
+  getVideoOverview(respData: Object) {
     this.overviewData = respData[0];
-    this.videoCategory = await this.API.getCategoryName(respData[0].category);
+    this.loadCategories(respData[0]);
     this.checkMyList(respData[0].id);
     setTimeout(() => { this.showContent = true }, 1000);
+  }
+
+
+  async loadCategories(data: { category: string; }) {
+    let categoryArray = data.category.split(',').map((x: string | number)=>+x);
+    for (let index = 0; index < categoryArray.length; index++) {
+      let resp = await this.API.getCategoryName(categoryArray[index]);
+      this.videoCategory.push(resp);
+    }
   }
 
 

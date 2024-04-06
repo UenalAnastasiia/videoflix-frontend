@@ -46,7 +46,7 @@
             <mat-chip-grid #chipGrid>
                 @for (category of categories; track category) {
                     <mat-chip-row (removed)="removeCategory(category)">
-                        {{category}}
+                        {{category.name}}
                         <button matChipRemove [attr.aria-label]="'remove ' + category">
                             <mat-icon>cancel</mat-icon>
                         </button>
@@ -66,7 +66,10 @@
             </mat-autocomplete>
           </mat-form-field>
 
-        <button mat-button [disabled]="!displayVideo.valid || !displayCover.valid || !title.valid || !description.valid"
-            (click)="saveVideoRequest()">Save</button>
+          <button mat-button
+          (click)="saveVideoRequest()">Save</button>
+
+        <!-- <button mat-button [disabled]="!displayVideo.valid || !displayCover.valid || !title.valid || !description.valid"
+            (click)="saveVideoRequest()">Save</button> -->
     </form>
 </div>

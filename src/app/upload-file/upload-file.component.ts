@@ -36,8 +36,9 @@ export class UploadFileComponent {
   separatorKeysCodes: number[] = [ENTER, COMMA];
   categoryCtrl = new FormControl('');
   filteredCategories: Observable<any[]>;
-  categories: string[] = [];
+  categories: any[] = [{name: 'New'}];
   allCategories: any = [];
+  categoriesID: any = [24];
   @ViewChild('categoryInput') categoryInput: ElementRef<HTMLInputElement>;
   announcer = inject(LiveAnnouncer);
 
@@ -71,23 +72,57 @@ export class UploadFileComponent {
   }
 
 
-  saveVideoRequest() {
-    this.uploadData.append('video_file', this.videoToUpload, this.videoToUpload.name);
-    this.uploadData.append('cover_picture', this.coverToUpload, this.coverToUpload.name);
-    this.uploadData.append('title', this.title.value)
-    this.uploadData.append('description', this.description.value)
-    this.uploadData.append('created_at', '2024-04-05')
-    this.uploadData.append('creator', '1')
-    this.uploadData.append('category', '1')
-    this.API.postVideoToDB(this.uploadData);
-    console.log('this.categories', this.categories);
+  async saveVideoRequest() {
+    this.checkCategories();
+    setTimeout(() => {
+          this.uploadData.append('video_file', this.videoToUpload, this.videoToUpload.name);
+          this.uploadData.append('cover_picture', this.coverToUpload, this.coverToUpload.name);
+          this.uploadData.append('title', this.title.value)
+          this.uploadData.append('description', this.description.value)
+          this.uploadData.append('created_at', this.dateFormat())
+          this.uploadData.append('creator', '1')
+          this.uploadData.append('category', this.categoriesID)
+          this.API.postVideoToDB(this.uploadData);          
+    }, 1000);
+  }
+
+
+  async checkCategories() {
+    for (let index = 0; index < this.categories.length; index++) {
+      let nameExist = this.allCategories.some((el: { name: any; }) => { return el.name === this.categories[index].name});
+      if (nameExist === false) {
+        this.saveCategoryRequest(this.categories[index].name);
+      } else if (this.categoriesID.includes(this.categories[index].id) === false) {
+        this.categoriesID.push(this.categories[index].id);
+      }
+    }
+  }
+
+
+  async saveCategoryRequest(categoryName: string) {
+    let body = {
+      'name': categoryName
+    };
+
+    let resp: any = await this.API.postCategoryToDB(body);
+    
+    setTimeout(() => {
+      this.categoriesID.push(resp.id);
+    }, 500);
+  }
+
+
+  dateFormat() {
+    const today = new Date();
+    let currdateFormat = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2);
+    return currdateFormat;
   }
 
 
   addCategory(event: MatChipInputEvent): void {
     const value = (event.value || '').trim();
     if (value) {
-      this.categories.push(value);
+      this.categories.push({name: value});
     }
 
     event.chipInput!.clear();
@@ -95,19 +130,18 @@ export class UploadFileComponent {
   }
 
 
-  removeCategory(category: string): void {
+  removeCategory(category: any): void {
     const index = this.categories.indexOf(category);
 
     if (index >= 0) {
       this.categories.splice(index, 1);
-
       this.announcer.announce(`Removed ${category}`);
     }
   }
 
 
   selectedCategories(event: MatAutocompleteSelectedEvent): void {
-    this.categories.push(event.option.viewValue);
+    this.categories.push(event.option.value);
     this.categoryInput.nativeElement.value = '';
     this.categoryCtrl.setValue(null);
   }
@@ -115,6 +149,6 @@ export class UploadFileComponent {
 
   private _filter(value: any): any[] {
     const filterValue = value.name;
-    return this.allCategories.filter(category => category.name.includes(filterValue));
+    return this.allCategories.filter((category: { name: string | any[]; }) => category.name.includes(filterValue));
   }
 }
