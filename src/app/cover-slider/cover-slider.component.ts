@@ -28,8 +28,6 @@ export class CoverSliderComponent implements OnInit {
     this.myList = await this.API.getMyList(1);
     this.checkMyList(this.videos[2].id);
     this.slideCover();
-    console.log('Data ', this.videos);
-    
   }
 
 

@@ -21,12 +21,29 @@ export class VideoTabsComponent implements OnInit {
   @Input() videos: any;
   scrollAmount: number = 0;
   step: number = 100;
+  tabVideos: any = [];
 
 
   constructor(private router: Router, private shared: SharedService) { }
 
 
   ngOnInit() { }
+
+
+  getTabVideosEvent(event: { tab: { textLabel: any; }; }) {
+    if (event.tab.textLabel !== 'All') {
+      this.tabVideos = [];
+      let item = this.categories.find((cat: { name: any; }) => cat.name === event.tab.textLabel);
+    
+      for (let index = 0; index < this.videos.length; index++) {
+        let videoCategoryArray = this.videos[index].category.split(',').map((x: string | number)=>+x);
+        
+        if (videoCategoryArray.includes(item.id)) {
+          this.tabVideos.push(this.videos[index]);
+        }
+      }
+    }
+  }
 
 
   @HostListener('window:keydown.ArrowRight', ['$event'])
@@ -60,6 +77,4 @@ export class VideoTabsComponent implements OnInit {
       if (this.scrollAmount >= this.step) { window.clearInterval(scrollTimer); }
     }, this.step / 4);
   }
-
-
 }
