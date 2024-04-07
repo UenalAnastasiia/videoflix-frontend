@@ -38,33 +38,43 @@
 			<input type="file" accept="image/png, image/jpeg" multiple hidden #cover_input (change)="handleCoverUploadInput($event)"/>
 		</mat-form-field>
 
-        <mat-form-field class="example-chip-list" appearance="outline">
-            <mat-label>Categories</mat-label>
-            <button mat-icon-button matPrefix disabled>
-                <mat-icon>format_list_bulleted</mat-icon>
-            </button>
-            <mat-chip-grid #chipGrid>
-                @for (category of categories; track category) {
-                    <mat-chip-row (removed)="removeCategory(category)">
-                        {{category.name}}
-                        <button matChipRemove [attr.aria-label]="'remove ' + category">
-                            <mat-icon>cancel</mat-icon>
-                        </button>
-                    </mat-chip-row>
-                }
-            </mat-chip-grid>
+        @if (!updateCategory) {
+            <mat-form-field class="example-chip-list" appearance="outline" [floatLabel]="'always'">
+                <mat-label>Category</mat-label>
+                <button mat-icon-button matPrefix (click)="showAddInput = !showAddInput">
+                    @if (!showAddInput) {
+                        <mat-icon>add</mat-icon>
+                    } @else {
+                        <mat-icon>remove</mat-icon>
+                    }
+                </button>
 
-            <input placeholder="New Category..." #categoryInput [formControl]="categoryCtrl"
-                [matChipInputFor]="chipGrid" [matAutocomplete]="auto"
-                [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                (matChipInputTokenEnd)="addCategory($event)"/>
+                <mat-chip-grid #chipGrid>
+                    <mat-chip-listbox aria-label="Fish selection" selectable multiple>
+                        @for (category of allCategories; track category.id) {
+                        <mat-chip-option (click)="selectedCategories(category)" >
+                            {{category.name}}
+                        </mat-chip-option>
+                        }
+                    </mat-chip-listbox>
+                    <input type="hidden" placeholder="New Category..." #categoryInput [matChipInputFor]="chipGrid" />
+                </mat-chip-grid>
+            </mat-form-field>
+        } @else { 
+            <p>Loading...</p>
+        }
 
-            <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selectedCategories($event)">
-                @for (category of filteredCategories | async; track category.id) {
-                    <mat-option [value]="category">{{category.name}}</mat-option>
-                }
-            </mat-autocomplete>
-          </mat-form-field>
+        @if (showAddInput) {
+            <div>
+                <mat-form-field style="width: 50%;" appearance="outline">
+                    <input matInput placeholder="New category..." [formControl]="categoryCtrl" (keyup.enter)="addCategory()"/>
+                </mat-form-field>
+                
+                <button mat-icon-button matPrefix (click)="addCategory()">
+                    <mat-icon>add</mat-icon>
+                </button>
+            </div>
+        }
 
           <button mat-button
           (click)="saveVideoRequest()">Save</button>

@@ -1,4 +1,4 @@
-import { Component,ElementRef, ViewChild, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -6,20 +6,16 @@ import { MatInputModule } from '@angular/material/input';
 import { AuthService } from '../auth/services/auth.service';
 import { CommonModule } from '@angular/common';
 import { APIService } from 'src/services/api.service';
-import {COMMA, ENTER} from '@angular/cdk/keycodes';
-import { MatAutocompleteSelectedEvent, MatAutocompleteModule } from '@angular/material/autocomplete';
-import { MatChipInputEvent, MatChipsModule } from '@angular/material/chips';
-import { Observable } from 'rxjs';
-import { map, startWith } from 'rxjs/operators';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
-import { AsyncPipe } from '@angular/common';
-import {LiveAnnouncer} from '@angular/cdk/a11y';
+
 
 @Component({
   selector: 'app-upload-file',
   standalone: true,
   imports: [MatFormFieldModule, MatInputModule, MatButtonModule, ReactiveFormsModule, FormsModule, CommonModule, MatIconModule, 
-    MatChipsModule, MatAutocompleteModule, AsyncPipe
+    MatChipsModule, MatAutocompleteModule
   ],
   templateUrl: './upload-file.component.html',
   styleUrl: './upload-file.component.scss'
@@ -33,26 +29,18 @@ export class UploadFileComponent {
   coverToUpload: File | null = null;
   uploadData: FormData = new FormData();
 
-  separatorKeysCodes: number[] = [ENTER, COMMA];
   categoryCtrl = new FormControl('');
-  filteredCategories: Observable<any[]>;
-  categories: any[] = [{name: 'New'}];
+  categories: any[] = [{id: 24, name: 'New'}];
   allCategories: any = [];
   categoriesID: any = [24];
-  @ViewChild('categoryInput') categoryInput: ElementRef<HTMLInputElement>;
-  announcer = inject(LiveAnnouncer);
-
+  showAddInput: boolean = false;
+  updateCategory: boolean = false;
 
   constructor( public auth: AuthService, private API: APIService) { }
 
 
   async ngOnInit() {
     this.allCategories = await this.API.getAllCategories();
-
-    this.filteredCategories = this.categoryCtrl.valueChanges.pipe(
-      startWith(null),
-      map((category: string | null) => (category ? this._filter(category) : this.allCategories.slice())),
-    );
   }
 
 
@@ -72,8 +60,9 @@ export class UploadFileComponent {
   }
 
 
-  async saveVideoRequest() {
-    this.checkCategories();
+  saveVideoRequest() {
+    this.getCategoriesID();
+    
     setTimeout(() => {
           this.uploadData.append('video_file', this.videoToUpload, this.videoToUpload.name);
           this.uploadData.append('cover_picture', this.coverToUpload, this.coverToUpload.name);
@@ -87,28 +76,13 @@ export class UploadFileComponent {
   }
 
 
-  async checkCategories() {
+  getCategoriesID() {
     for (let index = 0; index < this.categories.length; index++) {
-      let nameExist = this.allCategories.some((el: { name: any; }) => { return el.name === this.categories[index].name});
-      if (nameExist === false) {
-        this.saveCategoryRequest(this.categories[index].name);
-      } else if (this.categoriesID.includes(this.categories[index].id) === false) {
+
+      if (this.categoriesID.includes(this.categories[index].id) === false) {
         this.categoriesID.push(this.categories[index].id);
       }
     }
-  }
-
-
-  async saveCategoryRequest(categoryName: string) {
-    let body = {
-      'name': categoryName
-    };
-
-    let resp: any = await this.API.postCategoryToDB(body);
-    
-    setTimeout(() => {
-      this.categoriesID.push(resp.id);
-    }, 500);
   }
 
 
@@ -119,36 +93,49 @@ export class UploadFileComponent {
   }
 
 
-  addCategory(event: MatChipInputEvent): void {
-    const value = (event.value || '').trim();
-    if (value) {
-      this.categories.push({name: value});
+  addCategory() {
+    if (this.categoryCtrl.value) {
+      let nameExist = this.allCategories.some((el: { name: any; }) => { return el.name === this.categoryCtrl.value});
+      if (nameExist === false) {
+        this.saveCategoryRequest(this.categoryCtrl.value);
+        this.updateCategory = true;
+        setTimeout(() => {
+          this.updateCategoryData();
+        }, 500);
+      } else {
+        alert('Category exist')
+      }
     }
 
-    event.chipInput!.clear();
     this.categoryCtrl.setValue(null);
   }
 
 
-  removeCategory(category: any): void {
-    const index = this.categories.indexOf(category);
+  async updateCategoryData() {
+    this.allCategories = await this.API.getAllCategories();
+    this.updateCategory = false;
+    this.categoriesID = [24];
+    this.categories = [{id: 24, name: 'New'}];
+    this.showAddInput = false;
+  }
 
-    if (index >= 0) {
-      this.categories.splice(index, 1);
-      this.announcer.announce(`Removed ${category}`);
+
+  saveCategoryRequest(categoryName: string) {
+    let body = {
+      'name': categoryName
+    };
+
+    this.API.postCategoryToDB(body);
+  }
+
+
+  selectedCategories(input) {
+    if(!this.categories.includes(input)) {
+      this.categories.push(input);
+    } else {
+      this.categories.splice(this.categories.indexOf(input), 1);
     }
-  }
 
-
-  selectedCategories(event: MatAutocompleteSelectedEvent): void {
-    this.categories.push(event.option.value);
-    this.categoryInput.nativeElement.value = '';
     this.categoryCtrl.setValue(null);
-  }
-
-
-  private _filter(value: any): any[] {
-    const filterValue = value.name;
-    return this.allCategories.filter((category: { name: string | any[]; }) => category.name.includes(filterValue));
   }
 }
