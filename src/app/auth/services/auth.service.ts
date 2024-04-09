@@ -30,15 +30,17 @@ export class AuthService {
 
 
   async getLoggedUser() {
-    // let JSONdata = JSON.parse(localStorage.getItem('user'));
-    // if (JSONdata) {
-    //   let loggedUser = await this.userAPI.loadUserFromAPI(JSONdata.id);
-    //   this.userName = loggedUser[0]['username'];
-    //   this.firstName = loggedUser[0]['first_name'];
-    //   this.fullName = loggedUser[0]['first_name'] + ' ' + loggedUser[0]['last_name'];
-    //   this.userEmail = loggedUser[0]['email'];
-    //   //this.userImg
-    // } 
+    let JSONdata = JSON.parse(localStorage.getItem('user'));
+    if (JSONdata) {
+      const url = environment.baseURL + `/users/${JSONdata.id}/`;
+      let loggedUser = await lastValueFrom(this.http.get(url));
+      
+      this.userName = loggedUser[0]['username'];
+      this.firstName = loggedUser[0]['first_name'];
+      this.fullName = loggedUser[0]['first_name'] + ' ' + loggedUser[0]['last_name'];
+      this.userEmail = loggedUser[0]['email'];
+      //this.userImg
+    } 
   }
 
 
