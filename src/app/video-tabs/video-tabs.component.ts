@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostListener, Input, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, ElementRef, HostListener, Input, OnInit, QueryList, ViewChild, ViewChildren, ViewEncapsulation } from '@angular/core';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon'
@@ -16,13 +16,15 @@ import { SharedService } from 'src/services/shared.service';
   encapsulation: ViewEncapsulation.None
 })
 export class VideoTabsComponent implements OnInit {
-  @ViewChild('content') content: ElementRef<any>;
+  @ViewChildren('tabContent', { read: ElementRef }) tabContent: QueryList<ElementRef>;
+  @ViewChild('allContent') allContent: ElementRef<any>;
   @Input() categories: any;
   @Input() videos: any;
   scrollAmount: number = 0;
   step: number = 100;
   tabVideos: any = [];
-
+  hideScrollBtn: boolean = false;
+  showContent: boolean = true;
 
   constructor(private router: Router, private shared: SharedService) { }
 
@@ -32,6 +34,7 @@ export class VideoTabsComponent implements OnInit {
 
   getTabVideosEvent(event: { tab: { textLabel: any; }; }) {
     if (event.tab.textLabel !== 'All') {
+      this.scrollAmount = 0;
       this.tabVideos = [];
       let item = this.categories.find((cat: { name: any; }) => cat.name === event.tab.textLabel);
     
@@ -42,6 +45,8 @@ export class VideoTabsComponent implements OnInit {
           this.tabVideos.push(this.videos[index]);
         }
       }
+      this.tabVideos.length === 0 ? this.showContent = false : this.showContent = true; 
+      this.tabVideos.length <= 4 ? this.hideScrollBtn = true : this.hideScrollBtn = false; 
     }
   }
 
@@ -66,15 +71,17 @@ export class VideoTabsComponent implements OnInit {
 
 
   sideScroll(direction: string) {
-    let scrollTimer = setInterval(() => {
-      if(direction == 'left'){
-        this.content.nativeElement.scrollLeft -= this.step;
-      } else {
-        this.content.nativeElement.scrollLeft += this.step;
-      }
-
-      this.scrollAmount += this.step;
-      if (this.scrollAmount >= this.step) { window.clearInterval(scrollTimer); }
-    }, this.step / 4);
+      let scrollTimer = setInterval(() => {
+        if(direction == 'left'){
+          this.allContent.nativeElement.scrollLeft -= this.step;
+          this.tabContent.forEach((elm) => elm.nativeElement.scrollLeft -= this.step)
+        } else {
+          this.allContent.nativeElement.scrollLeft += this.step;
+          this.tabContent.forEach((elm) => elm.nativeElement.scrollLeft += this.step)
+        }
+  
+        this.scrollAmount += this.step;
+        if (this.scrollAmount >= this.step) { window.clearInterval(scrollTimer); }
+      }, this.step / 4);
   }
 }
