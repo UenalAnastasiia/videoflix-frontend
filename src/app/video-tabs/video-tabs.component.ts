@@ -26,7 +26,7 @@ export class VideoTabsComponent implements OnInit {
   hideScrollBtn: boolean = false;
   showContent: boolean = true;
 
-  constructor(private router: Router, private shared: SharedService) { }
+  constructor(private router: Router, public shared: SharedService) { }
 
 
   ngOnInit() { }

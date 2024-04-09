@@ -3,8 +3,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
-import { Router, UrlTree } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { SharedService } from 'src/services/shared.service';
 
 @Component({
   selector: 'app-navigation',
@@ -16,16 +16,11 @@ import { CommonModule } from '@angular/common';
 export class NavigationComponent implements OnInit {
   urlName: string = 'videoflix';
 
-  constructor(private router: Router) { }
+  
+  constructor(public shared: SharedService) { }
 
 
   ngOnInit() {
     this.urlName = location.pathname;
   }
-
-
-  navigateTo(link: string | UrlTree) {
-    this.router.navigateByUrl(link);
-  }
-
 }

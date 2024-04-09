@@ -4,20 +4,18 @@
     </div>
 
     <div class="links-box">
-        <button mat-button color="warn" (click)="navigateTo('/videoflix')">HOME</button>
-        <button mat-button color="warn" (click)="navigateTo('/movies')">MOVIES</button>
+        <button mat-button color="warn" (click)="shared.navigateTo('/videoflix')">HOME</button>
+        <button mat-button color="warn" (click)="shared.navigateTo('/movies')">MOVIES</button>
         <button mat-button color="warn">SERIES</button>
-        <button mat-button color="warn" (click)="navigateTo('/mylist')">MY LIST</button>
+        <button mat-button color="warn" (click)="shared.navigateTo('/mylist')">MY LIST</button>
     </div>
 
     <div class="user-box">
-        <a href="/upload">
-            <button mat-icon-button>
-                <mat-icon>upload</mat-icon>
-            </button>
-        </a>
+        <button mat-button color="warn" (click)="shared.navigateTo('/upload')">
+            <mat-icon>upload</mat-icon>
+        </button>
 
-        <button mat-icon-button (click)="navigateTo('/movies')">
+        <button mat-icon-button (click)="shared.navigateTo('/movies')">
             <mat-icon>search</mat-icon>
         </button>
 

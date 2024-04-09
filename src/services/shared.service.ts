@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router, UrlTree } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -6,7 +7,7 @@ import { Injectable } from '@angular/core';
 export class SharedService {
   videoOverviewData: any = [];
 
-  constructor() { }
+  constructor(private router: Router) { }
 
 
   pushOverviewData(data: any) {
@@ -22,5 +23,10 @@ export class SharedService {
 
   findItemInArray(arr: any[], id: string) {
     return !!arr[0].find((o: { list: string; }) => o.list === id);
+  }
+
+
+  navigateTo(link: string | UrlTree) {
+    this.router.navigateByUrl(link);
   }
 }
