@@ -48,8 +48,8 @@
                             </div>
                         }
                     } @else {
-                        <div class="pos-rel">
-                            <h1>No Videos...</h1>
+                        <div class="pos-rel add-box" (click)="shared.navigateTo('/upload')">
+                            <h3>Upload new Video...</h3>
                             <button mat-fab color="warn" (click)="shared.navigateTo('/upload')">
                                 <mat-icon>add</mat-icon>
                             </button>

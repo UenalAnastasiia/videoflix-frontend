@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -9,18 +9,23 @@ import { APIService } from 'src/services/api.service';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 
 @Component({
   selector: 'app-upload-file',
   standalone: true,
-  imports: [MatFormFieldModule, MatInputModule, MatButtonModule, ReactiveFormsModule, FormsModule, CommonModule, MatIconModule, 
+  imports: [MatFormFieldModule, MatInputModule, MatButtonModule, ReactiveFormsModule, FormsModule, CommonModule, MatIconModule, MatTooltipModule,
     MatChipsModule, MatAutocompleteModule
   ],
   templateUrl: './upload-file.component.html',
   styleUrl: './upload-file.component.scss'
 })
 export class UploadFileComponent {
+  @ViewChild('video_input') video_input: ElementRef;
+  @ViewChild('video_input_title') video_input_title: ElementRef;
+  @ViewChild('cover_input') cover_input: ElementRef;
+  @ViewChild('cover_input_title') cover_input_title: ElementRef;
   title = new FormControl('', [Validators.required, Validators.minLength(1)]);
   description = new FormControl('', [Validators.required, Validators.minLength(1)]);
   displayVideo: FormControl = new FormControl('', Validators.required);
@@ -46,7 +51,17 @@ export class UploadFileComponent {
   }
 
 
-  handleVideoUploadInput(event: any) {
+  getCreator() {
+    if (localStorage.getItem("user") === null) {
+      this.creator = null
+    } else {
+      const authToken: any = JSON.parse(localStorage.getItem('user') || '"');
+      this.creator = authToken['id'];
+    }
+  }
+
+
+  handleVideoUploadEvent(event: any) {
     if (event.target.files[0]) {
       this.videoToUpload = event.target.files[0];
       this.displayVideo.patchValue(`${this.videoToUpload.name}`);
@@ -54,7 +69,7 @@ export class UploadFileComponent {
   }
 
 
-  handleCoverUploadInput(event: any) {
+  handleCoverUploadEvent(event: any) {
     if (event.target.files[0]) {
       this.coverToUpload = event.target.files[0];
       this.displayCover.patchValue(`${this.coverToUpload.name}`);
@@ -72,18 +87,9 @@ export class UploadFileComponent {
           this.uploadData.append('created_at', this.dateFormat())
           this.uploadData.append('creator', this.creator)
           this.uploadData.append('category', this.categoriesID)
-          this.API.postVideoToDB(this.uploadData);          
+          this.API.postVideoToDB(this.uploadData);    
+          this.cleanForm();      
     }, 1000);
-  }
-
-
-  getCreator() {
-    if (localStorage.getItem("user") === null) {
-      this.creator = null
-    } else {
-      const authToken: any = JSON.parse(localStorage.getItem('user') || '"');
-      this.creator = authToken['id'];
-    }
   }
 
 
@@ -149,5 +155,17 @@ export class UploadFileComponent {
     }
 
     this.categoryCtrl.setValue(null);
+  }
+
+
+  cleanForm() {
+    this.video_input.nativeElement.value = null;
+    this.video_input_title.nativeElement.value = null;
+    this.cover_input.nativeElement.value = null;
+    this.cover_input_title.nativeElement.value = null;
+    this.title.reset();
+    this.description.reset();
+    this.categoriesID= [24];
+    this.categoryCtrl.setValue('');
   }
 }

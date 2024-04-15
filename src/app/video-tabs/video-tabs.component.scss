@@ -43,6 +43,23 @@
     overflow-x: hidden;
 }
 
+.add-box {
+    width: 140px;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #ffffff45;
+    border-radius: 24px;
+    background: #ffffff12;
+
+    h3 {
+        margin: 0;
+        font-size: 14px;
+    }
+}
+
 .mat-mdc-tab-group, .mat-mdc-tab-nav-bar {
     --mdc-tab-indicator-active-indicator-color: var(--flix-red);
     --mat-tab-header-active-label-text-color: var(--flix-red);

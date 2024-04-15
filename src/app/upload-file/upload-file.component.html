@@ -1,6 +1,4 @@
 <div class="upload-container">
-    <h3>Upload File</h3>
-
     <form>
         <mat-form-field appearance="outline">
             <mat-label>Title</mat-label>
@@ -24,8 +22,8 @@
                 <mat-icon>folder_open</mat-icon>
             </button>
 
-			<input type="text" readonly matInput placeholder="Choose Video File" [formControl]="displayVideo"/>
-			<input type="file" accept="video/mp4" multiple hidden #video_input (change)="handleVideoUploadInput($event)"/>
+			<input type="text" readonly matInput placeholder="Choose Video File" #video_input_title [formControl]="displayVideo"/>
+			<input type="file" accept="video/mp4" multiple hidden #video_input (change)="handleVideoUploadEvent($event)"/>
 		</mat-form-field>
 
         <mat-form-field style="width: 100%;" appearance="outline">
@@ -34,20 +32,22 @@
                 <mat-icon>folder_open</mat-icon>
             </button>
 
-			<input type="text" readonly matInput placeholder="Choose Cover Image File" [formControl]="displayCover"/>
-			<input type="file" accept="image/png, image/jpeg" multiple hidden #cover_input (change)="handleCoverUploadInput($event)"/>
+			<input type="text" readonly matInput placeholder="Choose Cover Image File" #cover_input_title [formControl]="displayCover"/>
+			<input type="file" accept="image/png, image/jpeg" multiple hidden #cover_input (change)="handleCoverUploadEvent($event)"/>
 		</mat-form-field>
 
         @if (!updateCategory) {
             <mat-form-field class="example-chip-list" appearance="outline" [floatLabel]="'always'">
                 <mat-label>Category</mat-label>
-                <button mat-icon-button matPrefix (click)="showAddInput = !showAddInput">
-                    @if (!showAddInput) {
+                @if (!showAddInput) {
+                    <button mat-icon-button matPrefix (click)="showAddInput = !showAddInput" matTooltip="add new category">
                         <mat-icon>add</mat-icon>
-                    } @else {
+                    </button>
+                } @else {
+                    <button mat-icon-button matPrefix (click)="showAddInput = !showAddInput" matTooltip="hide add field">
                         <mat-icon>remove</mat-icon>
-                    }
-                </button>
+                    </button>
+                }
 
                 <mat-chip-grid #chipGrid>
                     <mat-chip-listbox aria-label="Fish selection" selectable multiple>
@@ -70,16 +70,18 @@
                     <input matInput placeholder="New category..." [formControl]="categoryCtrl" (keyup.enter)="addCategory()"/>
                 </mat-form-field>
                 
-                <button mat-icon-button matPrefix (click)="addCategory()">
+                <button mat-icon-button matPrefix (click)="addCategory()" matTooltip="save category">
                     <mat-icon>add</mat-icon>
                 </button>
             </div>
         }
 
-          <button mat-button
-          (click)="saveVideoRequest()">Save</button>
-
-        <!-- <button mat-button [disabled]="!displayVideo.valid || !displayCover.valid || !title.valid || !description.valid"
-            (click)="saveVideoRequest()">Save</button> -->
+        <div class="upload-btn">
+            <button mat-flat-button (click)="cleanForm()">Reset</button>
+            <button mat-flat-button (click)="saveVideoRequest()">Upload</button>
+  
+          <!-- <button mat-button [disabled]="!displayVideo.valid || !displayCover.valid || !title.valid || !description.valid"
+              (click)="saveVideoRequest()">Save</button> -->
+        </div>
     </form>
 </div>
