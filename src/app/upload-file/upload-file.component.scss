@@ -29,5 +29,11 @@
     .upload-btn {
         display: flex;
         justify-content: center;
+
+        div {
+            width: 200px;
+            display: flex;
+            justify-content: space-between;
+        }
     }
 }

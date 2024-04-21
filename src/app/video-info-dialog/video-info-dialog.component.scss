@@ -1,0 +1,8 @@
+::ng-deep .mat-mdc-dialog-container .mdc-dialog__surface {
+    background-color: #5a1eb7 !important;
+    border-radius: 24px !important;
+}
+
+::ng-deep .mat-mdc-dialog-actions {
+    justify-content: flex-end;
+}

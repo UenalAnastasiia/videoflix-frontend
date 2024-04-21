@@ -69,4 +69,10 @@ export class APIService {
     const endpoint = environment.baseURL + '/category/';
     return lastValueFrom(this.http.post(endpoint, body));
   }
+
+
+  getUser(id: number) {
+    const endpoint = environment.baseURL + `/users/${id}/`;
+    return lastValueFrom(this.http.get(endpoint));
+  }
 }

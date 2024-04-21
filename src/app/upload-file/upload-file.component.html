@@ -77,8 +77,10 @@
         }
 
         <div class="upload-btn">
-            <button mat-flat-button (click)="cleanForm()">Reset</button>
-            <button mat-flat-button (click)="saveVideoRequest()">Upload</button>
+            <div>
+                <button mat-flat-button (click)="cleanForm()">Reset</button>
+                <button mat-flat-button (click)="saveVideoRequest()">Upload</button>
+            </div>
   
           <!-- <button mat-button [disabled]="!displayVideo.valid || !displayCover.valid || !title.valid || !description.valid"
               (click)="saveVideoRequest()">Save</button> -->

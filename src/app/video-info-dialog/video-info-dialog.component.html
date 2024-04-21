@@ -1,0 +1,16 @@
+@if (showContent) {
+    <mat-dialog-actions>
+        <button mat-icon-button mat-dialog-close style="color: white">
+            <mat-icon>close</mat-icon>
+        </button>
+    </mat-dialog-actions>
+
+    <h2 mat-dialog-title>{{ videoData.title }}</h2>
+      
+    <mat-dialog-content>
+        <p>{{ videoData.description }}</p>
+        <p>Category: {{ videoCategory }}</p>
+        <p>Creator: {{ creator.first_name }} {{ creator.last_name }}</p>
+        <p>Upload: {{ videoData.created_at }}</p>
+    </mat-dialog-content>
+}

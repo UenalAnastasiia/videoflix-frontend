@@ -6,6 +6,7 @@ import { APIService } from 'src/services/api.service';
 import { MatIconModule } from '@angular/material/icon';
 import { SnackbarService } from '../../UI/snackbar/snackbar.service';
 import { LoadingSpinnerComponent } from 'src/UI/loading-spinner/loading-spinner.component';
+import { VideoInfoDialogComponent } from '../video-info-dialog/video-info-dialog.component';
 
 @Component({
   selector: 'app-video-overview',
@@ -102,4 +103,12 @@ export class VideoOverviewComponent implements OnInit {
     this.messageService.showSnackMessage('Removed from my list!');
     this.listExist = false;
   }
+
+
+  openVideoInfo() {
+    let infoDialog = this.dialog.open(VideoInfoDialogComponent);
+    infoDialog.componentInstance.videoData = this.overviewData;
+    infoDialog.componentInstance.videoCategory = this.videoCategory
+  }
+
 }
