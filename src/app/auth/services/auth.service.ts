@@ -14,6 +14,7 @@ export class AuthService {
   userEmail: string = '';
   errorResetMessage: any;
   error: string = '';
+  loggedUser;
 
   constructor(private http: HttpClient) { }
 
@@ -29,18 +30,23 @@ export class AuthService {
   }
 
 
-  async getLoggedUser() {
-    let JSONdata = JSON.parse(localStorage.getItem('user'));
-    if (JSONdata) {
-      const url = environment.baseURL + `/users/${JSONdata.id}/`;
-      let loggedUser = await lastValueFrom(this.http.get(url));
+  async saveLoggedUser(data) {
+    this.loggedUser = data;
+    // let JSONdata = JSON.parse(localStorage.getItem('user'));
+    // if (JSONdata) {
+    //   const url = environment.baseURL + `/users/${JSONdata.id}/`;
+    //   let loggedUser = await lastValueFrom(this.http.get(url));
       
-      this.userName = loggedUser[0]['username'];
-      this.firstName = loggedUser[0]['first_name'];
-      this.fullName = loggedUser[0]['first_name'] + ' ' + loggedUser[0]['last_name'];
-      this.userEmail = loggedUser[0]['email'];
-      //this.userImg
-    } 
+    //   this.userName = loggedUser[0]['username'];
+    //   this.firstName = loggedUser[0]['first_name'];
+    //   this.fullName = loggedUser[0]['first_name'] + ' ' + loggedUser[0]['last_name'];
+    //   this.userEmail = loggedUser[0]['email'];
+    // } 
+  }
+
+
+  getLoggedUser() {
+    return this.loggedUser;
   }
 
 
@@ -63,6 +69,12 @@ export class AuthService {
       password: newPassword
     };
     return this.http.post(url, body);
+  }
+
+
+  logout() {
+    const url = environment.baseURL + '/logout/';
+    return lastValueFrom(this.http.get(url));
   }
 
 }

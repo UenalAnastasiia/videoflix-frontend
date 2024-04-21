@@ -24,6 +24,7 @@ export class VideoInfoDialogComponent implements OnInit {
   async ngOnInit() {
     let creator = await this.API.getUser(this.videoData.creator);
     this.creator = creator[0];
+    console.log(this.creator);
 
     setTimeout(() => {
       this.showContent = true;

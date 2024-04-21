@@ -5,6 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { CommonModule } from '@angular/common';
 import { SharedService } from 'src/services/shared.service';
+import { AuthService } from '../auth/services/auth.service';
 
 @Component({
   selector: 'app-navigation',
@@ -17,10 +18,21 @@ export class NavigationComponent implements OnInit {
   urlName: string = 'videoflix';
 
   
-  constructor(public shared: SharedService) { }
+  constructor(public shared: SharedService, private auth: AuthService) { }
 
 
   ngOnInit() {
     this.urlName = location.pathname;
   }
+
+
+  logOut() {
+    try {
+      this.auth.logout();
+      localStorage.removeItem('user');
+      window.location.href = '/login';
+    } catch(e) {
+      console.error('Error in Logout: ', e);    
+    }
+}
 }

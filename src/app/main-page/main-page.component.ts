@@ -4,6 +4,7 @@ import { VideoTabsComponent } from '../video-tabs/video-tabs.component';
 import { VideoOverviewComponent } from '../video-overview/video-overview.component';
 import { APIService } from '../../services/api.service';
 import { LoadingSpinnerComponent } from 'src/UI/loading-spinner/loading-spinner.component';
+import { AuthService } from '../auth/services/auth.service';
 
 
 @Component({
@@ -20,7 +21,7 @@ export class MainPageComponent implements OnInit {
   error: boolean = false;
 
 
-  constructor(private API: APIService) { }
+  constructor(private API: APIService, private auth: AuthService) { }
 
 
   async ngOnInit() {
@@ -35,5 +36,9 @@ export class MainPageComponent implements OnInit {
         this.showContent = true;
       }, 1000);
     }
+
+    let resp = this.auth.getLoggedUser();
+    console.log('User ', resp);
+    
   }
 }
