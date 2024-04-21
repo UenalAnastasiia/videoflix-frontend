@@ -1,38 +1,38 @@
 <div class="upload-container">
     <form>
-        <mat-form-field appearance="outline">
+        <mat-form-field appearance="outline" [floatLabel]="'always'">
             <mat-label>Title</mat-label>
             <button mat-icon-button matPrefix disabled>
                 <mat-icon>notes</mat-icon>
             </button>
-            <input matInput placeholder="Write Video Title" [formControl]="title">
+            <input matInput placeholder="Write Video Title..." [formControl]="title">
         </mat-form-field>
 
-        <mat-form-field appearance="outline">
+        <mat-form-field appearance="outline" [floatLabel]="'always'">
             <mat-label>Description</mat-label>
             <button mat-icon-button matPrefix disabled>
                 <mat-icon>notes</mat-icon>
             </button>
-            <input matInput placeholder="Write Video Description" [formControl]="description">
+            <input matInput placeholder="Write Video Description..." [formControl]="description">
         </mat-form-field>
 
-        <mat-form-field style="width: 100%;" appearance="outline">
+        <mat-form-field style="width: 100%;" appearance="outline" [floatLabel]="'always'">
 			<mat-label>Video File</mat-label>
 			<button mat-icon-button matPrefix (click)="video_input.click()">
                 <mat-icon>folder_open</mat-icon>
             </button>
 
-			<input type="text" readonly matInput placeholder="Choose Video File" #video_input_title [formControl]="displayVideo"/>
+			<input type="text" readonly matInput placeholder="Choose Video File..." #video_input_title [formControl]="displayVideo"/>
 			<input type="file" accept="video/mp4" multiple hidden #video_input (change)="handleVideoUploadEvent($event)"/>
 		</mat-form-field>
 
-        <mat-form-field style="width: 100%;" appearance="outline">
+        <mat-form-field style="width: 100%;" appearance="outline" [floatLabel]="'always'">
 			<mat-label>Cover Image File</mat-label>
 			<button mat-icon-button matPrefix (click)="cover_input.click()">
                 <mat-icon>folder_open</mat-icon>
             </button>
 
-			<input type="text" readonly matInput placeholder="Choose Cover Image File" #cover_input_title [formControl]="displayCover"/>
+			<input type="text" readonly matInput placeholder="Choose Cover Image File..." #cover_input_title [formControl]="displayCover"/>
 			<input type="file" accept="image/png, image/jpeg" multiple hidden #cover_input (change)="handleCoverUploadEvent($event)"/>
 		</mat-form-field>
 
@@ -63,27 +63,26 @@
         } @else { 
             <p>Loading...</p>
         }
-
-        @if (showAddInput) {
-            <div>
-                <mat-form-field style="width: 50%;" appearance="outline">
-                    <input matInput placeholder="New category..." [formControl]="categoryCtrl" (keyup.enter)="addCategory()"/>
-                </mat-form-field>
-                
-                <button mat-icon-button matPrefix (click)="addCategory()" matTooltip="save category">
-                    <mat-icon>add</mat-icon>
-                </button>
-            </div>
-        }
-
-        <div class="upload-btn">
-            <div>
-                <button mat-flat-button (click)="cleanForm()">Reset</button>
-                <button mat-flat-button (click)="saveVideoRequest()">Upload</button>
-            </div>
-  
-          <!-- <button mat-button [disabled]="!displayVideo.valid || !displayCover.valid || !title.valid || !description.valid"
-              (click)="saveVideoRequest()">Save</button> -->
-        </div>
     </form>
+
+    @if (showAddInput) {
+        <div>
+            <mat-form-field style="width: 75%;" appearance="outline">
+                <input matInput placeholder="New category..." [formControl]="categoryCtrl" (keyup.enter)="addCategory()"/>
+            </mat-form-field>
+            
+            <button mat-icon-button matPrefix (click)="addCategory()" matTooltip="save category" [disabled]="!categoryCtrl.valid">
+                <mat-icon>done</mat-icon>
+            </button>
+        </div>
+    }
+
+    <div class="upload-btn">
+        <div>
+            <button mat-flat-button (click)="cleanForm()">Reset</button>
+            <!-- <button mat-flat-button (click)="saveVideoRequest()">Upload</button> -->
+            <button mat-button [disabled]="!displayVideo.valid || !displayCover.valid || !title.valid || !description.valid"
+                (click)="saveVideoRequest()">Save</button>
+        </div>
+    </div>
 </div>
