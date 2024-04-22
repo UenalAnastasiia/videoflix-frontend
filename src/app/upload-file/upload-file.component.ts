@@ -10,12 +10,13 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { NavigationComponent } from '../navigation/navigation.component';
 
 
 @Component({
   selector: 'app-upload-file',
   standalone: true,
-  imports: [MatFormFieldModule, MatInputModule, MatButtonModule, ReactiveFormsModule, FormsModule, CommonModule, MatIconModule, MatTooltipModule,
+  imports: [MatFormFieldModule, MatInputModule, MatButtonModule, ReactiveFormsModule, FormsModule, CommonModule, MatIconModule, MatTooltipModule, NavigationComponent,
     MatChipsModule, MatAutocompleteModule
   ],
   templateUrl: './upload-file.component.html',

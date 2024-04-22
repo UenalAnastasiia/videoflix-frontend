@@ -7,12 +7,13 @@ import { FormsModule } from '@angular/forms';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { Router } from '@angular/router';
 import { SharedService } from 'src/services/shared.service';
+import { NavigationComponent } from '../navigation/navigation.component';
 
 
 @Component({
   selector: 'app-movies',
   standalone: true,
-  imports: [AlphabetTableComponent, CommonModule, SearchFilterPipe, FormsModule, MatTooltipModule],
+  imports: [AlphabetTableComponent, CommonModule, SearchFilterPipe, FormsModule, MatTooltipModule, NavigationComponent],
   templateUrl: './movies.component.html',
   styleUrl: './movies.component.scss'
 })

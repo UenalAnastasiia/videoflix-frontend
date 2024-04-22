@@ -7,11 +7,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { SnackbarService } from '../../UI/snackbar/snackbar.service';
 import { LoadingSpinnerComponent } from 'src/UI/loading-spinner/loading-spinner.component';
 import { VideoInfoDialogComponent } from '../video-info-dialog/video-info-dialog.component';
+import { NavigationComponent } from '../navigation/navigation.component';
 
 @Component({
   selector: 'app-video-overview',
   standalone: true,
-  imports: [VideoPlayerComponent, MatDialogModule, MatIconModule, LoadingSpinnerComponent],
+  imports: [VideoPlayerComponent, MatDialogModule, MatIconModule, LoadingSpinnerComponent, NavigationComponent],
   templateUrl: './video-overview.component.html',
   styleUrl: './video-overview.component.scss'
 })

@@ -5,16 +5,16 @@ import { VideoOverviewComponent } from '../video-overview/video-overview.compone
 import { APIService } from '../../services/api.service';
 import { LoadingSpinnerComponent } from 'src/UI/loading-spinner/loading-spinner.component';
 import { AuthService } from '../auth/services/auth.service';
-
+import { NavigationComponent } from '../navigation/navigation.component';
 
 @Component({
-  selector: 'app-main-page',
+  selector: 'app-home',
   standalone: true,
-  imports: [CoverSliderComponent, VideoTabsComponent, VideoOverviewComponent, LoadingSpinnerComponent],
-  templateUrl: './main-page.component.html',
-  styleUrl: './main-page.component.scss'
+  imports: [CoverSliderComponent, VideoTabsComponent, VideoOverviewComponent, LoadingSpinnerComponent, NavigationComponent],
+  templateUrl: './home.component.html',
+  styleUrl: './home.component.scss'
 })
-export class MainPageComponent implements OnInit {
+export class HomeComponent implements OnInit {
   videos: any = [];
   categories: any = [];
   showContent: boolean = false;
