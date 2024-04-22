@@ -16,6 +16,7 @@ export class AuthService {
   error: string = '';
   loggedUser;
 
+
   constructor(private http: HttpClient) { }
 
 
@@ -30,39 +31,28 @@ export class AuthService {
   }
 
 
-  async saveLoggedUser(data) {
-    this.loggedUser = data;
-    // let JSONdata = JSON.parse(localStorage.getItem('user'));
-    // if (JSONdata) {
-    //   const url = environment.baseURL + `/users/${JSONdata.id}/`;
-    //   let loggedUser = await lastValueFrom(this.http.get(url));
-      
-    //   this.userName = loggedUser[0]['username'];
-    //   this.firstName = loggedUser[0]['first_name'];
-    //   this.fullName = loggedUser[0]['first_name'] + ' ' + loggedUser[0]['last_name'];
-    //   this.userEmail = loggedUser[0]['email'];
-    // } 
+  public isUserLoggedIn() {      
+    if (this.loggedUser !== undefined) {
+      return true
+    } else {
+      return false
+    }
   }
 
 
-  getLoggedUser() {
-    return this.loggedUser;
-  }
-
-
-  register(body: any): Observable<any> {
+  public register(body: any): Observable<any> {
     const url = environment.baseURL + '/register/'; 
     return this.http.post(url, body);
   }
 
 
-  sendMailForPasswordReset(body: { email: string; }) {
+  public sendMailForPasswordReset(body: { email: string; }) {
     const url = environment.baseURL + '/password_reset/';
     lastValueFrom(this.http.post(url, body));
   }
 
 
-  resetPasswordInDB(token: string, newPassword: string): Observable<any> {
+  public resetPasswordInDB(token: string, newPassword: string): Observable<any> {
     const url = `${environment.baseURL}/password_reset/confirm/`;
     const body = {
       token: token,
@@ -72,7 +62,7 @@ export class AuthService {
   }
 
 
-  logout() {
+  public logout() {
     const url = environment.baseURL + '/logout/';
     return lastValueFrom(this.http.get(url));
   }

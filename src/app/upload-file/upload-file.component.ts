@@ -40,24 +40,13 @@ export class UploadFileComponent {
   categoriesID: any = [24];
   showAddInput: boolean = false;
   updateCategory: boolean = false;
-  creator: any = null;
+
 
   constructor( public auth: AuthService, private API: APIService) { }
 
 
   async ngOnInit() {
     this.allCategories = await this.API.getAllCategories();
-    this.getCreator();
-  }
-
-
-  getCreator() {
-    if (localStorage.getItem("user") === null) {
-      this.creator = null
-    } else {
-      const authToken: any = JSON.parse(localStorage.getItem('user') || '"');
-      this.creator = authToken['id'];
-    }
   }
 
 
@@ -85,9 +74,9 @@ export class UploadFileComponent {
           this.uploadData.append('title', this.title.value)
           this.uploadData.append('description', this.description.value)
           this.uploadData.append('created_at', this.dateFormat())
-          this.uploadData.append('creator', this.creator)
+          this.uploadData.append('creator', this.auth.loggedUser.user_id)
           this.uploadData.append('category', this.categoriesID)
-          this.API.postVideoToDB(this.uploadData);    
+          this.API.postVideoToDB(this.uploadData);  
           this.cleanForm();      
     }, 1000);
   }
@@ -140,7 +129,7 @@ export class UploadFileComponent {
   saveCategoryRequest(categoryName: string) {
     let body = {
       'name': categoryName,
-      'creator': this.creator
+      'creator': this.auth.loggedUser.user_id
     };
 
     this.API.postCategoryToDB(body);

@@ -7,16 +7,17 @@ import { VideoOverviewComponent } from './video-overview/video-overview.componen
 import { MoviesComponent } from './movies/movies.component';
 import { RegisterComponent } from './auth/components/register/register.component';
 import { PasswordResetComponent } from './auth/components/password-reset/password-reset.component';
+import { AuthGuard } from './auth/services/auth-guard';
 
 
 export const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/login' },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'videoflix', component: MainPageComponent },
-  { path: 'upload', component: UploadFileComponent },
-  { path: 'mylist', component: MyListComponent },
-  { path: 'overview', component: VideoOverviewComponent },
-  { path: 'movies', component: MoviesComponent },
+  { path: 'videoflix', component: MainPageComponent, canActivate: [AuthGuard] },
+  { path: 'upload', component: UploadFileComponent, canActivate: [AuthGuard] },
+  { path: 'mylist', component: MyListComponent, canActivate: [AuthGuard] },
+  { path: 'overview', component: VideoOverviewComponent, canActivate: [AuthGuard] },
+  { path: 'movies', component: MoviesComponent, canActivate: [AuthGuard] },
   { path: 'password-reset/:token', component: PasswordResetComponent }
 ];

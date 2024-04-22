@@ -29,7 +29,6 @@ export class NavigationComponent implements OnInit {
   logOut() {
     try {
       this.auth.logout();
-      localStorage.removeItem('user');
       window.location.href = '/login';
     } catch(e) {
       console.error('Error in Logout: ', e);    

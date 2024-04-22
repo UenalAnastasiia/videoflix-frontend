@@ -26,14 +26,8 @@ export class LoginComponent {
   async login() {
     try {
       let resp: any = await this.authService.loginWithUsernameAndPassword(this.username, this.password);
-      localStorage.setItem('user', JSON.stringify(
-        {
-          token: resp['token'], 
-          id: resp['user_id'], 
-          first_name: resp['first_name'], 
-          last_name: resp['last_name']}));
-          
-      this.authService.saveLoggedUser(resp);
+      this.authService.loggedUser = resp;
+      console.log('User: ', resp);
       this.router.navigateByUrl('/videoflix');
     } catch(e) {
       alert('Error in Login. Wrong username or Password.')

@@ -37,8 +37,6 @@ export class MainPageComponent implements OnInit {
       }, 1000);
     }
 
-    let resp = this.auth.getLoggedUser();
-    console.log('User ', resp);
-    
+    console.log('User ', this.auth.loggedUser);    
   }
 }
