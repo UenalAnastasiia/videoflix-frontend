@@ -25,7 +25,7 @@
         </div>
     </mat-tab>
 
-    @for (category of categories; track category.id) {
+    @for (category of contentCategories; track category.id) {
         <mat-tab label="{{ category.name }}">
             <div class="content-div">
                 @if (!hideScrollBtn) {

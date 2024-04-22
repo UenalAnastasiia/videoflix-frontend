@@ -70,14 +70,9 @@ export class UploadFileComponent {
   saveVideoRequest() {
     this.getCategoriesID();
     setTimeout(() => {
-          this.uploadData.append('video_file', this.videoToUpload, this.videoToUpload.name);
-          this.uploadData.append('cover_picture', this.coverToUpload, this.coverToUpload.name);
-          this.uploadData.append('title', this.title.value)
-          this.uploadData.append('description', this.description.value)
-          this.uploadData.append('created_at', this.dateFormat())
-          this.uploadData.append('creator', this.auth.loggedUser.user_id)
-          this.uploadData.append('category', this.categoriesID)
+          this.appendUploadData();
           this.API.postVideoToDB(this.uploadData);  
+          this.API.patchCategory(this.categoriesID);
           this.cleanForm();      
     }, 1000);
   }
@@ -90,6 +85,17 @@ export class UploadFileComponent {
         this.categoriesID.push(this.categories[index].id);
       }
     }
+  }
+
+
+  appendUploadData() {
+    this.uploadData.append('video_file', this.videoToUpload, this.videoToUpload.name);
+    this.uploadData.append('cover_picture', this.coverToUpload, this.coverToUpload.name);
+    this.uploadData.append('title', this.title.value)
+    this.uploadData.append('description', this.description.value)
+    this.uploadData.append('created_at', this.dateFormat())
+    this.uploadData.append('creator', this.auth.loggedUser.user_id)
+    this.uploadData.append('category', this.categoriesID)
   }
 
 

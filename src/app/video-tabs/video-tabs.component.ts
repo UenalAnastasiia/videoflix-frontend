@@ -25,18 +25,21 @@ export class VideoTabsComponent implements OnInit {
   tabVideos: any = [];
   hideScrollBtn: boolean = false;
   showContent: boolean = true;
+  contentCategories: any;
 
   constructor(private router: Router, public shared: SharedService) { }
 
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.contentCategories =  this.categories.filter(cont => cont.content === true);
+  }
 
 
   getTabVideosEvent(event: { tab: { textLabel: any; }; }) {
     if (event.tab.textLabel !== 'All') {
       this.scrollAmount = 0;
       this.tabVideos = [];
-      let item = this.categories.find((cat: { name: any; }) => cat.name === event.tab.textLabel);
+      let item = this.contentCategories.find((cat: { name: any; }) => cat.name === event.tab.textLabel);
     
       for (let index = 0; index < this.videos.length; index++) {
         let videoCategoryArray = this.videos[index].category.split(',').map((x: string | number)=>+x);

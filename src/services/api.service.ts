@@ -33,6 +33,21 @@ export class APIService {
   }
 
 
+  postCategoryToDB(body) {
+    const endpoint = environment.baseURL + '/category/';
+    return lastValueFrom(this.http.post(endpoint, body));
+  }
+
+
+  patchCategory(categoriesID) {
+    for (let index = 0; index < categoriesID.length; index++) {
+      const endpoint = environment.baseURL + `/category/${categoriesID[index]}/`;
+      let body = { 'content': true };
+      lastValueFrom(this.http.patch(endpoint, body));
+    }
+  }
+
+
   getMyList(userID: number) {
     const endpoint = environment.baseURL + `/list/${userID}/`;
     this.myList = lastValueFrom(this.http.get(endpoint));
@@ -62,12 +77,6 @@ export class APIService {
   deleteVideoFromList(id: number) {
     const endpoint = environment.baseURL + `/list/${id}/`;
     lastValueFrom(this.http.delete(endpoint));
-  }
-
-
-  postCategoryToDB(body) {
-    const endpoint = environment.baseURL + '/category/';
-    return lastValueFrom(this.http.post(endpoint, body));
   }
 
 
