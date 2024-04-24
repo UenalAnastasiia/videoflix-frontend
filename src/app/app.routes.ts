@@ -8,6 +8,7 @@ import { RegisterComponent } from './auth/components/register/register.component
 import { PasswordResetComponent } from './auth/components/password-reset/password-reset.component';
 import { AuthGuard } from './auth/services/auth-guard';
 import { HomeComponent } from './home/home.component';
+import { SettingsComponent } from './settings-components/settings/settings.component';
 
 
 export const routes: Routes = [
@@ -19,6 +20,7 @@ export const routes: Routes = [
   { path: 'mylist', component: MyListComponent },
   { path: 'overview', component: VideoOverviewComponent },
   { path: 'movies', component: MoviesComponent },
+  { path: 'settings', component: SettingsComponent },
   // { path: 'videoflix', component: HomeComponent, canActivate: [AuthGuard] },
   // { path: 'upload', component: UploadFileComponent, canActivate: [AuthGuard] },
   // { path: 'mylist', component: MyListComponent, canActivate: [AuthGuard] },

@@ -1,0 +1,29 @@
+<app-navigation></app-navigation>
+
+<div class="main-container settings-container">
+    <div class="div-width">
+        <div class="menu-box">
+            <button mat-flat-button color="warn" (click)="userSettings = true; uploadSettings = false; categoriesSettings = false;">
+                <mat-icon>settings</mat-icon> User</button>
+            <button mat-flat-button color="warn" (click)="userSettings = false; uploadSettings = true; categoriesSettings = false;">
+                <mat-icon>settings</mat-icon> Uploads</button>
+            <button mat-flat-button color="warn" (click)="userSettings = false; uploadSettings = false; categoriesSettings = true;">
+                <mat-icon>settings</mat-icon> Categories</button>
+        </div>
+
+        <div class="settings-content">
+            @if (userSettings) {
+                <p>User Settings</p>
+            }
+
+            @if (uploadSettings) {
+                <p>Uploads Settings</p>
+            }
+
+            @if (categoriesSettings) {
+                <p>Categories Settings</p>
+            }
+            
+        </div>
+    </div>
+</div>

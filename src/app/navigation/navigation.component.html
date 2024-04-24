@@ -22,8 +22,14 @@
         <img src="assets/img/profile.png" [matMenuTriggerFor]="userOptions" class="profile-btn">
 
         <mat-menu #userOptions="matMenu">
-        <button mat-menu-item>Edit User</button>
-        <button mat-menu-item (click)="logOut()">Logout</button>
+        <button mat-menu-item (click)="shared.navigateTo('/settings')">
+            <mat-icon>settings</mat-icon>
+            Settings
+        </button>
+        <button mat-menu-item (click)="logOut()">
+            <mat-icon>logout</mat-icon>
+            Logout
+        </button>
         </mat-menu>
     </div>
 </div>
