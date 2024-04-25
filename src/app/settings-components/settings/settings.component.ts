@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { NavigationComponent } from 'src/app/navigation/navigation.component';
-import { APIService } from 'src/services/api.service';
 import { UploadsSettingsComponent } from '../uploads-settings/uploads-settings.component';
 import { UserSettingsComponent } from '../user-settings/user-settings.component';
 import { CategoriesSettingsComponent } from '../categories-settings/categories-settings.component';

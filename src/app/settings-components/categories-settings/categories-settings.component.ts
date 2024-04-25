@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { APIService } from 'src/services/api.service';
 
 @Component({
   selector: 'app-categories-settings',
@@ -7,6 +8,15 @@ import { Component } from '@angular/core';
   templateUrl: './categories-settings.component.html',
   styleUrl: './categories-settings.component.scss'
 })
-export class CategoriesSettingsComponent {
+export class CategoriesSettingsComponent implements OnInit {
+
+
+  constructor(private API: APIService) { }
+
+
+  async ngOnInit() {
+    let resp = await this.API.getUserCategories(1);
+    console.log('Categories ', resp);
+  }
 
 }

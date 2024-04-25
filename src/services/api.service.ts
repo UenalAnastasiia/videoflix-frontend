@@ -90,4 +90,10 @@ export class APIService {
     const endpoint = environment.baseURL + `/users/uploads/${id}/`;
     return lastValueFrom(this.http.get(endpoint));
   }
+
+
+  getUserCategories(id: number) {
+    const endpoint = environment.baseURL + `/users/categories/${id}/`;
+    return lastValueFrom(this.http.get(endpoint));
+  }
 }
