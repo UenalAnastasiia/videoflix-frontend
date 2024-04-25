@@ -9,7 +9,7 @@ import { APIService } from 'src/services/api.service';
   styleUrl: './categories-settings.component.scss'
 })
 export class CategoriesSettingsComponent implements OnInit {
-
+  
 
   constructor(private API: APIService) { }
 

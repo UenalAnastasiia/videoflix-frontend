@@ -36,7 +36,5 @@ export class HomeComponent implements OnInit {
         this.showContent = true;
       }, 1000);
     }
-
-    console.log('User ', this.auth.loggedUser);    
   }
 }

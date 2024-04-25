@@ -27,7 +27,6 @@ export class LoginComponent {
     try {
       let resp: any = await this.authService.loginWithUsernameAndPassword(this.username, this.password);
       this.authService.loggedUser = resp;
-      console.log('User: ', resp);
       this.router.navigateByUrl('/videoflix');
     } catch(e) {
       alert('Error in Login. Wrong username or Password.')

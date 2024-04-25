@@ -96,4 +96,10 @@ export class APIService {
     const endpoint = environment.baseURL + `/users/categories/${id}/`;
     return lastValueFrom(this.http.get(endpoint));
   }
+
+
+  patchUser(id, body) {
+    const endpoint = environment.baseURL + `/users/${id}/`;
+    lastValueFrom(this.http.patch(endpoint, body));
+  }
 }
