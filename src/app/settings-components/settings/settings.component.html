@@ -14,14 +14,17 @@
         <div class="settings-content">
             @if (userSettings) {
                 <p>User Settings</p>
+                <app-user-settings></app-user-settings>
             }
 
             @if (uploadSettings) {
                 <p>Uploads Settings</p>
+                <app-uploads-settings></app-uploads-settings>
             }
 
             @if (categoriesSettings) {
                 <p>Categories Settings</p>
+                <app-categories-settings></app-categories-settings>
             }
             
         </div>
