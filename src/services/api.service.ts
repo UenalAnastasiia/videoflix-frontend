@@ -68,6 +68,12 @@ export class APIService {
   }
 
 
+  deleteVideoFromDB(id: number) {
+    const endpoint = environment.baseURL + `/videos/${id}/`;
+    lastValueFrom(this.http.delete(endpoint));
+  }
+
+
   postVideoToList(body: { list: number; creator: number; }) {
     const endpoint = environment.baseURL + '/list/';
     lastValueFrom(this.http.post(endpoint, body));

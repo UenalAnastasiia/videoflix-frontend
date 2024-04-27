@@ -18,11 +18,11 @@
     }
     
     ::ng-deep .mat-mdc-standard-chip:not(.mdc-evolution-chip--disabled) {
-        background-color: #ffdad49e !important;
+        background-color: var(--beige-bg) !important;
     }
 
     ::ng-deep .mat-mdc-unelevated-button:not(:disabled) {
-        background-color: #ffdad49e !important;
+        background-color: var(--beige-bg) !important;
         border-radius: 24px !important;
     }
 

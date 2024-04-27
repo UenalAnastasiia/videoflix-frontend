@@ -15,6 +15,9 @@
 
 .settings-content {
     width: 50vw;
+    height: inherit;
+    overflow-y: auto;
+    margin-top: 10vh;
 }
 
 .menu-box {
@@ -25,7 +28,7 @@
 }
 
 ::ng-deep .mat-mdc-unelevated-button:not(:disabled) {
-    background-color: #ffdad49e !important;
+    background-color: var(--beige-bg) !important;
 }
 
 ::ng-deep .mat-drawer-container {
@@ -37,5 +40,5 @@
 }
 
 ::ng-deep .mat-drawer {
-    background-color: #ffdad49e !important;
+    background-color: var(--beige-bg) !important;
 }

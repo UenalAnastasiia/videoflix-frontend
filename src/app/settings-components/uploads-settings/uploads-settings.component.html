@@ -1,1 +1,20 @@
-<p>uploads-settings works!</p>
+@if (showContent) {
+    <div>
+        <h2>My Uploads</h2>
+        @for (upload of uploadData; track upload.id) {
+            <div class="upload-div">
+                <button mat-icon-button (click)="deleteVideoFromDB(upload.id)" [disabled]="checkValues(upload.id)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+
+                <img src='{{ "http://127.0.0.1:8000" + upload.cover_picture }}'>
+                <div [class.isDeletedColor]="checkValues(upload.id)">
+                    <p>{{ upload.title }}</p>
+                    <p>Upload at {{ upload.created_at }}</p>
+                </div>
+
+                <div class="hide-box" [class.isDeleted]="checkValues(upload.id)">deleted</div>
+            </div>
+        }
+    </div>
+}

@@ -1,0 +1,43 @@
+h2 {
+    margin-bottom: 28px;
+}
+
+.upload-div {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 18px;
+    width: 30vw;
+    max-width: 500px;
+    color: var(--beige-bg);
+
+    img {
+        width: 150px;
+        border-radius: 24px;
+        object-fit: cover;
+        margin-right: 18px;
+        margin-left: 8px;
+    }
+}
+
+.hide-box {
+    display: none;
+}
+
+.isDeleted {
+    position: absolute;
+    width: 150px;
+    height: 100%;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    background: #808080a8;
+    border-radius: 24px;
+    margin-left: 56px;
+    color: white;
+}
+
+.isDeletedColor {
+    color: #838386 !important;
+}

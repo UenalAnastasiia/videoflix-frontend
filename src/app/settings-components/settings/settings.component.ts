@@ -15,9 +15,9 @@ import { CategoriesSettingsComponent } from '../categories-settings/categories-s
   styleUrl: './settings.component.scss'
 })
 export class SettingsComponent {
-  userSettings: boolean = true;
+  userSettings: boolean = false;
   uploadSettings: boolean = false;
-  categoriesSettings: boolean = false;
+  categoriesSettings: boolean = true;
 
 
 }
