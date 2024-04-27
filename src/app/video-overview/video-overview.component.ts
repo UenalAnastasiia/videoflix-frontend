@@ -62,7 +62,10 @@ export class VideoOverviewComponent implements OnInit {
     let categoryArray = data.category.split(',').map((x: string | number)=>+x);
     for (let index = 0; index < categoryArray.length; index++) {
       let resp = await this.API.getCategoryName(categoryArray[index]);
-      this.videoCategory.push(resp);
+
+      if (resp !== undefined) {
+        this.videoCategory.push(resp);
+      }
     }
   }
 

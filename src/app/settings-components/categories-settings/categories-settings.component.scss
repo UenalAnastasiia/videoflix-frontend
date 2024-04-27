@@ -1,0 +1,20 @@
+h2 {
+    margin-bottom: 28px;
+}
+
+.category-div {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 10vw;
+    max-width: 200px;
+    color: var(--beige-bg);
+
+    p {
+        margin: 0;
+    }
+}
+
+.isDeletedColor {
+    color: #838386 !important;
+}

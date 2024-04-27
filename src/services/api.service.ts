@@ -27,9 +27,12 @@ export class APIService {
 
   async getCategoryName(id: number) {
     const endpoint = environment.baseURL + `/category/${id}/`;
-    let resp = await lastValueFrom(this.http.get(endpoint));
-    let category = resp[0].name;
-    return category;
+    let resp: any = await lastValueFrom(this.http.get(endpoint));
+
+    if (resp.length !== 0) {
+      let category = resp[0].name;
+      return category;
+    }
   }
 
 
@@ -45,6 +48,12 @@ export class APIService {
       let body = { 'content': true };
       lastValueFrom(this.http.patch(endpoint, body));
     }
+  }
+
+
+  deleteCategoryFromDB(id: number) {
+    const endpoint = environment.baseURL + `/category/${id}/`;
+    lastValueFrom(this.http.delete(endpoint));
   }
 
 
