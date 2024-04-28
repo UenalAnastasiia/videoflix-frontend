@@ -31,7 +31,7 @@ export class VideoTabsComponent implements OnInit {
 
 
   ngOnInit() {
-    this.contentCategories =  this.categories.filter(cont => cont.content === true);
+    this.contentCategories =  this.categories.filter(cont => cont.content === true && cont.length >= 1);
   }
 
 

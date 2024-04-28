@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { NavigationComponent } from 'src/app/navigation/navigation.component';
@@ -15,9 +15,9 @@ import { CategoriesSettingsComponent } from '../categories-settings/categories-s
   styleUrl: './settings.component.scss'
 })
 export class SettingsComponent {
-  userSettings: boolean = false;
+  userSettings: boolean = true;
   uploadSettings: boolean = false;
-  categoriesSettings: boolean = true;
+  categoriesSettings: boolean = false;
 
 
 }

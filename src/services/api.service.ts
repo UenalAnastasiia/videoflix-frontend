@@ -44,9 +44,12 @@ export class APIService {
 
   patchCategory(categoriesID) {
     for (let index = 0; index < categoriesID.length; index++) {
-      const endpoint = environment.baseURL + `/category/${categoriesID[index]}/`;
+      const endpoint = environment.baseURL + `/category/${categoriesID[index].id}/`;
       let body = { 'content': true };
-      lastValueFrom(this.http.patch(endpoint, body));
+      console.log('categoriesID ', categoriesID);
+      console.log(categoriesID[index].id, categoriesID[index].length + 1);
+
+      // lastValueFrom(this.http.patch(endpoint, body));
     }
   }
 
