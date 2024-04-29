@@ -11,7 +11,8 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { NavigationComponent } from '../navigation/navigation.component';
-
+import { HttpEventType } from '@angular/common/http';
+import { SnackbarService } from 'src/UI/snackbar/snackbar.service';
 
 @Component({
   selector: 'app-upload-file',
@@ -34,6 +35,7 @@ export class UploadFileComponent {
   videoToUpload: File | null = null;
   coverToUpload: File | null = null;
   uploadData: FormData = new FormData();
+  uploadProgress = 0;
 
   categoryCtrl = new FormControl('');
   categories: any[] = [{id: 24, name: 'New'}];
@@ -41,9 +43,9 @@ export class UploadFileComponent {
   categoriesID: any = [24];
   showAddInput: boolean = false;
   updateCategory: boolean = false;
+  
 
-
-  constructor( public auth: AuthService, private API: APIService) { }
+  constructor( public auth: AuthService, private API: APIService, private messageService: SnackbarService) { }
 
 
   async ngOnInit() {
@@ -71,7 +73,7 @@ export class UploadFileComponent {
     this.getCategoriesID();
     setTimeout(() => {
           this.appendUploadData();
-          this.API.postVideoToDB(this.uploadData);  
+          this.postVideoToDB();  
           this.API.patchCategory(this.categoriesID);
           this.cleanForm();      
     }, 1000);
@@ -94,8 +96,31 @@ export class UploadFileComponent {
     this.uploadData.append('title', this.title.value)
     this.uploadData.append('description', this.description.value)
     this.uploadData.append('created_at', this.dateFormat())
-    this.uploadData.append('creator', this.auth.loggedUser.user_id)
+    this.uploadData.append('creator', '1')
+    // this.uploadData.append('creator', this.auth.loggedUser.user_id)
     this.uploadData.append('category', this.categoriesID)
+  }
+
+
+  postVideoToDB() {
+    this.messageService.showSnackMessage('Start Upload...');
+    this.API.postVideoToDB(this.uploadData).subscribe({
+      next: (event: any) => {
+        if (event.type === HttpEventType.UploadProgress) {
+          this.uploadProgress = Math.round((100 * event.loaded) / event.total);
+          console.log('PROGRESS: ', this.uploadProgress);
+          // this.messageService.showSnackMessage(`Upload ${this.progress} % completed...`);
+        } 
+      },
+      error: (err: any) => {
+        if (err.error && err.error.message) { alert(err.error.message); } 
+        else { this.messageService.showSnackMessage('Could not upload the file!'); }
+        this.uploadProgress = 0;
+      },
+      complete: () => {
+        this.messageService.showSnackMessage('Upload completed!');
+      }
+    });
   }
 
 
@@ -116,7 +141,7 @@ export class UploadFileComponent {
           this.updateCategoryData();
         }, 500);
       } else {
-        alert('Category exist')
+        this.messageService.showSnackMessage('Category exist');
       }
     }
 

@@ -1,7 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { lastValueFrom } from 'rxjs';
+import { Observable, lastValueFrom } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -81,10 +81,14 @@ export class APIService {
   }
 
 
-  async postVideoToDB(uploadData: FormData) {
+  postVideoToDB(uploadData: FormData): Observable<HttpEvent<any>> {
     const endpoint = environment.baseURL + '/videos/';
-    let res = await lastValueFrom(this.http.post(endpoint, uploadData));
-    console.log('Upload ', res);
+    const req = new HttpRequest('POST', endpoint, uploadData, {
+      reportProgress: true,
+      responseType: 'json'
+    });
+
+    return this.http.request(req);
   }
 
 
