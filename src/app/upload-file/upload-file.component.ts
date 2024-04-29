@@ -38,7 +38,7 @@ export class UploadFileComponent {
   categoryCtrl = new FormControl('');
   categories: any[] = [{id: 24, name: 'New'}];
   allCategories: any = [];
-  categoriesID: any = [{id: 24, length: 1}];
+  categoriesID: any = [24];
   showAddInput: boolean = false;
   updateCategory: boolean = false;
 
@@ -82,7 +82,7 @@ export class UploadFileComponent {
     for (let index = 0; index < this.categories.length; index++) {
 
       if (this.categoriesID.includes(this.categories[index].id) === false) {
-        this.categoriesID.push({id: this.categories[index].id, length: this.categories[index].length});
+        this.categoriesID.push(this.categories[index].id);
       }
     }
   }

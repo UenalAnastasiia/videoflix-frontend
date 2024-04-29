@@ -3,7 +3,7 @@
         <h2>My Uploads</h2>
         @for (upload of uploadData; track upload.id) {
             <div class="upload-div">
-                <button mat-icon-button (click)="deleteVideoFromDB(upload.id)" [disabled]="checkValues(upload.id)">
+                <button mat-icon-button (click)="deleteVideoFromDB(upload)" [disabled]="checkValues(upload.id)">
                     <mat-icon>delete</mat-icon>
                 </button>
 

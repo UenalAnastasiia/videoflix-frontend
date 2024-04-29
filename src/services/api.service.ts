@@ -10,6 +10,7 @@ import { environment } from 'src/environments/environment';
 export class APIService {
   myList: any = [];
 
+
   constructor(private http: HttpClient) { }
 
 
@@ -44,13 +45,20 @@ export class APIService {
 
   patchCategory(categoriesID) {
     for (let index = 0; index < categoriesID.length; index++) {
-      const endpoint = environment.baseURL + `/category/${categoriesID[index].id}/`;
+      const endpoint = environment.baseURL + `/category/${categoriesID[index]}/`;
       let body = { 'content': true };
-      console.log('categoriesID ', categoriesID);
-      console.log(categoriesID[index].id, categoriesID[index].length + 1);
-
-      // lastValueFrom(this.http.patch(endpoint, body));
+      lastValueFrom(this.http.patch(endpoint, body));
     }
+  }
+
+
+  patchCategoryContent(categoriesID) {
+    if (categoriesID.includes(' ')) {
+      categoriesID.split(' ');
+    }
+    const endpoint = environment.baseURL + `/category/${categoriesID}/`;
+    let body = { 'content': false };
+    lastValueFrom(this.http.patch(endpoint, body));
   }
 
 
