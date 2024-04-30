@@ -3,12 +3,16 @@
         <h2>My Categories</h2>
         @for (category of categoryData; track category.id) {
             <div class="category-div" [class.isDeletedColor]="checkValues(category.id)">
-                <button mat-icon-button (click)="deleteCategoryFromDB(category.id)" [disabled]="checkValues(category.id)">
-                    <mat-icon>delete</mat-icon>
+                <button mat-icon-button (click)="deleteCategoryFromDB(category.id)" [disabled]="checkValues(category.id)" matTooltip="delete">
+                    <mat-icon>close</mat-icon>
                 </button>
 
                 <p>{{ category.name }}</p>
             </div>
         }
+    </div>
+} @else {
+    <div class="loading-box">
+        <app-loading-spinner></app-loading-spinner>
     </div>
 }

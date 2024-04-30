@@ -4,12 +4,13 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { LoadingSpinnerComponent } from 'src/UI/loading-spinner/loading-spinner.component';
 import { APIService } from 'src/services/api.service';
 
 @Component({
   selector: 'app-user-settings',
   standalone: true,
-  imports: [MatFormFieldModule, MatInputModule, ReactiveFormsModule, FormsModule, MatButtonModule, MatIconModule],
+  imports: [MatFormFieldModule, MatInputModule, ReactiveFormsModule, FormsModule, MatButtonModule, MatIconModule, LoadingSpinnerComponent],
   templateUrl: './user-settings.component.html',
   styleUrl: './user-settings.component.scss'
 })

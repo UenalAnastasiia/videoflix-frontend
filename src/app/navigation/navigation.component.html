@@ -6,21 +6,17 @@
     <div class="links-box">
         <button mat-button color="warn" (click)="shared.navigateTo('/videoflix')">HOME</button>
         <button mat-button color="warn" (click)="shared.navigateTo('/movies')">MOVIES</button>
-        <button mat-button color="warn">SERIES</button>
         <button mat-button color="warn" (click)="shared.navigateTo('/mylist')">MY LIST</button>
+        <button mat-button color="warn" (click)="shared.navigateTo('/settings')">SETTINGS</button>
     </div>
 
     <div class="user-box">
-        <button mat-icon-button (click)="shared.navigateTo('/upload')">
+        <button mat-icon-button (click)="shared.navigateTo('/upload')" matTooltip="Upload">
             <mat-icon>upload</mat-icon>
         </button>
 
-        <button mat-icon-button (click)="shared.navigateTo('/movies')">
+        <button mat-icon-button (click)="shared.navigateTo('/movies')" matTooltip="Search">
             <mat-icon>search</mat-icon>
-        </button>
-
-        <button mat-icon-button (click)="shared.navigateTo('/settings')">
-            <mat-icon>settings</mat-icon>
         </button>
 
         <img src="assets/img/profile.png" [matMenuTriggerFor]="userOptions" class="profile-btn">

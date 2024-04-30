@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { LoadingSpinnerComponent } from 'src/UI/loading-spinner/loading-spinner.component';
 import { APIService } from 'src/services/api.service';
 
 @Component({
   selector: 'app-uploads-settings',
   standalone: true,
-  imports: [MatButtonModule, MatIconModule],
+  imports: [MatButtonModule, MatIconModule, LoadingSpinnerComponent, MatTooltipModule],
   templateUrl: './uploads-settings.component.html',
   styleUrl: './uploads-settings.component.scss'
 })

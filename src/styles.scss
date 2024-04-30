@@ -40,11 +40,15 @@ body {
 }
 
 .loading-box {
-    height: 70vh;
+    // height: 70vh;
     width: 100vw;
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 90vh;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 .pos-rel {

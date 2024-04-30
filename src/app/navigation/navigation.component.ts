@@ -6,11 +6,12 @@ import { MatMenuModule } from '@angular/material/menu';
 import { CommonModule } from '@angular/common';
 import { SharedService } from 'src/services/shared.service';
 import { AuthService } from '../auth/services/auth.service';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-navigation',
   standalone: true,
-  imports: [MatButtonModule, MatDividerModule, MatIconModule, MatMenuModule, CommonModule],
+  imports: [MatButtonModule, MatDividerModule, MatIconModule, MatMenuModule, CommonModule, MatTooltipModule],
   templateUrl: './navigation.component.html',
   styleUrl: './navigation.component.scss'
 })
