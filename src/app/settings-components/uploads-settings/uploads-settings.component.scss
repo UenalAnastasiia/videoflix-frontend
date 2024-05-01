@@ -43,3 +43,15 @@ h2 {
 .isDeletedColor {
     color: #838386 !important;
 }
+
+.mdc-fab {
+    width: 32px !important;
+    height: 32px !important;
+}
+
+.empty-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: fit-content;
+}

@@ -3,7 +3,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { LoadingSpinnerComponent } from 'src/UI/loading-spinner/loading-spinner.component';
+import { SnackbarService } from 'src/UI/snackbar/snackbar.service';
 import { APIService } from 'src/services/api.service';
+import { SharedService } from 'src/services/shared.service';
 
 @Component({
   selector: 'app-uploads-settings',
@@ -19,13 +21,13 @@ export class UploadsSettingsComponent implements OnInit {
   allVideos: any = [];
   checkCategories: any;
 
-  constructor(private API: APIService) { }
+  constructor(private API: APIService, public shared: SharedService, private messageService: SnackbarService) { }
 
 
   async ngOnInit() {
     this.uploadData = await this.API.getUserUploads(1);
     this.allVideos = await this.API.getAllVideos();
-
+    
     setTimeout(() => {
       this.showContent = true;
     }, 500);
@@ -35,6 +37,7 @@ export class UploadsSettingsComponent implements OnInit {
   deleteVideoFromDB(data) {
     this.API.deleteVideoFromDB(data.id);
     this.deletedObjects.push(data.id);
+    this.messageService.showSnackMessage('Deleted!');
     this.checkCategoryContent(data.category, data.id);
   }
 

@@ -5,6 +5,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { LoadingSpinnerComponent } from 'src/UI/loading-spinner/loading-spinner.component';
+import { SnackbarService } from 'src/UI/snackbar/snackbar.service';
 import { APIService } from 'src/services/api.service';
 
 @Component({
@@ -19,7 +20,7 @@ export class UserSettingsComponent implements OnInit {
   userData: any;
 
 
-  constructor(private API: APIService) { }
+  constructor(private API: APIService, private messageService: SnackbarService) { }
 
 
   async ngOnInit() {
@@ -42,5 +43,6 @@ export class UserSettingsComponent implements OnInit {
     };
 
     this.API.patchUser(1, body);
+    this.messageService.showSnackMessage('Changes saved!');
   }
 }

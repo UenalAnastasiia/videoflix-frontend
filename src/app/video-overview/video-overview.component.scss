@@ -4,6 +4,8 @@
     left: 10vw;
     display: flex;
     flex-direction: column;
+    width: 50vw;
+    max-width: 800px;
 
     p {
         font-size: 58px;
@@ -38,6 +40,13 @@
             margin-right: 6px !important;
         }
     }
+}
+
+.description-span {
+    height: fit-content;
+    min-height: 28px;
+    max-height: 120px;
+    overflow-y: auto;
 }
 
 .btn-box {

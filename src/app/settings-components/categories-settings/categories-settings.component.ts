@@ -3,6 +3,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { LoadingSpinnerComponent } from 'src/UI/loading-spinner/loading-spinner.component';
+import { SnackbarService } from 'src/UI/snackbar/snackbar.service';
 import { APIService } from 'src/services/api.service';
 
 @Component({
@@ -18,7 +19,7 @@ export class CategoriesSettingsComponent implements OnInit {
   deletedObjects: number[] = [];
   
 
-  constructor(private API: APIService) { }
+  constructor(private API: APIService, private messageService: SnackbarService) { }
 
 
   async ngOnInit() {
@@ -33,6 +34,7 @@ export class CategoriesSettingsComponent implements OnInit {
   deleteCategoryFromDB(id: number) {
     this.API.deleteCategoryFromDB(id);
     this.deletedObjects.push(id);
+    this.messageService.showSnackMessage('Deleted!');
   }
 
 
