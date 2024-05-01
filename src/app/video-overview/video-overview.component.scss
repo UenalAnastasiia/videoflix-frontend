@@ -43,14 +43,19 @@
 }
 
 .description-span {
-    height: fit-content;
-    min-height: 28px;
-    max-height: 120px;
-    overflow-y: auto;
+    position: relative;
+    margin-bottom: 12px !important;
+}
+
+.isCollapsed-btn {
+    width: fit-content;
+    color: var(--flix-red);
+    background: none;
 }
 
 .btn-box {
     display: flex;
+    margin-top: 24px;
 }
 
 .img {
@@ -73,4 +78,8 @@
         font-weight: 700;
         margin-right: 12px;
     }
+}
+
+.collapsed {
+    overflow: hidden;
 }

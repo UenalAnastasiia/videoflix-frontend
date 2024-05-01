@@ -13,8 +13,21 @@
                         <span>{{ category }}</span>
                     }
                 </div>
-            
-                <span class="description-span">{{ overviewData.description }}</span>
+                
+                <span class="description-span" #video_description [class.collapsed]="isCollapsed" [style.height]="isCollapsed ? maxHeight+'px' : 'auto'">
+                    {{ overviewData.description }}
+                </span>
+                
+                @if (isCollapsable) {
+                    @if (isCollapsed) {
+                        <button class="isCollapsed-btn" mat-button (click)="isCollapsed =! isCollapsed">...read more</button>
+                    } @else {
+                        <button class="isCollapsed-btn" mat-button (click)="isCollapsed =! isCollapsed">hide</button>
+                    }
+                }
+
+                    
+
                 <div class="btn-box">
                     <button mat-fab extended style="background: var(--flix-red); color: white" (click)="playVideo()">
                         <mat-icon>play_arrow</mat-icon>

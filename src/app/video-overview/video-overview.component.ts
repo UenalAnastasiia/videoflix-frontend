@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { VideoPlayerComponent } from '../video-player/video-player.component';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { SharedService } from 'src/services/shared.service';
@@ -16,18 +16,34 @@ import { NavigationComponent } from '../navigation/navigation.component';
   templateUrl: './video-overview.component.html',
   styleUrl: './video-overview.component.scss'
 })
-export class VideoOverviewComponent implements OnInit {
+export class VideoOverviewComponent implements OnInit, AfterViewInit {
   @Input() overviewData: any;
+  @ViewChild('video_description') video_description: ElementRef;
   showContent: boolean = false;
   videoCategory: any = [];
   listExist: boolean = false;
   myList: any = [];
+  maxHeight: number = 80;
+  isCollapsed: boolean = false;
+  isCollapsable: boolean = false;
 
-  constructor(public dialog: MatDialog, private shared: SharedService, private API: APIService, private messageService: SnackbarService) {}
+  constructor(public dialog: MatDialog, private shared: SharedService, private API: APIService, private messageService: SnackbarService, private elementRef: ElementRef) {}
 
   ngOnInit() {
     this.checkOverview();
   }
+
+
+  ngAfterViewInit() {
+    setTimeout(() => {
+      let currentHeight = this.video_description.nativeElement.offsetHeight;
+
+      if (currentHeight > this.maxHeight) {
+          this.isCollapsed = true;
+          this.isCollapsable = true;
+      }
+    }, 1100);
+}
 
 
   async checkOverview() {
