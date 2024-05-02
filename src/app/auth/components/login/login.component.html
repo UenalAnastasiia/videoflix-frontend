@@ -1,12 +1,4 @@
-<!-- <form (ngSubmit)="login()">
-    <input type="text" name="username" [(ngModel)]="username" required>
-    <input type="password" name="password" [(ngModel)]="password" required>
-    <button>Login</button>
-</form> -->
-
-<!-- <input type="text" [(ngModel)]="email">
-<button (click)="sendMailForPasswordReset()">Reset Password</button> -->
-<img src="/../assets/img/bg.jpg" alt="">
+<img src="/../assets/img/bg.jpg">
 <div class="login-container">
     <div class="info-box">
         <button mat-icon-button [matMenuTriggerFor]="infoMenu">
@@ -41,7 +33,7 @@
                     </p>
                 }
 
-                <button mat-button (click)="login()">
+                <button mat-stroked-button (click)="login()">
                     Sign in
                 </button>
             </form>
@@ -61,7 +53,7 @@
 
         <p>
             <label> Forgot your password?
-                <button mat-button (click)="shared.navigateTo('/register')" class="btn-m-6">Reset password</button>
+                <button mat-button (click)="openEmailDialog()" class="btn-m-6">Reset password</button>
             </label>
         </p>
     </mat-card>

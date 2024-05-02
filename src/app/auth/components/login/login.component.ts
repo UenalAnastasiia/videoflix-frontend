@@ -9,6 +9,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
 import { SharedService } from 'src/services/shared.service';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDialog } from '@angular/material/dialog';
+import { EmailDialogComponent } from '../email-dialog/email-dialog.component';
 
 @Component({
   selector: 'app-login',
@@ -27,9 +29,9 @@ export class LoginComponent {
   error: string;
 
 
-  constructor(private authService: AuthService, public shared: SharedService) { }
+  constructor(private authService: AuthService, public shared: SharedService, public dialog: MatDialog) { }
 
-  
+
   async login() {
     try {
       let resp: any = await this.authService.loginWithUsernameAndPassword(this.username, this.password);
@@ -42,15 +44,12 @@ export class LoginComponent {
   }
 
 
-  sendMailForPasswordReset() {
-    const body = {
-      "email": this.email
-    };
-    this.authService.sendMailForPasswordReset(body);
+  guestLogin() {
+   
   }
 
 
-  guestLogin() {
-   
+  openEmailDialog() {
+    this.dialog.open(EmailDialogComponent);
   }
 }

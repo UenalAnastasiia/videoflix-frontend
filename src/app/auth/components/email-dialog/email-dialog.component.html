@@ -1,0 +1,25 @@
+<mat-dialog-actions>
+    <button mat-icon-button mat-dialog-close style="color: white">
+        <mat-icon>close</mat-icon>
+    </button>
+</mat-dialog-actions>
+
+<h2>Reset password</h2>
+  
+<mat-dialog-content>
+    <mat-form-field appearance="outline">
+        <mat-label>E-Mail</mat-label>
+        <input type="text" matInput placeholder="Enter Your E-Mail" [(ngModel)]="email"
+            autocomplete="off">
+    </mat-form-field>
+
+    @if (emptyField) {
+        <p style="color: var(--flix-red);">Please enter your E-mail!</p>
+    }
+
+    <button mat-stroked-button (click)="sendMailForPasswordReset()">Send</button>
+
+    @if (sendEmail) {
+        <p style="color: #3fdb3f">E-mail has been sent. Please check your E-Mails!</p>
+    }
+</mat-dialog-content>
