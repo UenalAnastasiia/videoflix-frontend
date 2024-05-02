@@ -1,7 +1,8 @@
-h2 {
-    margin-bottom: 28px;
-    color: var(--beige-bg);
-    font-weight: 700;
+.div-container {
+    height: 60vh;
+    max-height: 60vh;
+    overflow-y: auto;
+    margin-top: 2vh;
 }
 
 .upload-div {

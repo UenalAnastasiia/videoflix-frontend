@@ -7,17 +7,27 @@
 .div-width {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     width: 50vw;
-    max-width: 800px;
     height: 72vh;
+    margin-top: 5vh;
 }
 
 .settings-content {
     width: 35vw;
     height: inherit;
-    overflow-y: auto;
-    margin-top: 10vh;
+}
+
+h2 {
+    color: var(--beige-bg);
+    font-weight: 700;
+    margin-top: 2vh;
+}
+
+.set-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .menu-box {
@@ -41,4 +51,9 @@
 
 ::ng-deep .mat-drawer {
     background-color: var(--beige-bg) !important;
+}
+
+.border-btn {
+    border: 2px solid white;
+    border-image: repeating-linear-gradient(45deg, transparent, transparent 1px, white 12px, white 1px, transparent 6px, transparent 12px) 1;
 }
