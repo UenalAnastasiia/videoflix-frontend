@@ -1,8 +1,68 @@
-<form (ngSubmit)="login()">
+<!-- <form (ngSubmit)="login()">
     <input type="text" name="username" [(ngModel)]="username" required>
     <input type="password" name="password" [(ngModel)]="password" required>
     <button>Login</button>
-</form>
+</form> -->
 
-<input type="text" [(ngModel)]="email">
-<button (click)="sendMailForPasswordReset()">Reset Password</button>
+<!-- <input type="text" [(ngModel)]="email">
+<button (click)="sendMailForPasswordReset()">Reset Password</button> -->
+<img src="/../assets/img/bg.jpg" alt="">
+<div class="login-container">
+    <div class="info-box">
+        <button mat-icon-button [matMenuTriggerFor]="infoMenu">
+            <mat-icon>information</mat-icon>
+        </button>
+
+        <mat-menu #infoMenu="matMenu" yPosition="above">
+            <button mat-menu-item routerLink="/imprint">Imprint</button>
+            <button mat-menu-item routerLink="/data-protection">Data Protection</button>
+        </mat-menu>
+    </div>
+    <div class="logo-box">
+        <h1>Videoflix</h1>
+    </div>
+
+    <mat-card class="login-card">
+        <h2>Login</h2>
+        <mat-card-content>
+            <form>
+                <mat-form-field>
+                    <input type="text" matInput placeholder="Username" name="username" [(ngModel)]="username" required
+                        autocomplete="off">
+                </mat-form-field>
+                <mat-form-field>
+                    <input type="password" matInput placeholder="Password" name="password" [(ngModel)]="password" required
+                        autocomplete="off">
+                </mat-form-field>
+
+                @if (error) {
+                    <p class="error">
+                        {{ error }}
+                    </p>
+                }
+
+                <button mat-button (click)="login()">
+                    Sign in
+                </button>
+            </form>
+        </mat-card-content>
+
+        <p class="first-p">
+            <label> Just looking?
+                <button mat-button (click)="guestLogin()" class="btn-m-6">Login as Guest</button>
+            </label>
+        </p>
+
+        <p>
+            <label> Don't have an account?
+                <button mat-button (click)="shared.navigateTo('/register')" class="btn-m-6">Sign up</button>
+            </label>
+        </p>
+
+        <p>
+            <label> Forgot your password?
+                <button mat-button (click)="shared.navigateTo('/register')" class="btn-m-6">Reset password</button>
+            </label>
+        </p>
+    </mat-card>
+</div>

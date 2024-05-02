@@ -27,7 +27,7 @@ export class VideoOverviewComponent implements OnInit, AfterViewInit {
   isCollapsed: boolean = false;
   isCollapsable: boolean = false;
 
-  constructor(public dialog: MatDialog, private shared: SharedService, private API: APIService, private messageService: SnackbarService, private elementRef: ElementRef) {}
+  constructor(public dialog: MatDialog, private shared: SharedService, private API: APIService, private messageService: SnackbarService) {}
 
   ngOnInit() {
     this.checkOverview();
@@ -46,7 +46,7 @@ export class VideoOverviewComponent implements OnInit, AfterViewInit {
 }
 
 
-  async checkOverview() {
+  checkOverview() {
     let respData = this.shared.getVideoOverviewData();
 
     if (respData === undefined || respData.length === 0) {
