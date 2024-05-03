@@ -1,4 +1,4 @@
-.pw-container {
+.confirm-container {
     height: 100vh;
     width: 100vw;
     max-width: 100%;
@@ -22,12 +22,22 @@ img {
     left: 0;
 }
 
-.pw-card {
+.confirm-card {
     width: max-content;
     height: max-content;
     border-radius: 24px;
     padding: 48px;
     background: #b00810b8;
+
+    p {
+        color: var(--beige-bg);
+        font-size: 21px;
+        font-weight: 700;
+    }
+}
+
+.mb-28 {
+    margin-bottom: 28px !important;
 }
 
 ::ng-deep .mat-mdc-card-content {
@@ -35,24 +45,6 @@ img {
     display: flex !important;
     flex-direction: column !important;
     align-items: center !important;
-}
-
-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-h2 {
-    text-align: center;
-    color: var(--beige-bg);
-    font-size: 28px;
-    font-weight: 700;
-}
-
-::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) {
-    background-color: #9b5656 !important;
-    width: 300px !important;
 }
 
 .logo-box {
@@ -72,13 +64,9 @@ h2 {
     }
 }
 
-.btn-m-12 {
-    margin-right: 12px;
-}
-
-.error {
-    color: #502085;
-    font-size: 18px;
-    font-weight: 700;
-    margin-top: 12px;
+.confirm-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }

@@ -7,11 +7,13 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { CommonModule } from '@angular/common';
+import { SharedService } from 'src/services/shared.service';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [MatCardModule, FormsModule, MatFormFieldModule, ReactiveFormsModule, MatInputModule, CommonModule],
+  imports: [MatCardModule, FormsModule, MatFormFieldModule, ReactiveFormsModule, MatInputModule, CommonModule, MatButtonModule],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
 })
@@ -20,7 +22,7 @@ export class RegisterComponent implements OnInit {
   error: string;
 
 
-  constructor(private authService: AuthService, private router: Router, private messageService: SnackbarService) { }
+  constructor(private authService: AuthService, private router: Router, private messageService: SnackbarService, public shared: SharedService) { }
 
   ngOnInit(): void {
     this.formReg = new FormGroup({
@@ -37,7 +39,7 @@ export class RegisterComponent implements OnInit {
   onSubmit() { 
     this.authService.register(this.formReg.value).subscribe({
       next: (response) => {
-        this.messageService.showSnackMessage('User created!');
+        this.messageService.showSnackMessage('User created! Please confirm your email.');
       },
       error: (error) => {
         this.error = error.error;

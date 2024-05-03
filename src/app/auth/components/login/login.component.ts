@@ -38,7 +38,7 @@ export class LoginComponent {
       this.authService.loggedUser = resp;
       this.shared.navigateTo('/videoflix');
     } catch(e) {
-      this.error = 'Username or password is wrong!';
+      this.error = 'Have you confirmed your email? Please check your username and password!';
       console.error('Error in fetch token: ', e);    
     }
   }

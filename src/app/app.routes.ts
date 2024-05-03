@@ -9,12 +9,16 @@ import { PasswordResetComponent } from './auth/components/password-reset/passwor
 import { AuthGuard } from './auth/services/auth-guard';
 import { HomeComponent } from './home/home.component';
 import { SettingsComponent } from './settings-components/settings/settings.component';
+import { ConfirmEmailComponent } from './auth/components/confirm-email/confirm-email.component';
+import { ConfirmErrorComponent } from './auth/components/confirm-error/confirm-error.component';
 
 
 export const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/login' },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'confirm-email', component: ConfirmEmailComponent },
+  { path: 'confirm-error', component: ConfirmErrorComponent },
   { path: 'videoflix', component: HomeComponent },
   { path: 'upload', component: UploadFileComponent },
   { path: 'mylist', component: MyListComponent },
