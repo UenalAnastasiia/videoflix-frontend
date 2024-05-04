@@ -1,40 +1,9 @@
-.settings-container {
-    display: flex;
-    justify-content: space-around;
-    width: 100%;
-}
-
-.div-width {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    width: 50vw;
-    height: 72vh;
-    margin-top: 5vh;
-}
-
-.settings-content {
-    width: 35vw;
-    height: inherit;
-}
-
-h2 {
-    color: var(--beige-bg);
-    font-weight: 700;
-    margin-top: 2vh;
-}
-
-.set-div {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
 .menu-box {
     display: flex;
     flex-direction: column;
     height: 34vh;
     justify-content: space-around;
+    width: fit-content;
 }
 
 ::ng-deep .mat-mdc-unelevated-button:not(:disabled) {

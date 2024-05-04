@@ -7,7 +7,8 @@
         <button mat-button color="warn" [class.border-btn]="urlName === '/videoflix'" (click)="shared.navigateTo('/videoflix')">START</button>
         <button mat-button color="warn" [class.border-btn]="urlName === '/movies'" (click)="shared.navigateTo('/movies')">MOVIES</button>
         <button mat-button color="warn" [class.border-btn]="urlName === '/mylist'" (click)="shared.navigateTo('/mylist')">MY LIST</button>
-        <button mat-button color="warn" [class.border-btn]="urlName === '/settings'" (click)="shared.navigateTo('/settings')">SETTINGS</button>
+        <button mat-button color="warn" [class.border-btn]="urlName === '/settings/user' || urlName === '/settings/categories' || urlName === '/settings/uploads'" 
+            (click)="shared.navigateTo('/settings/user')">SETTINGS</button>
     </div>
 
     <div class="user-box">

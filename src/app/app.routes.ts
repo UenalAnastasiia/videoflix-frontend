@@ -8,9 +8,11 @@ import { RegisterComponent } from './auth/components/register/register.component
 import { PasswordResetComponent } from './auth/components/password-reset/password-reset.component';
 import { AuthGuard } from './auth/services/auth-guard';
 import { HomeComponent } from './home/home.component';
-import { SettingsComponent } from './settings-components/settings/settings.component';
 import { ConfirmEmailComponent } from './auth/components/confirm-email/confirm-email.component';
 import { ConfirmErrorComponent } from './auth/components/confirm-error/confirm-error.component';
+import { UserSettingsComponent } from './settings-components/user-settings/user-settings.component';
+import { UploadsSettingsComponent } from './settings-components/uploads-settings/uploads-settings.component';
+import { CategoriesSettingsComponent } from './settings-components/categories-settings/categories-settings.component';
 
 
 export const routes: Routes = [
@@ -24,7 +26,9 @@ export const routes: Routes = [
   { path: 'mylist', component: MyListComponent },
   { path: 'overview', component: VideoOverviewComponent },
   { path: 'movies', component: MoviesComponent },
-  { path: 'settings', component: SettingsComponent },
+  { path: 'settings/user', component: UserSettingsComponent },
+  { path: 'settings/uploads', component: UploadsSettingsComponent },
+  { path: 'settings/categories', component: CategoriesSettingsComponent },
   // { path: 'videoflix', component: HomeComponent, canActivate: [AuthGuard] },
   // { path: 'upload', component: UploadFileComponent, canActivate: [AuthGuard] },
   // { path: 'mylist', component: MyListComponent, canActivate: [AuthGuard] },

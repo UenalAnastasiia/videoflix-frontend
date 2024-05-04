@@ -6,11 +6,13 @@ import { LoadingSpinnerComponent } from 'src/UI/loading-spinner/loading-spinner.
 import { SnackbarService } from 'src/UI/snackbar/snackbar.service';
 import { APIService } from 'src/services/api.service';
 import { SharedService } from 'src/services/shared.service';
+import { SettingsComponent } from '../settings/settings.component';
+import { NavigationComponent } from 'src/app/navigation/navigation.component';
 
 @Component({
   selector: 'app-uploads-settings',
   standalone: true,
-  imports: [MatButtonModule, MatIconModule, LoadingSpinnerComponent, MatTooltipModule],
+  imports: [MatButtonModule, MatIconModule, LoadingSpinnerComponent, MatTooltipModule, SettingsComponent, NavigationComponent],
   templateUrl: './uploads-settings.component.html',
   styleUrl: './uploads-settings.component.scss'
 })

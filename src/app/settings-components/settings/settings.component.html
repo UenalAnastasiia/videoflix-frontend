@@ -1,44 +1,11 @@
-<app-navigation></app-navigation>
-
-<div class="main-container settings-container">
-    <div class="div-width">
-        <div class="menu-box">
-            <button mat-flat-button [class.border-btn]="userSettings" color="warn" 
-                (click)="userSettings = true; uploadSettings = false; categoriesSettings = false;">
-                <mat-icon>settings</mat-icon> User</button>
-            <button mat-flat-button [class.border-btn]="uploadSettings" color="warn" 
-                (click)="userSettings = false; uploadSettings = true; categoriesSettings = false;">
-                <mat-icon>settings</mat-icon> Uploads</button>
-            <button mat-flat-button [class.border-btn]="categoriesSettings" color="warn" 
-                (click)="userSettings = false; uploadSettings = false; categoriesSettings = true;">
-                <mat-icon>settings</mat-icon> Categories</button>
-        </div>
-
-        @if (userSettings) {
-            <div class="set-div">
-                <h2>User Information</h2>
-                <div class="settings-content">
-                    <app-user-settings></app-user-settings>
-                </div>
-            </div>
-        }
-
-        @if (uploadSettings) {
-            <div class="set-div">
-                <h2>My Uploads</h2>
-                <div class="settings-content">
-                    <app-uploads-settings></app-uploads-settings>
-                </div>
-            </div>
-        }
-
-        @if (categoriesSettings) {
-            <div class="set-div">
-                <h2>My Categories</h2>
-                <div class="settings-content">
-                    <app-categories-settings></app-categories-settings>
-                </div>
-            </div>
-        }
-    </div>
+<div class="menu-box">
+    <button mat-flat-button [class.border-btn]="urlName === '/settings/user'" color="warn" 
+    (click)="shared.navigateTo('/settings/user')">
+        <mat-icon>settings</mat-icon> User</button>
+    <button mat-flat-button [class.border-btn]="urlName === '/settings/uploads'" color="warn" 
+    (click)="shared.navigateTo('/settings/uploads')">
+        <mat-icon>settings</mat-icon> Uploads</button>
+    <button mat-flat-button [class.border-btn]="urlName === '/settings/categories'" color="warn" 
+    (click)="shared.navigateTo('/settings/categories')">
+        <mat-icon>settings</mat-icon> Categories</button>
 </div>

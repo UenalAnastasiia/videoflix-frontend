@@ -10,3 +10,40 @@ form {
     display: flex;
     justify-content: center;
 }
+
+.set-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.settings-content {
+    width: 35vw;
+    height: inherit;
+}
+
+.div-width {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 50vw;
+    height: 72vh;
+    margin-top: 5vh;
+}
+
+.settings-container {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+h2 {
+    color: var(--beige-bg);
+    font-weight: 700;
+    margin-top: 2vh;
+}
+
+.settings-content {
+    width: 35vw;
+    height: inherit;
+}

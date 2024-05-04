@@ -7,11 +7,13 @@ import { MatInputModule } from '@angular/material/input';
 import { LoadingSpinnerComponent } from 'src/UI/loading-spinner/loading-spinner.component';
 import { SnackbarService } from 'src/UI/snackbar/snackbar.service';
 import { APIService } from 'src/services/api.service';
+import { SettingsComponent } from '../settings/settings.component';
+import { NavigationComponent } from 'src/app/navigation/navigation.component';
 
 @Component({
   selector: 'app-user-settings',
   standalone: true,
-  imports: [MatFormFieldModule, MatInputModule, ReactiveFormsModule, FormsModule, MatButtonModule, MatIconModule, LoadingSpinnerComponent],
+  imports: [MatFormFieldModule, MatInputModule, ReactiveFormsModule, FormsModule, MatButtonModule, MatIconModule, LoadingSpinnerComponent, SettingsComponent, NavigationComponent],
   templateUrl: './user-settings.component.html',
   styleUrl: './user-settings.component.scss'
 })

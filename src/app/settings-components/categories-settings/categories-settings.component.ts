@@ -5,11 +5,13 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { LoadingSpinnerComponent } from 'src/UI/loading-spinner/loading-spinner.component';
 import { SnackbarService } from 'src/UI/snackbar/snackbar.service';
 import { APIService } from 'src/services/api.service';
+import { SettingsComponent } from '../settings/settings.component';
+import { NavigationComponent } from 'src/app/navigation/navigation.component';
 
 @Component({
   selector: 'app-categories-settings',
   standalone: true,
-  imports: [MatButtonModule, MatIconModule, LoadingSpinnerComponent, MatTooltipModule],
+  imports: [MatButtonModule, MatIconModule, LoadingSpinnerComponent, MatTooltipModule, SettingsComponent, NavigationComponent],
   templateUrl: './categories-settings.component.html',
   styleUrl: './categories-settings.component.scss'
 })
