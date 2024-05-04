@@ -1,15 +1,5 @@
 <img src="/../assets/img/bg.jpg">
 <div class="login-container">
-    <div class="info-box">
-        <button mat-icon-button [matMenuTriggerFor]="infoMenu">
-            <mat-icon>information</mat-icon>
-        </button>
-
-        <mat-menu #infoMenu="matMenu" yPosition="above">
-            <button mat-menu-item routerLink="/imprint">Imprint</button>
-            <button mat-menu-item routerLink="/data-protection">Data Protection</button>
-        </mat-menu>
-    </div>
     <div class="logo-box">
         <h1>Videoflix</h1>
     </div>
@@ -57,4 +47,6 @@
             </label>
         </p>
     </mat-card>
+
+    <app-footer></app-footer>
 </div>

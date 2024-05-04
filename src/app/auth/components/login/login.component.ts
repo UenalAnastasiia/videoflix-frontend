@@ -4,18 +4,17 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
-import { MatIconModule } from '@angular/material/icon';
-import { MatCardModule } from '@angular/material/card';
-import { MatMenuModule } from '@angular/material/menu';
+import { MatCardModule } from '@angular/material/card';;
 import { SharedService } from 'src/services/shared.service';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
 import { EmailDialogComponent } from '../email-dialog/email-dialog.component';
+import { FooterComponent } from 'src/app/footer/footer.component';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [MatFormFieldModule, MatInputModule, ReactiveFormsModule, FormsModule, MatIconModule, MatCardModule, MatMenuModule, MatButtonModule],
+  imports: [MatFormFieldModule, MatInputModule, ReactiveFormsModule, FormsModule,MatCardModule, MatButtonModule, FooterComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })

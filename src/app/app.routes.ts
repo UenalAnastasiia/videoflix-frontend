@@ -13,6 +13,8 @@ import { ConfirmErrorComponent } from './auth/components/confirm-error/confirm-e
 import { UserSettingsComponent } from './settings-components/user-settings/user-settings.component';
 import { UploadsSettingsComponent } from './settings-components/uploads-settings/uploads-settings.component';
 import { CategoriesSettingsComponent } from './settings-components/categories-settings/categories-settings.component';
+import { ImprintComponent } from './imprint/imprint.component';
+import { DataProtectionComponent } from './data-protection/data-protection.component';
 
 
 export const routes: Routes = [
@@ -30,5 +32,7 @@ export const routes: Routes = [
   { path: 'settings/user', component: UserSettingsComponent, canActivate: [AuthGuard] },
   { path: 'settings/uploads', component: UploadsSettingsComponent, canActivate: [AuthGuard] },
   { path: 'settings/categories', component: CategoriesSettingsComponent, canActivate: [AuthGuard] },
-  { path: 'password-reset/:token', component: PasswordResetComponent }
+  { path: 'password-reset/:token', component: PasswordResetComponent },
+  { path: 'imprint', component: ImprintComponent },
+  { path: 'data-protection', component: DataProtectionComponent }
 ];
