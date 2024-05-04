@@ -8,6 +8,7 @@ import { SnackbarService } from '../../UI/snackbar/snackbar.service';
 import { LoadingSpinnerComponent } from 'src/UI/loading-spinner/loading-spinner.component';
 import { VideoInfoDialogComponent } from '../video-info-dialog/video-info-dialog.component';
 import { NavigationComponent } from '../navigation/navigation.component';
+import { AuthService } from '../auth/services/auth.service';
 
 @Component({
   selector: 'app-video-overview',
@@ -27,7 +28,7 @@ export class VideoOverviewComponent implements OnInit, AfterViewInit {
   isCollapsed: boolean = false;
   isCollapsable: boolean = false;
 
-  constructor(public dialog: MatDialog, private shared: SharedService, private API: APIService, private messageService: SnackbarService) {}
+  constructor(public dialog: MatDialog, private shared: SharedService, private API: APIService, private messageService: SnackbarService, private auth: AuthService) {}
 
   ngOnInit() {
     this.checkOverview();
@@ -89,7 +90,7 @@ export class VideoOverviewComponent implements OnInit, AfterViewInit {
   async checkMyList(id: number) {
     let resp = [];
     let idString = id.toString();
-    this.myList = await this.API.getMyList(1);
+    this.myList = await this.API.getMyList(this.auth.loggedUser.user_id);
     resp.push(this.myList);
 
     let exist = this.shared.findItemInArray(resp, idString);
@@ -106,7 +107,7 @@ export class VideoOverviewComponent implements OnInit, AfterViewInit {
   addVideoToMyList() {
     let body = {
       'list': this.overviewData.id, 
-      'creator': 1
+      'creator': this.auth.loggedUser.user_id
     };  
 
     this.API.postVideoToList(body);
@@ -116,7 +117,7 @@ export class VideoOverviewComponent implements OnInit, AfterViewInit {
 
 
   async removeVideoFromMyList() {
-    this.myList = await this.API.getMyList(1);
+    this.myList = await this.API.getMyList(this.auth.loggedUser.user_id);
     let idString = this.overviewData.id.toString();
     let listID = this.myList.find((o: { list: string; }) => o.list === idString);
     this.API.deleteVideoFromList(listID.id);

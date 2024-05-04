@@ -5,6 +5,7 @@ import { APIService } from '../../services/api.service';
 import { Router } from '@angular/router';
 import { SharedService } from 'src/services/shared.service';
 import { SnackbarService } from '../../UI/snackbar/snackbar.service';
+import { AuthService } from '../auth/services/auth.service';
 
 @Component({
   selector: 'app-cover-slider',
@@ -21,11 +22,11 @@ export class CoverSliderComponent implements OnInit {
   myList: any = [];
 
 
-  constructor(private API: APIService, private router: Router, private shared: SharedService, private messageService: SnackbarService) { }
+  constructor(private API: APIService, private router: Router, private shared: SharedService, private messageService: SnackbarService, private auth: AuthService) { }
 
 
   async ngOnInit() {
-    this.myList = await this.API.getMyList(1);
+    this.myList = await this.API.getMyList(this.auth.loggedUser.user_id);
     this.checkMyList(this.videos[2].id);
     this.slideCover();
   }
@@ -60,7 +61,7 @@ export class CoverSliderComponent implements OnInit {
   addVideoToMyList(videoID: number) {
     let body = {
       'list': videoID, 
-      'creator': 1
+      'creator': this.auth.loggedUser.user_id
     };  
 
     this.API.postVideoToList(body);
@@ -71,7 +72,7 @@ export class CoverSliderComponent implements OnInit {
 
   async removeVideoFromMyList(videoID) {
     let idString = videoID.toString();
-    this.myList = await this.API.getMyList(1);
+    this.myList = await this.API.getMyList(this.auth.loggedUser.user_id);
     let listID = this.myList.find((o: { list: string; }) => o.list === idString);
     this.API.deleteVideoFromList(listID.id);
     this.messageService.showSnackMessage('Removed from my list!');

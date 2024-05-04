@@ -16,11 +16,11 @@
             <mat-icon>upload</mat-icon>
         </button>
 
-        <button mat-icon-button [class.border-btn]="urlName === '/movies'" (click)="shared.navigateTo('/movies')" matTooltip="Search">
+        <button mat-icon-button [class.border-btn]="urlName === '/movies/search'" (click)="shared.navigateTo('/movies/search')" matTooltip="Search">
             <mat-icon>search</mat-icon>
         </button>
 
-        <img src="assets/img/profile.png" [matMenuTriggerFor]="userOptions" class="profile-btn">
+        <img src="assets/img/profile.png" [matMenuTriggerFor]="userOptions" class="profile-btn" matTooltip="{{auth.loggedUser.username}}">
 
         <mat-menu #userOptions="matMenu">
             <button mat-menu-item (click)="logOut()">

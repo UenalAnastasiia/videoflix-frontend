@@ -19,7 +19,7 @@ export class NavigationComponent implements OnInit {
   urlName: string = 'videoflix';
 
   
-  constructor(public shared: SharedService, private auth: AuthService) { }
+  constructor(public shared: SharedService, public auth: AuthService) { }
 
 
   ngOnInit() {

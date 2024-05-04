@@ -5,6 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { Router } from '@angular/router';
 import { SharedService } from 'src/services/shared.service';
 import { NavigationComponent } from '../navigation/navigation.component';
+import { AuthService } from '../auth/services/auth.service';
 
 @Component({
   selector: 'app-my-list',
@@ -20,12 +21,12 @@ export class MyListComponent implements OnInit {
   videoList: any = [];
 
 
-  constructor(private API: APIService, private router: Router, private shared: SharedService) { }
+  constructor(private API: APIService, private router: Router, private shared: SharedService, private auth: AuthService) { }
 
 
   async ngOnInit() {
     try {
-      this.myList = await this.API.getMyList(1);
+      this.myList = await this.API.getMyList(this.auth.loggedUser.user_id);
     } catch(e) {
       console.log('Error by loading List')
       this.error = true;

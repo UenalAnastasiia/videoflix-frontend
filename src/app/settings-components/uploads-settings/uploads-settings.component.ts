@@ -8,6 +8,7 @@ import { APIService } from 'src/services/api.service';
 import { SharedService } from 'src/services/shared.service';
 import { SettingsComponent } from '../settings/settings.component';
 import { NavigationComponent } from 'src/app/navigation/navigation.component';
+import { AuthService } from 'src/app/auth/services/auth.service';
 
 @Component({
   selector: 'app-uploads-settings',
@@ -23,11 +24,11 @@ export class UploadsSettingsComponent implements OnInit {
   allVideos: any = [];
   checkCategories: any;
 
-  constructor(private API: APIService, public shared: SharedService, private messageService: SnackbarService) { }
+  constructor(private API: APIService, public shared: SharedService, private messageService: SnackbarService, private auth: AuthService) { }
 
 
   async ngOnInit() {
-    this.uploadData = await this.API.getUserUploads(1);
+    this.uploadData = await this.API.getUserUploads(this.auth.loggedUser.user_id);
     this.allVideos = await this.API.getAllVideos();
     
     setTimeout(() => {

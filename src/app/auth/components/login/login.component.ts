@@ -44,8 +44,15 @@ export class LoginComponent {
   }
 
 
-  guestLogin() {
-   
+  async guestLogin() {
+    try {
+      let resp: any = await this.authService.loginWithUsernameAndPassword('Guest', 'test123test123');
+      this.authService.loggedUser = resp;
+      this.shared.navigateTo('/videoflix');
+    } catch(e) {
+      this.error = 'Have you confirmed your email? Please check your username and password!';
+      console.error('Error in fetch token: ', e);    
+    }
   }
 
 

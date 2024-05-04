@@ -7,6 +7,7 @@ import { SnackbarService } from 'src/UI/snackbar/snackbar.service';
 import { APIService } from 'src/services/api.service';
 import { SettingsComponent } from '../settings/settings.component';
 import { NavigationComponent } from 'src/app/navigation/navigation.component';
+import { AuthService } from 'src/app/auth/services/auth.service';
 
 @Component({
   selector: 'app-categories-settings',
@@ -21,11 +22,11 @@ export class CategoriesSettingsComponent implements OnInit {
   deletedObjects: number[] = [];
   
 
-  constructor(private API: APIService, private messageService: SnackbarService) { }
+  constructor(private API: APIService, private messageService: SnackbarService, private auth: AuthService) { }
 
 
   async ngOnInit() {
-    this.categoryData = await this.API.getUserCategories(1);
+    this.categoryData = await this.API.getUserCategories(this.auth.loggedUser.user_id);
 
     setTimeout(() => {
       this.showContent = true;

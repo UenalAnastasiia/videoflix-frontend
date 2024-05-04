@@ -9,11 +9,13 @@ import { SnackbarService } from 'src/UI/snackbar/snackbar.service';
 import { APIService } from 'src/services/api.service';
 import { SettingsComponent } from '../settings/settings.component';
 import { NavigationComponent } from 'src/app/navigation/navigation.component';
+import { AuthService } from 'src/app/auth/services/auth.service';
 
 @Component({
   selector: 'app-user-settings',
   standalone: true,
-  imports: [MatFormFieldModule, MatInputModule, ReactiveFormsModule, FormsModule, MatButtonModule, MatIconModule, LoadingSpinnerComponent, SettingsComponent, NavigationComponent],
+  imports: [MatFormFieldModule, MatInputModule, ReactiveFormsModule, FormsModule, MatButtonModule, MatIconModule, LoadingSpinnerComponent, 
+    SettingsComponent, NavigationComponent],
   templateUrl: './user-settings.component.html',
   styleUrl: './user-settings.component.scss'
 })
@@ -22,11 +24,11 @@ export class UserSettingsComponent implements OnInit {
   userData: any;
 
 
-  constructor(private API: APIService, private messageService: SnackbarService) { }
+  constructor(private API: APIService, private messageService: SnackbarService, private auth: AuthService) { }
 
 
   async ngOnInit() {
-    let resp = await this.API.getUser(1);
+    let resp = await this.API.getUser(this.auth.loggedUser.user_id);
     this.userData = resp[0];
     setTimeout(() => {
       this.showContent = true;

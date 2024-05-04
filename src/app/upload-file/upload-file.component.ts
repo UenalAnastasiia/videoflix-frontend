@@ -45,7 +45,7 @@ export class UploadFileComponent {
   updateCategory: boolean = false;
   
 
-  constructor( public auth: AuthService, private API: APIService, private messageService: SnackbarService) { }
+  constructor(public auth: AuthService, private API: APIService, private messageService: SnackbarService) { }
 
 
   async ngOnInit() {
@@ -96,8 +96,8 @@ export class UploadFileComponent {
     this.uploadData.append('title', this.title.value)
     this.uploadData.append('description', this.description.value)
     this.uploadData.append('created_at', this.dateFormat())
-    this.uploadData.append('creator', '1')
-    // this.uploadData.append('creator', this.auth.loggedUser.user_id)
+    // this.uploadData.append('creator', '1')
+    this.uploadData.append('creator', this.auth.loggedUser.user_id)
     this.uploadData.append('category', this.categoriesID)
   }
 
