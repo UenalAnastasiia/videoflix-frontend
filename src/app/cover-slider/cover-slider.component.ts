@@ -7,6 +7,7 @@ import { SharedService } from 'src/services/shared.service';
 import { SnackbarService } from '../../UI/snackbar/snackbar.service';
 import { AuthService } from '../auth/services/auth.service';
 
+
 @Component({
   selector: 'app-cover-slider',
   standalone: true,
@@ -27,6 +28,8 @@ export class CoverSliderComponent implements OnInit {
 
   async ngOnInit() {
     this.myList = await this.API.getMyList(this.auth.loggedUser.user_id);
+    console.log('Videos ',this.videos);
+    
     this.checkMyList(this.videos[2].id);
     this.slideCover();
   }

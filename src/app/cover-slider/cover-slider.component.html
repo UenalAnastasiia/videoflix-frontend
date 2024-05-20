@@ -1,15 +1,15 @@
 <div class="slider-container">
     <div class="next-last-cover-140 ml-last-40 pos-rel opacity-4">
-        <img class="img-slideshow next-cover-rotate" src='{{ "http://127.0.0.1:8000" + videos[coverIndex[0]].cover_picture }}'
+        <img class="img-slideshow next-cover-rotate" src='{{ "http://35.240.85.214" + videos[coverIndex[0]].cover_picture }}'
         (click)="openVideoOverview(videos[coverIndex[0]])">
     </div>
 
     <div class="next-last-cover pos-rel opacity-9">
-        <img class="img-slideshow next-cover-rotate" src='{{ "http://127.0.0.1:8000" + videos[coverIndex[1]].cover_picture }}'
+        <img class="img-slideshow next-cover-rotate" src='{{ "http://35.240.85.214" + videos[coverIndex[1]].cover_picture }}'
         (click)="openVideoOverview(videos[coverIndex[1]])">
     </div>
     <div class="pos-rel">
-        <img class="img-slideshow" src='{{ "http://127.0.0.1:8000" + videos[coverIndex[2]].cover_picture }}'
+        <img class="img-slideshow" src='{{ "http://35.240.85.214" + videos[coverIndex[2]].cover_picture }}'
         (click)="openVideoOverview(videos[coverIndex[2]])">
         <div class="current-title-pos">
             <p>{{ videos[coverIndex[2]].title }}</p>
@@ -32,12 +32,12 @@
     </div>
 
     <div class="next-last-cover ml-last pos-rel zindex opacity-9">
-        <img class="img-slideshow last-cover-rotate" src='{{ "http://127.0.0.1:8000" + videos[coverIndex[3]].cover_picture }}'
+        <img class="img-slideshow last-cover-rotate" src='{{ "http://35.240.85.214" + videos[coverIndex[3]].cover_picture }}'
         (click)="openVideoOverview(videos[coverIndex[3]])">
     </div>
 
     <div class="next-last-cover ml-last-200 pos-rel opacity-4">
-        <img class="img-slideshow last-cover-rotate" src='{{ "http://127.0.0.1:8000" + videos[coverIndex[4]].cover_picture }}'
+        <img class="img-slideshow last-cover-rotate" src='{{ "http://35.240.85.214" + videos[coverIndex[4]].cover_picture }}'
         (click)="openVideoOverview(videos[coverIndex[4]])">
     </div>
 </div>

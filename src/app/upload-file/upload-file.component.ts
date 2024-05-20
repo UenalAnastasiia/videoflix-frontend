@@ -38,9 +38,9 @@ export class UploadFileComponent {
   uploadProgress = 0;
 
   categoryCtrl = new FormControl('');
-  categories: any[] = [{id: 24, name: 'New'}];
+  categories: any[] = [{id: 2, name: 'New'}];
   allCategories: any = [];
-  categoriesID: any = [24];
+  categoriesID: any = [2];
   showAddInput: boolean = false;
   updateCategory: boolean = false;
   
@@ -152,8 +152,8 @@ export class UploadFileComponent {
   async updateCategoryData() {
     this.allCategories = await this.API.getAllCategories();
     this.updateCategory = false;
-    this.categoriesID = [24];
-    this.categories = [{id: 24, name: 'New'}];
+    this.categoriesID = [2];
+    this.categories = [{id: 2, name: 'New'}];
     this.showAddInput = false;
   }
 
@@ -186,7 +186,7 @@ export class UploadFileComponent {
     this.cover_input_title.nativeElement.value = null;
     this.title.reset();
     this.description.reset();
-    this.categoriesID= [24];
+    this.categoriesID= [2];
     this.categoryCtrl.setValue('');
   }
 }
