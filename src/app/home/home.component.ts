@@ -32,6 +32,8 @@ export class HomeComponent implements OnInit {
       console.log('Error by loading videos')
       this.error = true;
     } finally {
+      this.videos.reverse();
+      
       setTimeout(() => {
         this.showContent = true;
       }, 1000);
