@@ -1,14 +1,14 @@
 import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
-import { VideoPlayerComponent } from '../video-player/video-player.component';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { SharedService } from 'src/services/shared.service';
 import { APIService } from 'src/services/api.service';
 import { MatIconModule } from '@angular/material/icon';
-import { SnackbarService } from '../../UI/snackbar/snackbar.service';
 import { LoadingSpinnerComponent } from 'src/UI/loading-spinner/loading-spinner.component';
+import { NavigationComponent } from 'src/app/navigation/navigation.component';
+import { VideoPlayerComponent } from '../video-player/video-player.component';
+import { SnackbarService } from 'src/UI/snackbar/snackbar.service';
+import { AuthService } from 'src/app/auth/services/auth.service';
 import { VideoInfoDialogComponent } from '../video-info-dialog/video-info-dialog.component';
-import { NavigationComponent } from '../navigation/navigation.component';
-import { AuthService } from '../auth/services/auth.service';
 
 @Component({
   selector: 'app-video-overview',
@@ -28,7 +28,8 @@ export class VideoOverviewComponent implements OnInit, AfterViewInit {
   isCollapsed: boolean = false;
   isCollapsable: boolean = false;
 
-  constructor(public dialog: MatDialog, private shared: SharedService, private API: APIService, private messageService: SnackbarService, private auth: AuthService) {}
+  constructor(public dialog: MatDialog, private shared: SharedService, private API: APIService, 
+    private messageService: SnackbarService, private auth: AuthService) {}
 
   ngOnInit() {
     this.checkOverview();
@@ -100,7 +101,7 @@ export class VideoOverviewComponent implements OnInit, AfterViewInit {
 
   playVideo() {
     let playerDialog = this.dialog.open(VideoPlayerComponent);
-    playerDialog.componentInstance.videoURL = `http://35.240.85.214${this.overviewData.video_file}`;
+    playerDialog.componentInstance.videoURL = `https://anastasiia-backend.developerakademie.net${this.overviewData.video_file}`;
   }
 
 

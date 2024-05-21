@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { LoadingSpinnerComponent } from 'src/UI/loading-spinner/loading-spinner.component';
 import { CoverSliderComponent } from '../cover-slider/cover-slider.component';
 import { VideoTabsComponent } from '../video-tabs/video-tabs.component';
-import { VideoOverviewComponent } from '../video-overview/video-overview.component';
-import { APIService } from '../../services/api.service';
-import { LoadingSpinnerComponent } from 'src/UI/loading-spinner/loading-spinner.component';
-import { AuthService } from '../auth/services/auth.service';
-import { NavigationComponent } from '../navigation/navigation.component';
+import { VideoOverviewComponent } from 'src/app/video-overview-components/video-overview/video-overview.component';
+import { NavigationComponent } from 'src/app/navigation/navigation.component';
+import { APIService } from 'src/services/api.service';
+import { AuthService } from 'src/app/auth/services/auth.service';
 
 @Component({
   selector: 'app-home',

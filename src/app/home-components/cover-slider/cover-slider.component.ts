@@ -1,11 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { APIService } from '../../services/api.service';
 import { Router } from '@angular/router';
+import { SnackbarService } from 'src/UI/snackbar/snackbar.service';
+import { AuthService } from 'src/app/auth/services/auth.service';
+import { APIService } from 'src/services/api.service';
 import { SharedService } from 'src/services/shared.service';
-import { SnackbarService } from '../../UI/snackbar/snackbar.service';
-import { AuthService } from '../auth/services/auth.service';
 
 
 @Component({
@@ -23,12 +23,12 @@ export class CoverSliderComponent implements OnInit {
   myList: any = [];
 
 
-  constructor(private API: APIService, private router: Router, private shared: SharedService, private messageService: SnackbarService, private auth: AuthService) { }
+  constructor(private API: APIService, private router: Router, 
+    private shared: SharedService, private messageService: SnackbarService, private auth: AuthService) { }
 
 
   async ngOnInit() {
     this.myList = await this.API.getMyList(this.auth.loggedUser.user_id);
-    console.log('Videos ', this.videos);
     
     this.checkMyList(this.videos[2].id);
     this.slideCover();

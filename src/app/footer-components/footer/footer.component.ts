@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { SharedService } from 'src/services/shared.service';
 
+
 @Component({
   selector: 'app-footer',
   standalone: true,

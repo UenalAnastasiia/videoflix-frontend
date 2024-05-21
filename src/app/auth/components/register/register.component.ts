@@ -9,7 +9,7 @@ import { MatInputModule } from '@angular/material/input';
 import { CommonModule } from '@angular/common';
 import { SharedService } from 'src/services/shared.service';
 import { MatButtonModule } from '@angular/material/button';
-import { FooterComponent } from 'src/app/footer/footer.component';
+import { FooterComponent } from 'src/app/footer-components/footer/footer.component';
 
 @Component({
   selector: 'app-register',

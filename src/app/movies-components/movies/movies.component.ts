@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AlphabetTableComponent } from '../alphabet-table/alphabet-table.component';
 import { APIService } from 'src/services/api.service';
 import { CommonModule } from '@angular/common';
 import { SearchFilterPipe } from 'src/pipes/search-filter.pipe';
@@ -7,7 +6,8 @@ import { FormsModule } from '@angular/forms';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { Router } from '@angular/router';
 import { SharedService } from 'src/services/shared.service';
-import { NavigationComponent } from '../navigation/navigation.component';
+import { AlphabetTableComponent } from '../alphabet-table/alphabet-table.component';
+import { NavigationComponent } from 'src/app/navigation/navigation.component';
 
 
 @Component({

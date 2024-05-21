@@ -12,7 +12,7 @@
             <div class="content-box">
                 @for (video of videoData | searchFilter: searchValue; track video.id) {
                     <div class="pos-rel" (click)="openVideoOverview(video)">
-                        <img style="width: 200px; height: 142px" src='{{ "http://35.240.85.214" + video.cover_picture }}'>
+                        <img style="width: 200px; height: 142px" src='{{ "https://anastasiia-backend.developerakademie.net" + video.cover_picture }}'>
                         <div class="pos-abs">
                             <p>{{ video.title }}</p>
                         </div>

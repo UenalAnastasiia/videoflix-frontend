@@ -2,9 +2,9 @@ import { Component, ElementRef, HostListener, Input, OnInit, QueryList, ViewChil
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon'
-import { SecondsToHoursPipe } from '../../pipes/seconds-to-hours.pipe';
 import { Router } from '@angular/router';
 import { SharedService } from 'src/services/shared.service';
+import { SecondsToHoursPipe } from 'src/pipes/seconds-to-hours.pipe';
 
 
 @Component({
