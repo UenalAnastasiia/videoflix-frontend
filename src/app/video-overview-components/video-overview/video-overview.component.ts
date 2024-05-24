@@ -101,7 +101,7 @@ export class VideoOverviewComponent implements OnInit, AfterViewInit {
 
   playVideo() {
     let playerDialog = this.dialog.open(VideoPlayerComponent);
-    playerDialog.componentInstance.videoURL = `https://anastasiia-backend.developerakademie.net${this.overviewData.video_file}`;
+    playerDialog.componentInstance.videoURL = `https://backend.anastasiia-uenal.de${this.overviewData.video_file}`;
   }
 
 

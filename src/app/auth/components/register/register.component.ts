@@ -38,7 +38,9 @@ export class RegisterComponent implements OnInit {
 
 
   onSubmit() { 
-    this.authService.register(this.formReg.value).subscribe({
+    const formValue = this.formReg.value;
+    formValue.image = 'profile.png';
+    this.authService.register(formValue).subscribe({
       next: (response) => {
         this.messageService.showSnackMessage('User created! Please confirm your email.');
       },

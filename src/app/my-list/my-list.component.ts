@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { SharedService } from 'src/services/shared.service';
 import { NavigationComponent } from '../navigation/navigation.component';
 import { AuthService } from '../auth/services/auth.service';
+import { SnackbarService } from 'src/UI/snackbar/snackbar.service';
 
 @Component({
   selector: 'app-my-list',
@@ -21,14 +22,15 @@ export class MyListComponent implements OnInit {
   videoList: any = [];
 
 
-  constructor(private API: APIService, private router: Router, private shared: SharedService, private auth: AuthService) { }
+  constructor(private API: APIService, private router: Router, private shared: SharedService, 
+    private auth: AuthService, private messageService: SnackbarService) { }
 
 
   async ngOnInit() {
     try {
       this.myList = await this.API.getMyList(this.auth.loggedUser.user_id);
     } catch(e) {
-      console.log('Error by loading List')
+      this.messageService.showSnackMessage('Sorry, Error by loading List...');
       this.error = true;
     } finally {
       this.loadVideos(this.myList);

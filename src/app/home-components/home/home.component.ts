@@ -6,6 +6,7 @@ import { VideoOverviewComponent } from 'src/app/video-overview-components/video-
 import { NavigationComponent } from 'src/app/navigation/navigation.component';
 import { APIService } from 'src/services/api.service';
 import { AuthService } from 'src/app/auth/services/auth.service';
+import { SnackbarService } from 'src/UI/snackbar/snackbar.service';
 
 @Component({
   selector: 'app-home',
@@ -21,7 +22,7 @@ export class HomeComponent implements OnInit {
   error: boolean = false;
 
 
-  constructor(private API: APIService, private auth: AuthService) { }
+  constructor(private API: APIService, private auth: AuthService, private messageService: SnackbarService) { }
 
 
   async ngOnInit() {
@@ -29,7 +30,7 @@ export class HomeComponent implements OnInit {
       this.videos = await this.API.getAllVideos();
       this.categories = await this.API.getAllCategories();
     } catch(e) {
-      console.log('Error by loading videos')
+      this.messageService.showSnackMessage('Sorry, Error by loading videos...');
       this.error = true;
     } finally {
       this.videos.reverse();

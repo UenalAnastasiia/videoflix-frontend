@@ -38,9 +38,9 @@ export class UploadFileComponent {
   uploadProgress = 0;
 
   categoryCtrl = new FormControl('');
-  categories: any[] = [{id: 2, name: 'New'}];
+  categories: any[] = [{id: 1, name: 'New'}];
   allCategories: any = [];
-  categoriesID: any = [2];
+  categoriesID: any = [1];
   showAddInput: boolean = false;
   updateCategory: boolean = false;
   
@@ -96,7 +96,6 @@ export class UploadFileComponent {
     this.uploadData.append('title', this.title.value)
     this.uploadData.append('description', this.description.value)
     this.uploadData.append('created_at', this.dateFormat())
-    // this.uploadData.append('creator', '1')
     this.uploadData.append('creator', this.auth.loggedUser.user_id)
     this.uploadData.append('category', this.categoriesID)
   }
@@ -108,8 +107,6 @@ export class UploadFileComponent {
       next: (event: any) => {
         if (event.type === HttpEventType.UploadProgress) {
           this.uploadProgress = Math.round((100 * event.loaded) / event.total);
-          console.log('PROGRESS: ', this.uploadProgress);
-          // this.messageService.showSnackMessage(`Upload ${this.progress} % completed...`);
         } 
       },
       error: (err: any) => {
@@ -152,8 +149,8 @@ export class UploadFileComponent {
   async updateCategoryData() {
     this.allCategories = await this.API.getAllCategories();
     this.updateCategory = false;
-    this.categoriesID = [2];
-    this.categories = [{id: 2, name: 'New'}];
+    this.categoriesID = [1];
+    this.categories = [{id: 1, name: 'New'}];
     this.showAddInput = false;
   }
 
@@ -186,7 +183,7 @@ export class UploadFileComponent {
     this.cover_input_title.nativeElement.value = null;
     this.title.reset();
     this.description.reset();
-    this.categoriesID= [2];
+    this.categoriesID= [1];
     this.categoryCtrl.setValue('');
   }
 }

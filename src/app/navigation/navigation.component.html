@@ -20,7 +20,7 @@
             <mat-icon>search</mat-icon>
         </button>
 
-        <img src="assets/img/profile.png" [matMenuTriggerFor]="userOptions" class="profile-btn" matTooltip="{{auth.loggedUser.username}}">
+        <img src="assets/img/{{auth.loggedUser.image}}" [matMenuTriggerFor]="userOptions" class="profile-btn" matTooltip="{{auth.loggedUser.username}}">
 
         <mat-menu #userOptions="matMenu">
             <button mat-menu-item (click)="logOut()">

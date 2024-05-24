@@ -22,6 +22,7 @@ export class PasswordResetComponent {
   newPassword: string;
   error: string;
   showError: boolean = false;
+  
 
   constructor(private authService: AuthService, private route: ActivatedRoute, public messageService: SnackbarService, public shared: SharedService) { }
 
@@ -33,7 +34,6 @@ export class PasswordResetComponent {
       next: (response) => {
         this.messageService.showSnackMessage('Password reset successful! You can now log in.');
         this.shared.navigateTo('/login');
-        console.log('Completed!');
       },
       error: (err) => {
           this.error = err.error;

@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { SharedService } from 'src/services/shared.service';
 import { AlphabetTableComponent } from '../alphabet-table/alphabet-table.component';
 import { NavigationComponent } from 'src/app/navigation/navigation.component';
+import { SnackbarService } from 'src/UI/snackbar/snackbar.service';
 
 
 @Component({
@@ -24,14 +25,14 @@ export class MoviesComponent implements OnInit {
   showContent: boolean = false;
 
 
-  constructor(private API: APIService, private router: Router, private shared: SharedService) { }
+  constructor(private API: APIService, private router: Router, private shared: SharedService, private messageService: SnackbarService) { }
 
 
   async ngOnInit() {
     try {
       this.videoData = await this.API.getAllVideos();
     } catch(e) {
-      console.log('Error by loading videos')
+      this.messageService.showSnackMessage('Sorry, Error by loading videos...');
       this.error = true;
     } finally {
       setTimeout(() => {

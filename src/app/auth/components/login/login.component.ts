@@ -36,9 +36,15 @@ export class LoginComponent {
       let resp: any = await this.authService.loginWithUsernameAndPassword(this.username, this.password);
       this.authService.loggedUser = resp;
       this.shared.navigateTo('/videoflix');
+      console.log('User ', resp);
+      
     } catch(e) {
-      this.error = 'Have you confirmed your email? Please check your username and password!';
-      console.error('Error in fetch token: ', e);    
+      if (e.status === 403) {
+        this.error = 'Please confirm your e-mail to log in.';
+      } else {
+        this.error = 'Please check your username and password.';
+        console.error('Error in fetch token: ', e);    
+      }
     }
   }
 

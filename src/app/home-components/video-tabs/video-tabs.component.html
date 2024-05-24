@@ -8,7 +8,7 @@
             <div class="video-box" #allContent>
                 @for (video of videos; track video.id) {
                     <div class="pos-rel">
-                        <img style="width: 300px; height: 142px" src='{{ "https://anastasiia-backend.developerakademie.net" + video.cover_picture }}'>
+                        <img style="width: 300px; height: 142px" src='{{ "https://backend.anastasiia-uenal.de" + video.cover_picture }}'>
                         <div class="pos-abs">
                             <p>{{ video.title }}</p>
                             <button mat-fab color="warn" (click)="openVideoOverview(video)">
@@ -38,7 +38,7 @@
                     @if (showContent) {
                         @for (video of tabVideos; track video.id) {
                             <div class="pos-rel">
-                                <img style="width: 300px; height: 142px" src='{{ "https://anastasiia-backend.developerakademie.net" + video.cover_picture }}'  >
+                                <img style="width: 300px; height: 142px" src='{{ "https://backend.anastasiia-uenal.de" + video.cover_picture }}'  >
                                 <div class="pos-abs" (click)="openVideoOverview(video)">
                                     <p>{{ video.title }}</p>
                                     <button mat-fab color="warn">
