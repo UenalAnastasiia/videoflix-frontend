@@ -1,19 +1,21 @@
 <app-navigation></app-navigation>
 <div class="main-container">
-    @if (showContent && !error) {
-        <div>
-            <app-cover-slider [videos]="videos"></app-cover-slider>
-            <app-video-tabs [categories]="categories" [videos]="videos"></app-video-tabs>
-        </div>
-    } @else {
-        <div class="loading-box">
-            <app-loading-spinner></app-loading-spinner>
-        </div>
-    }
-
-    @if (error) {
-        <div>
-            <h1>Please reload the page or try later...</h1>
-        </div>
-    }
+    <div>
+        @if (showContent && !error) {
+            <div class="home-container">
+                <app-cover-slider [videos]="videos"></app-cover-slider>
+                <app-video-tabs [categories]="categories" [videos]="videos"></app-video-tabs>
+            </div>
+        } @else {
+            <div class="loading-box">
+                <app-loading-spinner></app-loading-spinner>
+            </div>
+        }
+    
+        @if (error) {
+            <div>
+                <h1>Please reload the page or try later...</h1>
+            </div>
+        }
+    </div>
 </div>

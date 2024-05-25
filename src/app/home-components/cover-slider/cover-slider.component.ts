@@ -29,7 +29,6 @@ export class CoverSliderComponent implements OnInit {
 
   async ngOnInit() {
     this.myList = await this.API.getMyList(this.auth.loggedUser.user_id);
-    
     this.checkMyList(this.videos[2].id);
     this.slideCover();
   }

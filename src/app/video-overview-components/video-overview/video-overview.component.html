@@ -6,7 +6,10 @@
             <img class="img" src='{{ "https://backend.anastasiia-uenal.de" + overviewData.cover_picture }}'>
     
             <div class="info-box">
-                <p>{{ overviewData.title }}</p>
+                <div style="display: flex;">
+                    <p>{{ overviewData.title }}</p>
+                    <span class="age-span">{{ overviewData.age }}</span>
+                </div>
 
                 <div class="category-div">
                     @for (category of videoCategory; track category) {

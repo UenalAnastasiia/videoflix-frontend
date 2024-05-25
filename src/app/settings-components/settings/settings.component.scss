@@ -23,6 +23,5 @@
 }
 
 .border-btn {
-    border: 2px solid white;
-    border-image: repeating-linear-gradient(45deg, transparent, transparent 1px, white 12px, white 1px, transparent 6px, transparent 12px) 1;
+    background-color: var(--flix-red) !important;
 }

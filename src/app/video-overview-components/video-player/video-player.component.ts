@@ -8,6 +8,7 @@ import { VgOverlayPlayModule } from '@videogular/ngx-videogular/overlay-play';
 import { VgBufferingModule } from '@videogular/ngx-videogular/buffering';
 import { MatMenuModule } from '@angular/material/menu';
 import { SecondsToHoursPipe } from 'src/pipes/seconds-to-hours.pipe';
+import { APIService } from 'src/services/api.service';
 
 @Component({
   selector: 'app-video-player',
@@ -22,6 +23,10 @@ export class VideoPlayerComponent implements OnInit {
   newVideoPath: any = '';
   quality: number = 720;
   showVideo: boolean = false;
+  videoExists: boolean | null = null;
+
+
+  constructor(private api: APIService) { }
 
 
   ngOnInit() {
@@ -40,6 +45,18 @@ export class VideoPlayerComponent implements OnInit {
     let fileName = splitResult[0];
     let extension = splitResult[1];
     this.newVideoPath = filePath + '/' + fileName + '_' + quality + 'p.' + extension;
+    this.checkVideo(this.newVideoPath);
+  }
+
+
+  checkVideo(path: string) {
+    this.api.checkVideoURLExists(path).subscribe(
+      exists => this.videoExists = exists,
+      error => {
+        this.videoExists = null;
+      }
+    );
+    
     setTimeout(() => { this.showVideo = true }, 500);
   }
 }

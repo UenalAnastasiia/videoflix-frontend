@@ -10,6 +10,8 @@ import { APIService } from 'src/services/api.service';
 import { SettingsComponent } from '../settings/settings.component';
 import { NavigationComponent } from 'src/app/navigation/navigation.component';
 import { AuthService } from 'src/app/auth/services/auth.service';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogUserImagesComponent } from '../dialog-user-images/dialog-user-images.component';
 
 @Component({
   selector: 'app-user-settings',
@@ -24,7 +26,7 @@ export class UserSettingsComponent implements OnInit {
   userData: any;
 
 
-  constructor(private API: APIService, private messageService: SnackbarService, private auth: AuthService) { }
+  constructor(private API: APIService, private messageService: SnackbarService, private auth: AuthService, public dialog: MatDialog) { }
 
 
   async ngOnInit() {
@@ -46,7 +48,14 @@ export class UserSettingsComponent implements OnInit {
       "city": this.userData.city
     };
 
-    this.API.patchUser(1, body);
+    this.API.patchUser(this.userData.id, body);
     this.messageService.showSnackMessage('Changes saved!');
+  }
+
+
+  openUserImages() {
+    let imgDialog = this.dialog.open(DialogUserImagesComponent);
+    imgDialog.componentInstance.userData =this.userData;
+    imgDialog.componentInstance.profileImg =this.userData.image;
   }
 }

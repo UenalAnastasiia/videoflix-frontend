@@ -4,7 +4,7 @@
     color: var(--headers-light);
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    // justify-content: center;
     align-items: center;
 
     form {
@@ -41,4 +41,5 @@
 h2 {
     color: var(--beige-bg);
     font-weight: 700;
+    margin-top: 5vh;
 }

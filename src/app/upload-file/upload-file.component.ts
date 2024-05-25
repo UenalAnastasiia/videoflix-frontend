@@ -13,12 +13,13 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { NavigationComponent } from '../navigation/navigation.component';
 import { HttpEventType } from '@angular/common/http';
 import { SnackbarService } from 'src/UI/snackbar/snackbar.service';
+import { MatRadioModule } from '@angular/material/radio';
 
 @Component({
   selector: 'app-upload-file',
   standalone: true,
-  imports: [MatFormFieldModule, MatInputModule, MatButtonModule, ReactiveFormsModule, FormsModule, CommonModule, MatIconModule, MatTooltipModule, NavigationComponent,
-    MatChipsModule, MatAutocompleteModule
+  imports: [MatFormFieldModule, MatInputModule, MatButtonModule, ReactiveFormsModule, FormsModule, CommonModule, MatIconModule, MatTooltipModule, 
+    NavigationComponent, MatChipsModule, MatAutocompleteModule, MatRadioModule
   ],
   templateUrl: './upload-file.component.html',
   styleUrl: './upload-file.component.scss'
@@ -32,6 +33,7 @@ export class UploadFileComponent {
   description = new FormControl('', [Validators.required, Validators.minLength(1)]);
   displayVideo: FormControl = new FormControl('', Validators.required);
   displayCover: FormControl = new FormControl('', Validators.required);
+  releaseYear = new FormControl('2024', [Validators.required, Validators.minLength(4), Validators.maxLength(4), Validators.pattern("^[0-9]*$")]);
   videoToUpload: File | null = null;
   coverToUpload: File | null = null;
   uploadData: FormData = new FormData();
@@ -43,7 +45,8 @@ export class UploadFileComponent {
   categoriesID: any = [1];
   showAddInput: boolean = false;
   updateCategory: boolean = false;
-  
+  ageOptions: string[] = ['+6', '+12', '+16', '+18'];
+  choosenAge: string = '+6';
 
   constructor(public auth: AuthService, private API: APIService, private messageService: SnackbarService) { }
 
@@ -55,16 +58,24 @@ export class UploadFileComponent {
 
   handleVideoUploadEvent(event: any) {
     if (event.target.files[0]) {
-      this.videoToUpload = event.target.files[0];
-      this.displayVideo.patchValue(`${this.videoToUpload.name}`);
+      if (event.target.files[0].size/1024/1024 > 10) {
+        this.messageService.showSnackMessage('File is bigger than 10MB!');
+      } else {
+        this.videoToUpload = event.target.files[0];
+        this.displayVideo.patchValue(`${this.videoToUpload.name}`);
+      }
     }
   }
 
 
   handleCoverUploadEvent(event: any) {
     if (event.target.files[0]) {
-      this.coverToUpload = event.target.files[0];
-      this.displayCover.patchValue(`${this.coverToUpload.name}`);
+      if (event.target.files[0].size/1024/1024 > 5) {
+        this.messageService.showSnackMessage('File is bigger than 5MB!');
+      } else {
+        this.coverToUpload = event.target.files[0];
+        this.displayCover.patchValue(`${this.coverToUpload.name}`);
+      }
     }
   }
 
@@ -98,6 +109,9 @@ export class UploadFileComponent {
     this.uploadData.append('created_at', this.dateFormat())
     this.uploadData.append('creator', this.auth.loggedUser.user_id)
     this.uploadData.append('category', this.categoriesID)
+    this.uploadData.append('age', this.choosenAge)
+    this.uploadData.append('age', this.choosenAge)
+    this.uploadData.append('release_year', this.releaseYear.value)
   }
 
 

@@ -5,7 +5,6 @@ import { VideoTabsComponent } from '../video-tabs/video-tabs.component';
 import { VideoOverviewComponent } from 'src/app/video-overview-components/video-overview/video-overview.component';
 import { NavigationComponent } from 'src/app/navigation/navigation.component';
 import { APIService } from 'src/services/api.service';
-import { AuthService } from 'src/app/auth/services/auth.service';
 import { SnackbarService } from 'src/UI/snackbar/snackbar.service';
 
 @Component({
@@ -22,7 +21,7 @@ export class HomeComponent implements OnInit {
   error: boolean = false;
 
 
-  constructor(private API: APIService, private auth: AuthService, private messageService: SnackbarService) { }
+  constructor(private API: APIService, private messageService: SnackbarService) { }
 
 
   async ngOnInit() {

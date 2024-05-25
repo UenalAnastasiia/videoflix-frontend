@@ -17,6 +17,23 @@ form {
     justify-content: center;
 }
 
+.user-profile {
+    position: absolute;
+    top: 8px;
+    left: 200px;
+
+    img {
+        width: 50px;
+        height: 50px;
+        object-fit: contain;
+        border-radius: 100%;
+    }
+
+    mat-icon {
+        font-size: 20px;
+    }
+}
+
 .settings-content {
     width: 35vw;
     height: inherit;

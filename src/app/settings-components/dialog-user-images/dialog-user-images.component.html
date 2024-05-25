@@ -1,0 +1,21 @@
+<mat-dialog-actions>
+    <button mat-icon-button mat-dialog-close style="color: white">
+        <mat-icon>close</mat-icon>
+    </button>
+</mat-dialog-actions>
+
+<h2>User Profile</h2>
+  
+<mat-dialog-content>
+<div class="profile-div">
+    <mat-radio-group [(ngModel)]="profileImg" name="profileImg">
+        @for (image of images; track image) {
+            <mat-radio-button [value]="image"><img src="assets/img/{{image}}"></mat-radio-button>
+        }
+    </mat-radio-group>
+</div>
+
+<div class="btn-div">
+    <button mat-flat-button color="warn" (click)="saveUserImg()">Save</button>
+</div>
+</mat-dialog-content>

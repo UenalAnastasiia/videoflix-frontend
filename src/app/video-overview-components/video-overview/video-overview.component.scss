@@ -83,3 +83,15 @@
 .collapsed {
     overflow: hidden;
 }
+
+.age-span {
+    margin-left: 24px;
+    border: 1px solid #c91717;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4px;
+    color: #c91717;
+
+}

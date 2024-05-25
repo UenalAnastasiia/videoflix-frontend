@@ -8,7 +8,15 @@
 
         <div class="set-div">
             @if (showContent) {
-                <h2>User Information</h2>
+                <div style="position: relative;">
+                    <h2>User Information</h2>
+                    <div class="user-profile">
+                        <img src="assets/img/{{userData.image}}">
+                        <button mat-icon-button color="accent" (click)="openUserImages()">
+                            <mat-icon>edit</mat-icon>
+                        </button>
+                    </div>
+                </div>
                 <div class="settings-content">
                     @if (userData.username !== 'Guest') {
                         <form>

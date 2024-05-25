@@ -1,8 +1,9 @@
-import { HttpClient, HttpEvent, HttpRequest } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpEvent, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-import { Observable, lastValueFrom } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { Observable, lastValueFrom, of, throwError, map } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { SnackbarService } from 'src/UI/snackbar/snackbar.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class APIService {
   myList: any = [];
 
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private messageService: SnackbarService) { }
 
 
   getAllVideos() {
@@ -29,9 +30,10 @@ export class APIService {
   async getCategoryName(id: number) {
     const endpoint = environment.baseURL + `/category/${id}/`;
     let resp: any = await lastValueFrom(this.http.get(endpoint));
-
+    
     if (resp.length !== 0) {
-      let category = resp[0].name;
+      // let category = resp[0].name;
+      let category = resp.name;
       return category;
     }
   }
@@ -131,5 +133,22 @@ export class APIService {
   patchUser(id, body) {
     const endpoint = environment.baseURL + `/users/${id}/`;
     lastValueFrom(this.http.patch(endpoint, body));
+  }
+
+
+  checkVideoURLExists(url: string): Observable<boolean> {
+    return this.http.head(url, { observe: 'response' }).pipe(
+      map(response => {
+        return response.status === 200;
+      }),
+      catchError((error: HttpErrorResponse) => {
+        if (error.status === 404) {
+          this.messageService.showSnackMessage('Sorry, video can not be load...');
+          return of(false);
+        } else {
+          return throwError(error);
+        }
+      })
+    );
   }
 }

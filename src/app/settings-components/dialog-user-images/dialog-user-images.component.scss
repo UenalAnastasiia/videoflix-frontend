@@ -1,0 +1,37 @@
+::ng-deep .mat-mdc-dialog-container .mdc-dialog__surface {
+    background-color: #5a1eb7 !important;
+    border-radius: 24px !important;
+}
+
+::ng-deep .mat-mdc-dialog-actions {
+    justify-content: flex-end;
+}
+
+.profile-div {
+    flex-wrap: wrap;
+    width: 15vw;
+    max-width: 230px;
+    display: flex;
+}
+
+img {
+    width: 54px;
+    height: 54px;
+    object-fit: contain;
+    border-radius: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.603);
+    margin: 4px;
+    cursor: pointer;
+}
+
+h2 {
+    margin-top: -36px;
+    color: var(--beige-bg);
+    font-weight: 700;
+    text-align: center;
+}
+
+.btn-div {
+    margin-top: 16px;
+    text-align: center;
+}
