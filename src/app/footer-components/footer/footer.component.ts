@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { SharedService } from 'src/services/shared.service';
 
@@ -10,8 +10,15 @@ import { SharedService } from 'src/services/shared.service';
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.scss'
 })
-export class FooterComponent {
+export class FooterComponent implements OnInit {
+  urlName: string = 'login';
+
 
   constructor(public shared: SharedService) { }
+
+
+  ngOnInit() {
+    this.urlName = location.pathname;
+  }
 
 }
