@@ -7,19 +7,21 @@ import { SharedService } from 'src/services/shared.service';
 import { NavigationComponent } from '../navigation/navigation.component';
 import { AuthService } from '../auth/services/auth.service';
 import { SnackbarService } from 'src/UI/snackbar/snackbar.service';
+import { LoadingSpinnerComponent } from 'src/UI/loading-spinner/loading-spinner.component';
 
 @Component({
   selector: 'app-my-list',
   standalone: true,
-  imports: [MatButtonModule, MatIconModule, NavigationComponent],
+  imports: [MatButtonModule, MatIconModule, NavigationComponent, LoadingSpinnerComponent],
   templateUrl: './my-list.component.html',
   styleUrl: './my-list.component.scss'
 })
 export class MyListComponent implements OnInit {
   myList: Object = [];
-  showContent: boolean = true;
+  showContent: boolean = false;
   error: boolean = false;
   videoList: any = [];
+  showSpinner: boolean = true;
 
 
   constructor(private API: APIService, private router: Router, private shared: SharedService, 
@@ -47,6 +49,10 @@ export class MyListComponent implements OnInit {
     if (this.videoList.length > 0) {
       this.showContent = true;
     } else this.showContent = false;
+
+    setTimeout(() => {
+      this.showSpinner = false;
+    }, 500);
   }
 
 
