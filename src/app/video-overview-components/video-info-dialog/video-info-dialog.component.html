@@ -8,11 +8,12 @@
     <h2 mat-dialog-title>{{ videoData.title }}</h2>
       
     <mat-dialog-content>
-        <p>{{ videoData.description }}</p>
-        <p>Category: {{ videoCategory }}</p>
-        <p>Creator: {{ creator.first_name }} {{ creator.last_name }}</p>
-        <p>Upload: {{ videoData.created_at }}</p>
-        <p>Age Restriction: {{ videoData.age }}</p>
-        <p>Release: {{ videoData.release_year }}</p>
+        <div class="info-div">
+            <p>Category: {{ videoCategory }}</p>
+            <p>Creator: {{ creator.first_name }} {{ creator.last_name }}</p>
+            <p>Upload: {{ videoData.created_at }}</p>
+            <p>Age Restriction: {{ videoData.age }}</p>
+            <p>Release: {{ videoData.release_year }}</p>
+        </div>
     </mat-dialog-content>
 }

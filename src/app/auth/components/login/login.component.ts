@@ -36,7 +36,6 @@ export class LoginComponent {
       let resp: any = await this.authService.loginWithUsernameAndPassword(this.username, this.password);
       this.authService.loggedUser = resp;
       this.shared.navigateTo('/videoflix');
-      console.log('User ', resp);
       
     } catch(e) {
       if (e.status === 403) {

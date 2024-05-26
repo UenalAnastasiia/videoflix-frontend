@@ -4,12 +4,10 @@
     @if (showContent) {
         <div class="pos-rel">
             <img class="img" src='{{ "https://backend.anastasiia-uenal.de" + overviewData.cover_picture }}'>
+            <span class="age-span">{{ overviewData.age }}</span>
     
             <div class="info-box">
-                <div style="display: flex;">
-                    <p>{{ overviewData.title }}</p>
-                    <span class="age-span">{{ overviewData.age }}</span>
-                </div>
+                <p>{{ overviewData.title }}</p>
 
                 <div class="category-div">
                     @for (category of videoCategory; track category) {

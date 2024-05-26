@@ -10,17 +10,19 @@ import { CommonModule } from '@angular/common';
 import { SharedService } from 'src/services/shared.service';
 import { MatButtonModule } from '@angular/material/button';
 import { FooterComponent } from 'src/app/footer-components/footer/footer.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [MatCardModule, FormsModule, MatFormFieldModule, ReactiveFormsModule, MatInputModule, CommonModule, MatButtonModule, FooterComponent],
+  imports: [MatCardModule, FormsModule, MatFormFieldModule, ReactiveFormsModule, MatInputModule, CommonModule, MatButtonModule, FooterComponent, MatTooltipModule],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
 })
 export class RegisterComponent implements OnInit {
   formReg: FormGroup;
   error: string;
+  passwordTooltip: string;
 
 
   constructor(private authService: AuthService, private router: Router, private messageService: SnackbarService, public shared: SharedService) { }
@@ -34,6 +36,11 @@ export class RegisterComponent implements OnInit {
       first_name: new FormControl(),
       last_name: new FormControl()
     });
+
+    this.passwordTooltip = `1. Can not be too similar to your other personal information.
+    2. Must contain at least 8 characters.
+    3. Can not be a commonly used password.
+    4. Can not be entirely numeric.`;
   }
 
 
@@ -53,6 +60,15 @@ export class RegisterComponent implements OnInit {
         }, 1000);
       }
     })     
+  }
+
+
+  getTooltipText(): string {
+    return `~ Can not be too similar to your other personal information.
+    ~ Must contain at least 8 characters.
+    ~ Can not be a commonly used password.
+    ~ Can not be entirely numeric.`
+    //return '~ Can’t be too similar to your other personal information. \n ~ Must contain at least 8 characters. \n ~ Can’t be a commonly used password. \n ~ Can’t be entirely numeric.'
   }
 
 }

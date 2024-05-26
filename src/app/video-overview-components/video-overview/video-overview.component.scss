@@ -85,7 +85,7 @@
 }
 
 .age-span {
-    margin-left: 24px;
+    margin-left: 20px;
     border: 1px solid #c91717;
     border-radius: 100%;
     display: flex;
@@ -93,5 +93,8 @@
     align-items: center;
     padding: 4px;
     color: #c91717;
-
+    width: 36px;
+    height: 36px;
+    position: absolute;
+    top: 24px;
 }
