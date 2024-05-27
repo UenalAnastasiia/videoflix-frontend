@@ -11,5 +11,4 @@ export class SecondsToHoursPipe implements PipeTransform {
        const seconds: number = Math.floor(value % 3600);
        return minutes + ':' + ('0' + seconds).slice(-2);
     }
-
 }

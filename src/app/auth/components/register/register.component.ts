@@ -22,7 +22,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 export class RegisterComponent implements OnInit {
   formReg: FormGroup;
   error: string;
-  passwordTooltip: string;
+  passwordTooltip: string = `1. Can not be too similar to your other personal information. 2. Must contain at least 8 characters.
+  3. Can not be a commonly used password. 4. Can not be entirely numeric.`;
 
 
   constructor(private authService: AuthService, private router: Router, private messageService: SnackbarService, public shared: SharedService) { }
@@ -36,14 +37,14 @@ export class RegisterComponent implements OnInit {
       first_name: new FormControl(),
       last_name: new FormControl()
     });
-
-    this.passwordTooltip = `1. Can not be too similar to your other personal information.
-    2. Must contain at least 8 characters.
-    3. Can not be a commonly used password.
-    4. Can not be entirely numeric.`;
   }
 
 
+  /**
+   * Processes the submission of the registration form.
+   * Extracts the values from the form, sets default profile pictures,
+   * Sends a registration request to the AuthService and navigates the user to the login page.
+   */
   onSubmit() { 
     const formValue = this.formReg.value;
     formValue.image = 'profile.png';
@@ -61,14 +62,4 @@ export class RegisterComponent implements OnInit {
       }
     })     
   }
-
-
-  getTooltipText(): string {
-    return `~ Can not be too similar to your other personal information.
-    ~ Must contain at least 8 characters.
-    ~ Can not be a commonly used password.
-    ~ Can not be entirely numeric.`
-    //return '~ Can’t be too similar to your other personal information. \n ~ Must contain at least 8 characters. \n ~ Can’t be a commonly used password. \n ~ Can’t be entirely numeric.'
-  }
-
 }

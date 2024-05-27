@@ -25,11 +25,11 @@
 
     <div class="btn-box">
         @if (showAlphabet) {
-            <button mat-icon-button (click)="showNumberKeyboard()" matTooltip="numbers and symbols">
+            <button mat-icon-button (click)="showAlphabet = false" matTooltip="numbers and symbols">
                 <mat-icon>pin</mat-icon>
             </button>
         } @else {
-            <button mat-icon-button (click)="showAlphabetKeyboard()" matTooltip="alphabet">
+            <button mat-icon-button (click)="showAlphabet = true" matTooltip="alphabet">
                 <mat-icon>abc</mat-icon>
             </button>
         }

@@ -24,10 +24,13 @@ export class PasswordResetComponent {
   error: string;
   showError: boolean = false;
   
-
   constructor(private authService: AuthService, private route: ActivatedRoute, public messageService: SnackbarService, public shared: SharedService) { }
 
 
+  /**
+   * Sends a request to reset the password with the received token and the new password.
+   * Displays corresponding messages and navigates the user to the login page.
+   */
   sendRequestResetPassword(): void {
     let token = this.route.snapshot.paramMap.get('token').split('=')[1];  
     this.authService.resetPasswordInDB(token, this.newPassword.value).subscribe({

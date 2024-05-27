@@ -11,7 +11,6 @@ import { SnackbarService } from 'src/UI/snackbar/snackbar.service';
 export class APIService {
   myList: any = [];
 
-
   constructor(private http: HttpClient, private messageService: SnackbarService) { }
 
 
@@ -32,7 +31,6 @@ export class APIService {
     let resp: any = await lastValueFrom(this.http.get(endpoint));
     
     if (resp.length !== 0) {
-      // let category = resp[0].name;
       let category = resp.name;
       return category;
     }

@@ -27,6 +27,10 @@ export class UploadsSettingsComponent implements OnInit {
   constructor(private API: APIService, public shared: SharedService, private messageService: SnackbarService, private auth: AuthService) { }
 
 
+  /**
+   * Initializes the component by retrieving the user's upload data and all available videos from the server.
+   * The display is activated after a short delay to ensure that the data has been loaded.
+   */
   async ngOnInit() {
     this.uploadData = await this.API.getUserUploads(this.auth.loggedUser.user_id);
     this.allVideos = await this.API.getAllVideos();
@@ -36,7 +40,11 @@ export class UploadsSettingsComponent implements OnInit {
     }, 500);
   }
 
-
+ 
+  /**
+   * Deletes a video from the database and updates the corresponding data and displays.
+   * @param data The data of the video to be deleted.
+   */
   deleteVideoFromDB(data) {
     this.API.deleteVideoFromDB(data.id);
     this.deletedObjects.push(data.id);
@@ -50,6 +58,11 @@ export class UploadsSettingsComponent implements OnInit {
   }
 
 
+  /**
+   * Checks the content of a category and updates the display accordingly.
+   * @param category The category of the deleted video.
+   * @param id The ID of the deleted video.
+   */
   checkCategoryContent(category: any, id: number) {
     let allVideoCategories = [];
     let filteredVideos = this.allVideos.filter(( obj ) => { return obj.id !== id });
@@ -68,6 +81,11 @@ export class UploadsSettingsComponent implements OnInit {
   }
 
 
+  /**
+   * Updates the display for videos with multiple categories.
+   * @param category The category of the deleted video.
+   * @param joinedCategoryString The string containing all categories of the remaining videos.
+   */
   videoWithMultiCategory(category, joinedCategoryString) {
     this.checkCategories = category.split(',');
 
@@ -81,6 +99,11 @@ export class UploadsSettingsComponent implements OnInit {
   }
 
 
+  /**
+   * Updates the display for videos with a single category.
+   * @param category The category of the deleted video.
+   * @param joinedCategoryString A string containing all categories of the remaining videos.
+   */
   videoWithOneCategory(category, joinedCategoryString) {
     this.checkCategories = category;
     let contentExist = joinedCategoryString.includes(this.checkCategories);

@@ -35,6 +35,10 @@ export class VideoTabsComponent implements OnInit {
   }
 
 
+  /**
+   * Handles the event when switching tabs and filters videos by category.
+   * @param event The event object that contains information about the selected tab.
+   */
   getTabVideosEvent(event: { tab: { textLabel: any; }; }) {
     if (event.tab.textLabel !== 'All') {
       this.scrollAmount = 0;
@@ -54,6 +58,11 @@ export class VideoTabsComponent implements OnInit {
   }
 
 
+  /**
+   * Handles keyboard input to control side scrolling.
+   * Responds to the "right" and "left" arrow keys to scroll accordingly.
+   * @param event The keyboard event object that contains the pressed key.
+   */
   @HostListener('window:keydown.ArrowRight', ['$event'])
   @HostListener('window:keydown.ArrowLeft', ['$event'])
   handleKeyDown(event: KeyboardEvent) {
@@ -73,6 +82,10 @@ export class VideoTabsComponent implements OnInit {
   }
 
 
+  /**
+   * Controls the lateral scrolling of the content area in the specified direction.
+   * @param direction The direction in which to scroll ('left' for left, 'right' for right).
+   */
   sideScroll(direction: string) {
       let scrollTimer = setInterval(() => {
         if(direction == 'left'){

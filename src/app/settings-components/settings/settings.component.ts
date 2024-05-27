@@ -14,7 +14,6 @@ import { SharedService } from 'src/services/shared.service';
 export class SettingsComponent implements OnInit {
   urlName: string = 'settings/user';
 
-
   constructor(public shared: SharedService) { }
 
 

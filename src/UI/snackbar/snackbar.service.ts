@@ -8,7 +8,6 @@ export class SnackbarService {
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
   verticalPosition: MatSnackBarVerticalPosition = 'top';
 
-
   constructor(private messageBar: MatSnackBar) { }
 
 

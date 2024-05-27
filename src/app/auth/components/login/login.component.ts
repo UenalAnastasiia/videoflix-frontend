@@ -27,16 +27,19 @@ export class LoginComponent {
   newPassword: string;
   error: string;
 
-
   constructor(private authService: AuthService, public shared: SharedService, public dialog: MatDialog) { }
 
 
+  /**
+   * Attempts to log in a user with user name and password.
+   * If the login is successful, the user is redirected to the main page.
+   * If an error occurs, the corresponding error messages are displayed.
+   */
   async login() {
     try {
       let resp: any = await this.authService.loginWithUsernameAndPassword(this.username, this.password);
       this.authService.loggedUser = resp;
       this.shared.navigateTo('/videoflix');
-      
     } catch(e) {
       if (e.status === 403) {
         this.error = 'Please confirm your e-mail to log in.';

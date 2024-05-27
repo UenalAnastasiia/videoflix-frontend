@@ -22,12 +22,14 @@ export class EmailDialogComponent {
   emptyField: boolean = false;
   sendEmail: boolean = false;
 
-
   constructor(private authService: AuthService, private messageService: SnackbarService) { }
 
-
+  
+  /**
+   * Sends an e-mail to reset the password if the e-mail field is not empty.
+   * Displays corresponding messages and sets status variables.
+   */
   sendMailForPasswordReset() {
-    
     if (this.email === "") {
       this.emptyField = true;
     } else {
@@ -36,7 +38,6 @@ export class EmailDialogComponent {
       };
 
       this.authService.sendMailForPasswordReset(body);
-
       this.emptyField = false;
       this.sendEmail = true;
       this.messageService.showSnackMessage('E-mail has been sent!');

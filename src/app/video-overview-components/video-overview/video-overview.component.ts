@@ -31,11 +31,16 @@ export class VideoOverviewComponent implements OnInit, AfterViewInit {
   constructor(public dialog: MatDialog, private shared: SharedService, private API: APIService, 
     private messageService: SnackbarService, private auth: AuthService) {}
 
+
   ngOnInit() {
     this.checkOverview();
   }
 
 
+  /**
+   * After the view has been initialized, this method checks the height of the video description element.
+   * If the height exceeds the maximum height, the element is marked as collapsible and initially displayed as collapsed.
+   */
   ngAfterViewInit() {
     setTimeout(() => {
       let currentHeight = this.video_description.nativeElement.offsetHeight;
@@ -45,9 +50,14 @@ export class VideoOverviewComponent implements OnInit, AfterViewInit {
           this.isCollapsable = true;
       }
     }, 1100);
-}
+  }
 
 
+  /**
+   * Checks whether video overview data is available.
+   * If not, the method retrieves the first video data from the API.
+   * Otherwise, the method retrieves the video overview with the existing data.
+   */
   checkOverview() {
     let respData = this.shared.getVideoOverviewData();
 
@@ -58,7 +68,9 @@ export class VideoOverviewComponent implements OnInit, AfterViewInit {
     }
   }
 
-
+  /**
+   * Retrieves the first video data from the API and initializes the view after loading the data.
+   */
   async getFirstVideoFromAPI() {
     let resp = await this.API.getAllVideos();
     this.overviewData = resp[0];
@@ -68,6 +80,10 @@ export class VideoOverviewComponent implements OnInit, AfterViewInit {
   }
 
 
+  /**
+   * Refreshes the video overview with the existing data and initializes the view after loading the data.
+   * @param respData The existing video data for updating the overview.
+   */
   getVideoOverview(respData: Object) {
     this.overviewData = respData[0];
     this.loadCategories(respData[0]);
@@ -76,6 +92,10 @@ export class VideoOverviewComponent implements OnInit, AfterViewInit {
   }
 
 
+  /**
+   * Loads the categories for the specified video from the category IDs and adds them to the list of video categories.
+   * @param data The video object for which the categories are to be loaded.
+   */
   async loadCategories(data: { category: string; }) {
     let categoryArray = data.category.split(',').map((x: string | number)=>+x);
     for (let index = 0; index < categoryArray.length; index++) {
@@ -88,6 +108,10 @@ export class VideoOverviewComponent implements OnInit, AfterViewInit {
   }
 
 
+  /**
+   * Checks whether the video with the specified ID is contained in the user's 'My list'.
+   * @param id The ID of the video to be checked.
+   */
   async checkMyList(id: number) {
     let resp = [];
     let idString = id.toString();
@@ -105,6 +129,9 @@ export class VideoOverviewComponent implements OnInit, AfterViewInit {
   }
 
 
+  /**
+   * Adds the currently displayed video to the user's 'My list'.
+   */
   addVideoToMyList() {
     let body = {
       'list': this.overviewData.id, 
@@ -117,6 +144,9 @@ export class VideoOverviewComponent implements OnInit, AfterViewInit {
   }
 
 
+  /**
+   * Removes the currently displayed video from the user's 'My list'.
+   */
   async removeVideoFromMyList() {
     this.myList = await this.API.getMyList(this.auth.loggedUser.user_id);
     let idString = this.overviewData.id.toString();

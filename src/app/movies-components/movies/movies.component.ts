@@ -24,10 +24,13 @@ export class MoviesComponent implements OnInit {
   error: boolean = false;
   showContent: boolean = false;
 
-
   constructor(private API: APIService, private router: Router, private shared: SharedService, private messageService: SnackbarService) { }
 
 
+  /**
+   * Initializes the component by retrieving all videos from the server.
+   * If an error occurs, a corresponding message is displayed, otherwise the content is displayed after a short delay.
+   */
   async ngOnInit() {
     try {
       this.videoData = await this.API.getAllVideos();

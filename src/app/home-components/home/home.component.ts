@@ -20,10 +20,14 @@ export class HomeComponent implements OnInit {
   showContent: boolean = false;
   error: boolean = false;
 
-
   constructor(private API: APIService, private messageService: SnackbarService) { }
 
 
+  /**
+   * Initializes the component life cycle.
+   * Retrieves all videos and categories from the API service, displays the content if successful
+   * and handles errors during data loading.
+   */
   async ngOnInit() {
     try {
       this.videos = await this.API.getAllVideos();

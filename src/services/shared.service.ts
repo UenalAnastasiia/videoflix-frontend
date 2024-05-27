@@ -6,7 +6,6 @@ import { Router, UrlTree } from '@angular/router';
 })
 export class SharedService {
   videoOverviewData: any = [];
-
   
   constructor(private router: Router) { }
 

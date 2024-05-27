@@ -38,7 +38,6 @@ export class UploadFileComponent {
   coverToUpload: File | null = null;
   uploadData: FormData = new FormData();
   uploadProgress = 0;
-
   categoryCtrl = new FormControl('');
   categories: any[] = [{id: 1, name: 'New'}];
   allCategories: any = [];
@@ -50,12 +49,15 @@ export class UploadFileComponent {
 
   constructor(public auth: AuthService, private API: APIService, private messageService: SnackbarService) { }
 
-
   async ngOnInit() {
     this.allCategories = await this.API.getAllCategories();
   }
 
 
+  /**
+   * Processes the event of a video upload.
+   * @param event - The event object that contains information about the uploaded video.
+   */
   handleVideoUploadEvent(event: any) {
     if (event.target.files[0]) {
       if (event.target.files[0].size/1024/1024 > 10) {
@@ -68,6 +70,10 @@ export class UploadFileComponent {
   }
 
 
+  /**
+   * Processes the event of a cover image upload.
+   * @param event - The event object that contains information about the uploaded cover image.
+   */
   handleCoverUploadEvent(event: any) {
     if (event.target.files[0]) {
       if (event.target.files[0].size/1024/1024 > 5) {
@@ -80,6 +86,9 @@ export class UploadFileComponent {
   }
 
 
+  /**
+   * Saves a video request by executing several steps in succession.
+   */
   saveVideoRequest() {
     this.getCategoriesID();
     setTimeout(() => {
@@ -91,6 +100,9 @@ export class UploadFileComponent {
   }
 
 
+  /**
+   * Updates the list of category IDs by iterating through the categories and adding missing IDs.
+   */
   getCategoriesID() {
     for (let index = 0; index < this.categories.length; index++) {
 
@@ -101,6 +113,9 @@ export class UploadFileComponent {
   }
 
 
+  /**
+   * Adds the required upload data to a FormData object.
+   */
   appendUploadData() {
     this.uploadData.append('video_file', this.videoToUpload, this.videoToUpload.name);
     this.uploadData.append('cover_picture', this.coverToUpload, this.coverToUpload.name);
@@ -110,11 +125,13 @@ export class UploadFileComponent {
     this.uploadData.append('creator', this.auth.loggedUser.user_id)
     this.uploadData.append('category', this.categoriesID)
     this.uploadData.append('age', this.choosenAge)
-    this.uploadData.append('age', this.choosenAge)
     this.uploadData.append('release_year', this.releaseYear.value)
   }
 
 
+  /**
+   * Sends the video to the database and tracks the upload progress.
+   */
   postVideoToDB() {
     this.messageService.showSnackMessage('Start Upload...');
     this.API.postVideoToDB(this.uploadData).subscribe({
@@ -142,6 +159,10 @@ export class UploadFileComponent {
   }
 
 
+  /**
+   * Adds a new category if the category name does not already exist.
+   * Updates the category data after adding.
+   */
   addCategory() {
     if (this.categoryCtrl.value) {
       let nameExist = this.allCategories.some((el: { name: any; }) => { return el.name === this.categoryCtrl.value});
@@ -159,7 +180,11 @@ export class UploadFileComponent {
     this.categoryCtrl.setValue(null);
   }
 
-
+  
+  /**
+   * Updates the category data by retrieving all categories from the API.
+   * Resets the update status and other relevant variables.
+   */
   async updateCategoryData() {
     this.allCategories = await this.API.getAllCategories();
     this.updateCategory = false;
@@ -169,6 +194,10 @@ export class UploadFileComponent {
   }
 
 
+  /**
+   * Sends a request to save a new category with the specified name.
+   * @param categoryName The name of the category to be added.
+   */
   saveCategoryRequest(categoryName: string) {
     let body = {
       'name': categoryName,
@@ -179,6 +208,11 @@ export class UploadFileComponent {
   }
 
 
+  /**
+   * Adds a selected category to the list or removes it if it is already included.
+   * Resets the input field for the category selection.
+   * @param input The selected category to be added or removed.
+   */
   selectedCategories(input) {
     if(!this.categories.includes(input)) {
       this.categories.push(input);
@@ -190,6 +224,9 @@ export class UploadFileComponent {
   }
 
 
+  /**
+   * Resets all input fields of the form and the form controls to their initial values.
+   */
   cleanForm() {
     this.video_input.nativeElement.value = null;
     this.video_input_title.nativeElement.value = null;

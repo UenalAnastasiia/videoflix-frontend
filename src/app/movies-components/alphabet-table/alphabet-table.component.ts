@@ -19,17 +19,7 @@ export class AlphabetTableComponent {
   @Output() updateValue = new EventEmitter<string>();
   input = [];
   showAlphabet: boolean = true;
-
-
-  showNumberKeyboard() {
-    this.showAlphabet = false;
-  }
-
-
-  showAlphabetKeyboard() {
-    this.showAlphabet = true;
-  }
-
+  
 
   getSearchValue(value: string) {
     this.input.push(value);

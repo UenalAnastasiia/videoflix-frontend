@@ -23,11 +23,14 @@ export class MyListComponent implements OnInit {
   videoList: any = [];
   showSpinner: boolean = true;
 
-
   constructor(private API: APIService, private router: Router, private shared: SharedService, 
     private auth: AuthService, private messageService: SnackbarService) { }
 
 
+  /**
+   * Initializes the component by retrieving the user's list from the server and loading the associated videos.
+   * If an error occurs, a corresponding message is displayed, otherwise the videos are loaded.
+   */
   async ngOnInit() {
     try {
       this.myList = await this.API.getMyList(this.auth.loggedUser.user_id);
@@ -40,6 +43,10 @@ export class MyListComponent implements OnInit {
   }
 
 
+  /**
+   * Loads the videos based on the transferred data and updates the display accordingly.
+   * @param data The data used to load the videos.
+   */
   async loadVideos(data: any) {
     for (let index = 0; index < data.length; index++) {
       let resp = await this.API.getVideoFromList(data[index].list);

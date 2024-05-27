@@ -25,7 +25,6 @@ export class VideoPlayerComponent implements OnInit {
   showVideo: boolean = false;
   videoExists: boolean | null = null;
 
-
   constructor(private api: APIService) { }
 
 
@@ -33,7 +32,11 @@ export class VideoPlayerComponent implements OnInit {
     this.updateVideoQuality(this.quality);
   }
 
-
+  /**
+   * Updates the quality of the video and loads the corresponding version of the video.
+   * 
+   * @param quality The desired quality of the video.
+   */
   updateVideoQuality(quality) {
     this.showVideo = false;
     this.quality = quality;
@@ -49,6 +52,10 @@ export class VideoPlayerComponent implements OnInit {
   }
 
 
+  /**
+   * Überprüft die Verfügbarkeit eines Videos unter einem bestimmten Pfad.
+   * @param path Der Pfad zum zu überprüfenden Video.
+   */
   checkVideo(path: string) {
     this.api.checkVideoURLExists(path).subscribe(
       exists => this.videoExists = exists,

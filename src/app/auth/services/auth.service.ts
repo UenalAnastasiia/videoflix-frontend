@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, lastValueFrom } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -7,15 +7,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class AuthService {
-  userName: string = '';
-  firstName: string = '';
-  fullName: string = '';
-  userImg: any;
-  userEmail: string = '';
-  errorResetMessage: any;
-  error: string = '';
-  loggedUser;
-
+  loggedUser: any;
 
   constructor(private http: HttpClient) { }
 

@@ -22,7 +22,6 @@ export class CoverSliderComponent implements OnInit {
   listExist: boolean;
   myList: any = [];
 
-
   constructor(private API: APIService, private router: Router, 
     private shared: SharedService, private messageService: SnackbarService, private auth: AuthService) { }
 
@@ -34,6 +33,10 @@ export class CoverSliderComponent implements OnInit {
   }
 
 
+  /**
+   * Starts scrolling through the video covers at a set interval.
+   * The video covers are changed every 5 seconds.
+   */
   slideCover() {
     setInterval(() => {
       for (let index = 0; index < this.coverIndex.length; index++) {
@@ -45,6 +48,10 @@ export class CoverSliderComponent implements OnInit {
   }
 
 
+  /**
+   * Checks whether a video with the specified ID exists in the 'My list'.
+   * @param id The ID of the video to be checked
+   */
   checkMyList(id: number) {
     let resp = [];
     let idString = id.toString();
@@ -60,6 +67,11 @@ export class CoverSliderComponent implements OnInit {
   }
 
 
+  /**
+   * Adds the specified video to the "My list".
+   * Sends a request to add the video to the API service and displays a success message.
+   * @param videoID The ID of the video to be added to the list
+   */
   addVideoToMyList(videoID: number) {
     let body = {
       'list': videoID, 
@@ -72,6 +84,11 @@ export class CoverSliderComponent implements OnInit {
   }
 
 
+  /**
+   * Removes the specified video from the "My list".
+   * Retrieves the user's "My List", searches for the video in the list and then removes it.
+   * @param videoID The ID of the video to be removed from the list
+   */
   async removeVideoFromMyList(videoID) {
     let idString = videoID.toString();
     this.myList = await this.API.getMyList(this.auth.loggedUser.user_id);

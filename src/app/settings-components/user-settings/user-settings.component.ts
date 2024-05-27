@@ -25,10 +25,13 @@ export class UserSettingsComponent implements OnInit {
   showContent: boolean = false;
   userData: any;
 
-
   constructor(private API: APIService, private messageService: SnackbarService, private auth: AuthService, public dialog: MatDialog) { }
 
 
+  /**
+   * Initializes the component by retrieving the user data from the server.
+   * The display is activated after a short delay to ensure that the data has been loaded.
+   */
   async ngOnInit() {
     let resp = await this.API.getUser(this.auth.loggedUser.user_id);
     this.userData = resp[0];
@@ -36,8 +39,10 @@ export class UserSettingsComponent implements OnInit {
       this.showContent = true;
     }, 500);
   }
-
-
+  
+  /**
+   * Saves the changed user data on the server and displays a snackbar message.
+   */
   saveUser() {
     const body = {
       "first_name": this.userData.first_name,
