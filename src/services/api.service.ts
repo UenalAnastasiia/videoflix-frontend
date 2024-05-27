@@ -107,7 +107,7 @@ export class APIService {
 
 
   deleteVideoFromList(id: number) {
-    const endpoint = environment.baseURL + `/list/${id}/`;
+    const endpoint = environment.baseURL + `/list/delete/${id}/`;
     lastValueFrom(this.http.delete(endpoint));
   }
 
