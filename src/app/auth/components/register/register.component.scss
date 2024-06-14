@@ -34,6 +34,10 @@ img {
     border-radius: 24px;
     padding: 48px;
     background: #b00810b8;
+
+    @media (max-width: 500px) {
+        padding: 18px;
+    }
 }
 
 ::ng-deep .mat-mdc-card-content {
@@ -67,6 +71,14 @@ h2 {
 ::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) {
     background-color: #9b5656 !important;
     width: 300px !important;
+
+    @media (max-width: 500px) {
+        width: 250px !important;
+    }
+
+    @media (max-width: 350px) {
+        width: 220px !important;
+    }
 }
 
 .logo-box {
@@ -103,5 +115,11 @@ h2 {
         &:first-child {
             margin-right: 24px;
         }
+    }
+
+    @media (max-width: 800px) {
+        flex-direction: column;
+        height: 36vh;
+        overflow-y: auto;
     }
 }

@@ -31,7 +31,7 @@ export class VideoTabsComponent implements OnInit {
 
 
   ngOnInit() {
-    this.contentCategories =  this.categories.filter(cont => cont.content === true);
+    this.contentCategories =  this.categories.filter((cont: { content: boolean; }) => cont.content === true);
   }
 
 
@@ -54,6 +54,26 @@ export class VideoTabsComponent implements OnInit {
       }
       this.tabVideos.length === 0 ? this.showContent = false : this.showContent = true; 
       this.tabVideos.length <= 4 ? this.hideScrollBtn = true : this.hideScrollBtn = false; 
+    }
+  }
+
+
+  /**
+   * Checks whether a given category ID is contained in the list of video categories.
+   * Resets the scroll quantity to 0 before the check is performed.
+   *
+   * @param {string} categoryID - The ID of the category to be checked.
+   * @param {string | any[]} videoCategory - A category (as a string) or a list of categories (as an array), 
+   * that are assigned to the video.
+   * @returns {boolean} - Returns true if the category ID is contained in the list of video categories,
+   * false otherwise.
+   */
+  checkVideoCategory(categoryID: string, videoCategory: string | any[]) {
+    this.scrollAmount = 0;
+    if (videoCategory.includes(categoryID)) {
+      return true
+    } else {
+      return false
     }
   }
 

@@ -24,7 +24,7 @@ export class MoviesComponent implements OnInit {
   error: boolean = false;
   showContent: boolean = false;
 
-  constructor(private API: APIService, private router: Router, private shared: SharedService, private messageService: SnackbarService) { }
+  constructor(private API: APIService, private router: Router, public shared: SharedService, private messageService: SnackbarService) { }
 
 
   /**

@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { SharedService } from 'src/services/shared.service';
 
 
 @Component({
@@ -9,6 +10,23 @@ import { RouterOutlet } from '@angular/router';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'videoflix-frontend';
+  public screenWidth: any;
+
+
+  constructor(private shared: SharedService) { }
+  
+
+  ngOnInit() {
+      this.screenWidth = window.innerWidth;
+      this.shared.checkDeviceScreen(this.screenWidth);
+  }
+  
+  
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    this.screenWidth = window.innerWidth;
+    this.shared.checkDeviceScreen(this.screenWidth);
+  }
 }

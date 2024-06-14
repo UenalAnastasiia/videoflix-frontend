@@ -1,96 +1,100 @@
 <app-navigation></app-navigation>
 
 <div class="upload-container">
-    <h2>Video Upload</h2>
-    <form>
-        <mat-form-field appearance="outline" [floatLabel]="'always'">
-            <mat-label>Title</mat-label>
-            <button mat-icon-button matPrefix disabled>
-                <mat-icon>notes</mat-icon>
-            </button>
-            <input matInput placeholder="Write Video Title..." [formControl]="title">
-        </mat-form-field>
-
-        <mat-form-field appearance="outline" [floatLabel]="'always'">
-            <mat-label>Description</mat-label>
-            <button mat-icon-button matPrefix disabled>
-                <mat-icon>notes</mat-icon>
-            </button>
-            <input matInput placeholder="Write Video Description..." [formControl]="description">
-        </mat-form-field>
-
-        <div style="display: flex; justify-content: space-between">
-            <mat-form-field style="width: 49%;" appearance="outline" [floatLabel]="'always'">
-                <mat-label>Video File (max. 10MB)</mat-label>
-                <button mat-icon-button matPrefix (click)="video_input.click()">
-                    <mat-icon>folder_open</mat-icon>
-                </button>
-    
-                <input type="text" readonly matInput placeholder="Choose Video File..." #video_input_title [formControl]="displayVideo"/>
-                <input type="file" accept="video/mp4" multiple hidden #video_input (change)="handleVideoUploadEvent($event)"/>
-            </mat-form-field>
-    
-            <mat-form-field style="width: 49%;" appearance="outline" [floatLabel]="'always'">
-                <mat-label>Cover Image File  (max. 5MB)</mat-label>
-                <button mat-icon-button matPrefix (click)="cover_input.click()">
-                    <mat-icon>folder_open</mat-icon>
-                </button>
-    
-                <input type="text" readonly matInput placeholder="Choose Cover Image File..." #cover_input_title [formControl]="displayCover"/>
-                <input type="file" accept="image/png, image/jpeg" multiple hidden #cover_input (change)="handleCoverUploadEvent($event)"/>
-            </mat-form-field>
-        </div>
-
-        <div style="display: flex; justify-content: space-between">
-            <mat-form-field style="width: 49%;" appearance="outline" [floatLabel]="'always'">
-                <mat-label>Age Restriction</mat-label>
-                <input matInput style="display: none;" required>
-                <mat-radio-group [(ngModel)]="choosenAge" name="choosenAge">
-                    @for (age of ageOptions; track age) {
-                        <mat-radio-button [value]="age">{{ age }}</mat-radio-button>
-                    }
-                </mat-radio-group>
-            </mat-form-field>
-
-            <mat-form-field style="width: 49%;" appearance="outline" [floatLabel]="'always'">
-                <mat-label>Release Year</mat-label>
-                <button mat-icon-button matPrefix disabled>
-                    <mat-icon>notes</mat-icon>
-                </button>
-                <input matInput placeholder="Write Release Year..." [formControl]="releaseYear">
-            </mat-form-field>
-        </div>
-
-        @if (!updateCategory) {
-            <mat-form-field class="example-chip-list" appearance="outline" [floatLabel]="'always'">
-                <mat-label>Category</mat-label>
-                @if (!showAddInput) {
-                    <button mat-icon-button matPrefix (click)="showAddInput = !showAddInput" matTooltip="add new category">
-                        <mat-icon>add</mat-icon>
+    @if(!shared.mobilDevice) {
+        <h2>Video Upload</h2>
+            <form>
+                <mat-form-field appearance="outline" [floatLabel]="'always'">
+                    <mat-label>Title</mat-label>
+                    <button mat-icon-button matPrefix disabled>
+                        <mat-icon>notes</mat-icon>
                     </button>
-                } @else {
-                    <button mat-icon-button matPrefix (click)="showAddInput = !showAddInput" matTooltip="hide add field">
-                        <mat-icon>remove</mat-icon>
+                    <input matInput placeholder="Write Video Title..." [formControl]="title">
+                </mat-form-field>
+        
+                <mat-form-field appearance="outline" [floatLabel]="'always'">
+                    <mat-label>Description</mat-label>
+                    <button mat-icon-button matPrefix disabled>
+                        <mat-icon>notes</mat-icon>
                     </button>
-                }
-
-                <mat-chip-grid #chipGrid>
-                    <mat-chip-listbox aria-label="Fish selection" selectable multiple>
-                        @for (category of allCategories; track category.id) {
-                            @if (category.name !== 'New') {
-                                <mat-chip-option (click)="selectedCategories(category)" >
-                                    {{category.name}}
-                                </mat-chip-option>
+                    <input matInput placeholder="Write Video Description..." [formControl]="description">
+                </mat-form-field>
+        
+                <div style="display: flex; justify-content: space-between">
+                    <mat-form-field style="width: 49%;" appearance="outline" [floatLabel]="'always'">
+                        <mat-label>Video File (max. 10MB)</mat-label>
+                        <button mat-icon-button matPrefix (click)="video_input.click()">
+                            <mat-icon>folder_open</mat-icon>
+                        </button>
+            
+                        <input type="text" readonly matInput placeholder="Choose Video File..." #video_input_title [formControl]="displayVideo"/>
+                        <input type="file" accept="video/mp4" multiple hidden #video_input (change)="handleVideoUploadEvent($event)"/>
+                    </mat-form-field>
+            
+                    <mat-form-field style="width: 49%;" appearance="outline" [floatLabel]="'always'">
+                        <mat-label>Cover Image File  (max. 5MB)</mat-label>
+                        <button mat-icon-button matPrefix (click)="cover_input.click()">
+                            <mat-icon>folder_open</mat-icon>
+                        </button>
+            
+                        <input type="text" readonly matInput placeholder="Choose Cover Image File..." #cover_input_title [formControl]="displayCover"/>
+                        <input type="file" accept="image/png, image/jpeg" multiple hidden #cover_input (change)="handleCoverUploadEvent($event)"/>
+                    </mat-form-field>
+                </div>
+        
+                <div style="display: flex; justify-content: space-between">
+                    <mat-form-field style="width: 49%;" appearance="outline" [floatLabel]="'always'">
+                        <mat-label>Age Restriction</mat-label>
+                        <input matInput style="display: none;" required>
+                        <mat-radio-group [(ngModel)]="choosenAge" name="choosenAge">
+                            @for (age of ageOptions; track age) {
+                                <mat-radio-button [value]="age">{{ age }}</mat-radio-button>
                             }
+                        </mat-radio-group>
+                    </mat-form-field>
+        
+                    <mat-form-field style="width: 49%;" appearance="outline" [floatLabel]="'always'">
+                        <mat-label>Release Year</mat-label>
+                        <button mat-icon-button matPrefix disabled>
+                            <mat-icon>notes</mat-icon>
+                        </button>
+                        <input matInput placeholder="Write Release Year..." [formControl]="releaseYear">
+                    </mat-form-field>
+                </div>
+        
+                @if (!updateCategory) {
+                    <mat-form-field class="example-chip-list" appearance="outline" [floatLabel]="'always'">
+                        <mat-label>Category</mat-label>
+                        @if (!showAddInput) {
+                            <button mat-icon-button matPrefix (click)="showAddInput = !showAddInput" matTooltip="add new category">
+                                <mat-icon>add</mat-icon>
+                            </button>
+                        } @else {
+                            <button mat-icon-button matPrefix (click)="showAddInput = !showAddInput" matTooltip="hide add field">
+                                <mat-icon>remove</mat-icon>
+                            </button>
                         }
-                    </mat-chip-listbox>
-                    <input type="hidden" placeholder="New Category..." #categoryInput [matChipInputFor]="chipGrid" />
-                </mat-chip-grid>
-            </mat-form-field>
-        } @else { 
-            <p>Loading...</p>
-        }
-    </form>
+        
+                        <mat-chip-grid #chipGrid>
+                            <mat-chip-listbox aria-label="Fish selection" selectable multiple>
+                                @for (category of allCategories; track category.id) {
+                                    @if (category.name !== 'New') {
+                                        <mat-chip-option (click)="selectedCategories(category)" >
+                                            {{category.name}}
+                                        </mat-chip-option>
+                                    }
+                                }
+                            </mat-chip-listbox>
+                            <input type="hidden" placeholder="New Category..." #categoryInput [matChipInputFor]="chipGrid" />
+                        </mat-chip-grid>
+                    </mat-form-field>
+                } @else { 
+                    <p>Loading...</p>
+                }
+            </form>
+    } @else {
+        <h2>Please use Website to upload video...</h2>
+    }
 
     @if (showAddInput) {
         <div>
@@ -104,12 +108,14 @@
         </div>
     }
 
-    <div class="upload-btn">
-        <div>
-            <button mat-flat-button (click)="cleanForm()">Reset</button>
-            <!-- <button mat-flat-button (click)="saveVideoRequest()">Upload</button> -->
-            <button mat-button [disabled]="!displayVideo.valid || !displayCover.valid || !title.valid || !description.valid || !releaseYear.valid"
-                (click)="saveVideoRequest()">Save</button>
+    @if(!shared.mobilDevice) {
+        <div class="upload-btn">
+            <div>
+                <button mat-flat-button (click)="cleanForm()">Reset</button>
+                <!-- <button mat-flat-button (click)="saveVideoRequest()">Upload</button> -->
+                <button mat-button [disabled]="!displayVideo.valid || !displayCover.valid || !title.valid || !description.valid || !releaseYear.valid"
+                    (click)="saveVideoRequest()">Save</button>
+            </div>
         </div>
-    </div>
+    }
 </div>

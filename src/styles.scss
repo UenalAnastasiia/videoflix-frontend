@@ -21,7 +21,14 @@ body {
     margin: 0; 
     font-family: Roboto, "Helvetica Neue", sans-serif;
     box-sizing: border-box;
+    background: var(--bg-dark);
+    // overflow-x: hidden;
+    
 }
+
+// * {
+//   outline: 1px solid red;
+// }
 
 :root {
     --bg-dark: #06070D;
@@ -37,6 +44,18 @@ body {
     background: var(--bg-dark);
     color: var(--headers-light);
     padding-top: 2vw;
+  
+    @media (max-width: 1450px) {
+      width: calc(100vw - 12px);
+    }
+
+    @media (max-width: 1000px) {
+      height: auto;
+    }
+
+    // @media (max-width: 600px) {
+    //   height: calc(100vh - 12px);
+    // }
 }
 
 .loading-box {
@@ -49,6 +68,11 @@ body {
     position: absolute;
     top: 0;
     left: 0;
+
+    @media (max-width: 600px) {
+      height: 100vh;
+      width: 100vw;
+    }
 }
 
 .pos-rel {

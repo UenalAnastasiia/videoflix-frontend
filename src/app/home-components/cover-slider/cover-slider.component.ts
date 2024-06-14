@@ -23,7 +23,7 @@ export class CoverSliderComponent implements OnInit {
   myList: any = [];
 
   constructor(private API: APIService, private router: Router, 
-    private shared: SharedService, private messageService: SnackbarService, private auth: AuthService) { }
+    public shared: SharedService, private messageService: SnackbarService, private auth: AuthService) { }
 
 
   async ngOnInit() {

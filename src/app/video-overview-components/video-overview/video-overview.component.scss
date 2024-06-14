@@ -7,15 +7,27 @@
     width: 50vw;
     max-width: 800px;
 
-    p {
+    @media (max-width: 800px) {
+        width: 80vw;
+    }
+
+    h2 {
         font-size: 58px;
         font-weight: 600;
         margin-bottom: 50px;
+
+        @media (max-width: 550px) {
+            font-size: 36px;
+        }
     }
     
     span {
         font-size: 24px;
         margin-bottom: 30px;
+
+        @media (max-width: 550px) {
+            font-size: 16px;
+        }
     }
 
     button {
@@ -42,6 +54,12 @@
     }
 }
 
+.overview-container {
+    @media (max-width: 700px) {
+       padding-top: 10vh;
+    }
+}
+
 .description-span {
     position: relative;
     margin-bottom: 12px !important;
@@ -56,6 +74,14 @@
 .btn-box {
     display: flex;
     margin-top: 24px;
+
+    @media (max-width: 450px) {
+        flex-direction: column;
+        width: fit-content;
+        height: 150px;
+        justify-content: space-around;
+        margin-top: 0;
+    }
 }
 
 .img {
@@ -97,4 +123,34 @@
     height: 36px;
     position: absolute;
     top: 24px;
+}
+
+.btn {
+  align-items: center;
+  background-color: initial;
+  border-radius: 42px;
+  border-width: 0;
+  box-shadow: rgba(57, 31, 91, 0.24) 0 2px 2px, rgb(255 255 255 / 40%) 0 4px 24px;
+  color: #FFFFFF;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: baseline;
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
+.btn-watch {
+    background: var(--flix-red);
+    text-shadow: rgba(255, 255, 255, 0.4) 0 0 4px,rgb(255 255 255 / 40%) 0 0 12px,rgba(57, 31, 91, 0.6) 1px 1px 4px,rgba(57, 31, 91, 0.32) 4px 4px 16px;
+}
+
+.btn-list {
+    background: yellow;
+    color: black;
+}
+
+.btn-info {
+    background: #5a1eb7;
 }

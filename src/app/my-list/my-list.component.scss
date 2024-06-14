@@ -4,6 +4,11 @@
     padding-left: 5vw;
     width: 95vw !important;
 
+    @media (max-width: 700px) {
+        padding-top: 10vh;
+        width: 80vw !important;
+    }
+
     h2 {
         color: var(--beige-bg);
         margin-left: 16px;
@@ -13,6 +18,18 @@
 
     img {
         border-radius: 24px;
+
+        @media (max-width: 800px) {
+            width: 240px !important;
+        }
+
+        @media (max-width: 640px) {
+            width: 300px !important;
+        }
+
+        @media (max-width: 420px) {
+            width: 240px !important;
+        }
     }
 
     .mdc-fab {
@@ -26,6 +43,10 @@
         width: 85vw;
         max-width: 85vw;
         overflow-x: hidden;
+
+        @media (max-width: 640px) {
+            justify-content: center;
+        }
     }
 
     .pos-rel {

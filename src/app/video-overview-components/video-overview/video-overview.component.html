@@ -1,13 +1,13 @@
 <app-navigation></app-navigation>
 
-<div class="main-container">
+<div class="main-container overview-container">
     @if (showContent) {
         <div class="pos-rel">
             <img class="img" src='{{ "https://backend.anastasiia-uenal.de" + overviewData.cover_picture }}'>
             <span class="age-span">{{ overviewData.age }}</span>
     
             <div class="info-box">
-                <p>{{ overviewData.title }}</p>
+                <h2>{{ overviewData.title }}</h2>
 
                 <div class="category-div">
                     @for (category of videoCategory; track category) {
@@ -30,24 +30,24 @@
                     
 
                 <div class="btn-box">
-                    <button mat-fab extended style="background: var(--flix-red); color: white" (click)="playVideo()">
+                    <button mat-fab extended class="btn btn-watch" (click)="playVideo()">
                         <mat-icon>play_arrow</mat-icon>
                         Watch
                     </button>
                     @if (!listExist) {
-                        <button mat-fab extended style="background: yellow;" matTooltip="My List" (click)="addVideoToMyList()">
+                        <button mat-fab extended class="btn btn-list" matTooltip="My List" (click)="addVideoToMyList()">
                             <mat-icon>add_circle</mat-icon>
                             Add List
                         </button>
                     } @else {
-                        <button mat-fab extended style="background: yellow;" matTooltip="My List" (click)="removeVideoFromMyList()">
+                        <button mat-fab extended class="btn btn-list" matTooltip="My List" (click)="removeVideoFromMyList()">
                             <mat-icon>remove</mat-icon>
                             Remove List
                         </button>
                     }
 
 
-                    <button mat-fab extended style="background: #5a1eb7; color: white" (click)="openVideoInfo()">
+                    <button mat-fab extended class="btn btn-info" (click)="openVideoInfo()">
                         <mat-icon>info</mat-icon>
                         Info
                     </button>

@@ -48,6 +48,10 @@ h2 {
     border-radius: 24px;
     padding: 48px;
     background: #b00810b8;
+
+    @media (max-width: 500px) {
+        padding: 18px;
+    }
 }
 
 ::ng-deep .mat-mdc-card-content {

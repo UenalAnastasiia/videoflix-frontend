@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { HostListener, Injectable } from '@angular/core';
 import { Router, UrlTree } from '@angular/router';
 
 @Injectable({
@@ -6,8 +6,18 @@ import { Router, UrlTree } from '@angular/router';
 })
 export class SharedService {
   videoOverviewData: any = [];
+  mobilMenu: boolean = false;
+  mobilDevice: boolean = false;
+  screenWidth: number;
+
   
   constructor(private router: Router) { }
+
+
+  checkDeviceScreen(screenWidth: number) {
+    this.screenWidth = screenWidth;
+    screenWidth <= 1000 ? this.mobilDevice = true : this.mobilDevice = false; 
+  }
 
 
   pushOverviewData(data: any) {
@@ -28,5 +38,11 @@ export class SharedService {
 
   navigateTo(link: string | UrlTree) {
     this.router.navigateByUrl(link);
+    this.mobilMenu = false;
+  }
+
+
+  closeMenu() {
+    this.mobilMenu = false;
   }
 }

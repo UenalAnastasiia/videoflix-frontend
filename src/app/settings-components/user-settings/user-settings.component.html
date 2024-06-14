@@ -1,79 +1,97 @@
 <app-navigation></app-navigation>
 
-<div class="main-container settings-container">
-    <div class="div-width">
-        <div>
-            <app-settings></app-settings>
-        </div>
-
-        <div class="set-div">
-            @if (showContent) {
-                <div style="position: relative;">
-                    <h2>User Information</h2>
-                    @if (userData.username !== 'Guest') {
-                        <div class="user-profile">
-                            <img src="assets/img/{{userData.image}}">
-                            <button mat-icon-button color="accent" (click)="openUserImages()">
-                                <mat-icon>edit</mat-icon>
-                            </button>
-                        </div>
-                    }
-                </div>
-                <div class="settings-content">
-                    @if (userData.username !== 'Guest') {
-                        <form>
-                            <div>
-                                <h3>Personal</h3>
-                                <mat-form-field appearance="outline" [floatLabel]="'always'" class="mr-18">
-                                    <mat-label>First Name</mat-label>
-                                    <input matInput [(ngModel)]="userData.first_name" name="first_name">
-                                </mat-form-field>
+@if (!shared.mobilDevice) {
+    <div class="main-container settings-container">
+        <div class="div-width">
+            <div>
+                <app-settings></app-settings>
+            </div>
     
-                                <mat-form-field appearance="outline" [floatLabel]="'always'">
-                                    <mat-label>Last Name</mat-label>
-                                    <input matInput [(ngModel)]="userData.last_name" name="last_name">
-                                </mat-form-field>
+            <div class="set-div">
+                @if (showContent) {
+                    <div style="position: relative;">
+                        <h2>User Information</h2>
+                        @if (userData.username !== 'Guest') {
+                            <div class="user-profile">
+                                <img src="assets/img/{{userData.image}}">
+                                <button mat-icon-button color="accent" (click)="openUserImages()">
+                                    <mat-icon>edit</mat-icon>
+                                </button>
                             </div>
-    
-                            <div>
-                                <h3>Contact</h3>
-                                <mat-form-field appearance="outline" [floatLabel]="'always'" class="mr-18">
-                                    <mat-label>E-Mail</mat-label>
-                                    <input matInput [(ngModel)]="userData.email" name="email">
-                                </mat-form-field>
-    
-                                <mat-form-field appearance="outline" [floatLabel]="'always'">
-                                    <mat-label>Phone</mat-label>
-                                    <input matInput [(ngModel)]="userData.phone" name="phone">
-                                </mat-form-field>
-                            </div>
-    
-                            <div>
-                                <h3>Home</h3>
-                                <mat-form-field appearance="outline" [floatLabel]="'always'" class="mr-18">
-                                    <mat-label>Street</mat-label>
-                                    <input matInput [(ngModel)]="userData.street" name="street">
-                                </mat-form-field>
-    
-                                <mat-form-field appearance="outline" [floatLabel]="'always'">
-                                    <mat-label>City</mat-label>
-                                    <input matInput [(ngModel)]="userData.city" name="city">
-                                </mat-form-field>
-                            </div>
-    
-                            <div class="btn-div">
-                                <button mat-flat-button (click)="saveUser()">Save</button>
-                            </div>
-                        </form>
-                    } @else {
-                        <p>Guest can not change User settings...</p>
-                    }
-                </div>
-            } @else {
-                <div class="loading-box">
-                    <app-loading-spinner></app-loading-spinner>
-                </div>
-            }
+                        }
+                    </div>
+                    <div class="settings-content">
+                        @if (userData.username !== 'Guest') {
+                            <form>
+                                <div>
+                                    <h3>Personal</h3>
+                                    <mat-form-field appearance="outline" [floatLabel]="'always'" class="mr-18">
+                                        <mat-label>First Name</mat-label>
+                                        <input matInput [(ngModel)]="userData.first_name" name="first_name">
+                                    </mat-form-field>
+        
+                                    <mat-form-field appearance="outline" [floatLabel]="'always'">
+                                        <mat-label>Last Name</mat-label>
+                                        <input matInput [(ngModel)]="userData.last_name" name="last_name">
+                                    </mat-form-field>
+                                </div>
+        
+                                <div>
+                                    <h3>Contact</h3>
+                                    <mat-form-field appearance="outline" [floatLabel]="'always'" class="mr-18">
+                                        <mat-label>E-Mail</mat-label>
+                                        <input matInput [(ngModel)]="userData.email" name="email">
+                                    </mat-form-field>
+        
+                                    <mat-form-field appearance="outline" [floatLabel]="'always'">
+                                        <mat-label>Phone</mat-label>
+                                        <input matInput [(ngModel)]="userData.phone" name="phone">
+                                    </mat-form-field>
+                                </div>
+        
+                                <div>
+                                    <h3>Home</h3>
+                                    <mat-form-field appearance="outline" [floatLabel]="'always'" class="mr-18">
+                                        <mat-label>Street</mat-label>
+                                        <input matInput [(ngModel)]="userData.street" name="street">
+                                    </mat-form-field>
+        
+                                    <mat-form-field appearance="outline" [floatLabel]="'always'">
+                                        <mat-label>City</mat-label>
+                                        <input matInput [(ngModel)]="userData.city" name="city">
+                                    </mat-form-field>
+                                </div>
+        
+                                <div class="btn-div">
+                                    <button mat-flat-button (click)="saveUser()">Save</button>
+                                </div>
+                            </form>
+                        } @else {
+                            <p>Guest can not change User settings...</p>
+                        }
+                    </div>
+                } @else {
+                    <div class="loading-box">
+                        <app-loading-spinner></app-loading-spinner>
+                    </div>
+                }
+            </div>
         </div>
     </div>
-</div>
+} @else {
+    <div class="main-container settings-container">
+        <div class="div-width">
+            <div>
+                <app-settings></app-settings>
+            </div>
+    
+            <div class="set-div">
+                @if (showContent) {
+                    <div style="position: relative;">
+                        <h2>Please use Website to change your settings...</h2>
+                    </div>
+                } 
+            </div>
+        </div>
+    </div>
+    }

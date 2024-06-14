@@ -9,11 +9,25 @@
     align-items: center;
     justify-content: center;
     background-color: rgb(176 8 16 / 26%);
+
+    @media (max-width: 400px) {
+        ::ng-deep .mat-mdc-outlined-button {
+            font-size: 12px !important;
+        }
+    }
 }
 
 .btn-div {
     display: flex;
     align-items: center;
     justify-content: space-around;
-    width: 30vw;
+}
+
+
+.btn-mr {
+    margin-right: 12px;
+
+    @media (max-width: 400px) {
+        margin-right: 6px;
+    }
 }

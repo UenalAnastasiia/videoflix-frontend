@@ -1,11 +1,13 @@
-<div class="menu-box">
-    <button mat-flat-button [class.border-btn]="urlName === '/settings/user'" color="warn" 
-    (click)="shared.navigateTo('/settings/user')">
-        <mat-icon>settings</mat-icon> User</button>
-    <button mat-flat-button [class.border-btn]="urlName === '/settings/uploads'" color="warn" 
-    (click)="shared.navigateTo('/settings/uploads')">
-        <mat-icon>settings</mat-icon> Uploads</button>
-    <button mat-flat-button [class.border-btn]="urlName === '/settings/categories'" color="warn" 
-    (click)="shared.navigateTo('/settings/categories')">
-        <mat-icon>settings</mat-icon> Categories</button>
-</div>
+@if (!shared.mobilDevice) {
+    <div class="menu-box">
+        <button mat-flat-button [class.border-btn]="urlName === '/settings/user'" color="warn" 
+        (click)="shared.navigateTo('/settings/user')">
+            <mat-icon>settings</mat-icon> User</button>
+        <button mat-flat-button [class.border-btn]="urlName === '/settings/uploads'" color="warn" 
+        (click)="shared.navigateTo('/settings/uploads')">
+            <mat-icon>settings</mat-icon> Uploads</button>
+        <button mat-flat-button [class.border-btn]="urlName === '/settings/categories'" color="warn" 
+        (click)="shared.navigateTo('/settings/categories')">
+            <mat-icon>settings</mat-icon> Categories</button>
+    </div>
+}

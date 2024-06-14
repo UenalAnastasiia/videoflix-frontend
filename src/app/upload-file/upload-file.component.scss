@@ -7,6 +7,13 @@
     // justify-content: center;
     align-items: center;
 
+    @media (max-width: 1000px) {
+        padding-top: 5vh;
+        height: fit-content;
+        padding-left: 28px;
+        padding-right: 28px;
+    }
+
     form {
         display: flex;
         flex-direction: column;
@@ -41,5 +48,5 @@
 h2 {
     color: var(--beige-bg);
     font-weight: 700;
-    margin-top: 5vh;
+    margin-top: 10vh;
 }

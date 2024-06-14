@@ -14,6 +14,7 @@ import { NavigationComponent } from '../navigation/navigation.component';
 import { HttpEventType } from '@angular/common/http';
 import { SnackbarService } from 'src/UI/snackbar/snackbar.service';
 import { MatRadioModule } from '@angular/material/radio';
+import { SharedService } from 'src/services/shared.service';
 
 @Component({
   selector: 'app-upload-file',
@@ -47,7 +48,7 @@ export class UploadFileComponent {
   ageOptions: string[] = ['+6', '+12', '+16', '+18'];
   choosenAge: string = '+6';
 
-  constructor(public auth: AuthService, private API: APIService, private messageService: SnackbarService) { }
+  constructor(public auth: AuthService, private API: APIService, private messageService: SnackbarService, public shared: SharedService) { }
 
   async ngOnInit() {
     this.allCategories = await this.API.getAllCategories();

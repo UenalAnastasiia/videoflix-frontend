@@ -12,6 +12,7 @@ import { NavigationComponent } from 'src/app/navigation/navigation.component';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogUserImagesComponent } from '../dialog-user-images/dialog-user-images.component';
+import { SharedService } from 'src/services/shared.service';
 
 @Component({
   selector: 'app-user-settings',
@@ -25,7 +26,7 @@ export class UserSettingsComponent implements OnInit {
   showContent: boolean = false;
   userData: any;
 
-  constructor(private API: APIService, private messageService: SnackbarService, private auth: AuthService, public dialog: MatDialog) { }
+  constructor(private API: APIService, private messageService: SnackbarService, private auth: AuthService, public dialog: MatDialog, public shared: SharedService) { }
 
 
   /**

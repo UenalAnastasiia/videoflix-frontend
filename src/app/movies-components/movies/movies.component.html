@@ -2,11 +2,17 @@
 
 <div class="main-container movies-container">
     <div class="div-width">
-        <app-alphabet-table (updateValue)="showSearchInput($event)"></app-alphabet-table>
+        @if (!shared.mobilDevice) {
+            <app-alphabet-table (updateValue)="showSearchInput($event)"></app-alphabet-table>
+        }
 
         <div class="search-content-box">
             <div class="input-span">
-                <input [readonly]="true" type="text" placeholder="Search..." [(ngModel)]="searchValue" matTooltip="use table to search film name">
+                @if (shared.mobilDevice) {
+                    <input type="text" placeholder="Search..." [(ngModel)]="searchValue">
+                } @else {
+                    <input [readonly]="true" type="text" placeholder="Search..." [(ngModel)]="searchValue" matTooltip="use table to search film name">
+                }
             </div>
 
             <div class="content-box">

@@ -7,17 +7,17 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 export class ChunkPipe implements PipeTransform {
 
-    transform(calendarDaysArray: any, chunkSize: number): any {
-        let calendarDays = [];
-        let weekDays = [];
+    transform(symbols: any, chunkSize: number): any {
+        let symbolsList = [];
+        let sym = [];
 
-        calendarDaysArray.map((day, index) => {
-            weekDays.push(day);
+        symbols.map((day, index) => {
+            sym.push(day);
             if (++index % chunkSize === 0) {
-                calendarDays.push(weekDays);
-                weekDays = [];
+                symbolsList.push(sym);
+                sym = [];
             }
         });
-        return calendarDays;
+        return symbolsList;
     }
 }

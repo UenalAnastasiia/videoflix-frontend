@@ -1,13 +1,18 @@
 <div class="slider-container">
-    <div class="next-last-cover-140 ml-last-40 pos-rel opacity-4">
-        <img class="img-slideshow next-cover-rotate" src='{{ "https://backend.anastasiia-uenal.de" + videos[coverIndex[0]].cover_picture }}'
-        (click)="openVideoOverview(videos[coverIndex[0]])">
-    </div>
+    @if (shared.screenWidth > 1400) {
+        <div class="next-last-cover-140 ml-last-40 pos-rel opacity-4">
+            <img class="img-slideshow next-cover-rotate" src='{{ "https://backend.anastasiia-uenal.de" + videos[coverIndex[0]].cover_picture }}'
+            (click)="openVideoOverview(videos[coverIndex[0]])">
+        </div>
+    }
 
-    <div class="next-last-cover pos-rel opacity-9">
-        <img class="img-slideshow next-cover-rotate" src='{{ "https://backend.anastasiia-uenal.de" + videos[coverIndex[1]].cover_picture }}'
-        (click)="openVideoOverview(videos[coverIndex[1]])">
-    </div>
+    @if (shared.screenWidth > 1200) {
+        <div class="next-last-cover pos-rel opacity-9">
+            <img class="img-slideshow next-cover-rotate" src='{{ "https://backend.anastasiia-uenal.de" + videos[coverIndex[1]].cover_picture }}'
+            (click)="openVideoOverview(videos[coverIndex[1]])">
+        </div>
+    }
+
     <div class="pos-rel">
         <img class="img-slideshow" src='{{ "https://backend.anastasiia-uenal.de" + videos[coverIndex[2]].cover_picture }}'
         (click)="openVideoOverview(videos[coverIndex[2]])">
@@ -31,13 +36,18 @@
         </div>
     </div>
 
-    <div class="next-last-cover ml-last pos-rel zindex opacity-9">
-        <img class="img-slideshow last-cover-rotate" src='{{ "https://backend.anastasiia-uenal.de" + videos[coverIndex[3]].cover_picture }}'
-        (click)="openVideoOverview(videos[coverIndex[3]])">
-    </div>
+    @if (shared.screenWidth > 1200) {
+        <div class="next-last-cover ml-last pos-rel zindex opacity-9 img-mobil-1200">
+            <img class="img-slideshow last-cover-rotate" src='{{ "https://backend.anastasiia-uenal.de" + videos[coverIndex[3]].cover_picture }}'
+            (click)="openVideoOverview(videos[coverIndex[3]])">
+        </div>
+    }
 
-    <div class="next-last-cover ml-last-200 pos-rel opacity-4">
-        <img class="img-slideshow last-cover-rotate" src='{{ "https://backend.anastasiia-uenal.de" + videos[coverIndex[4]].cover_picture }}'
-        (click)="openVideoOverview(videos[coverIndex[4]])">
-    </div>
+
+    @if (shared.screenWidth > 1400) {
+        <div class="next-last-cover ml-last-200 pos-rel opacity-4 img-mobil">
+            <img class="img-slideshow last-cover-rotate" src='{{ "https://backend.anastasiia-uenal.de" + videos[coverIndex[4]].cover_picture }}'
+            (click)="openVideoOverview(videos[coverIndex[4]])">
+        </div>
+    }
 </div>
