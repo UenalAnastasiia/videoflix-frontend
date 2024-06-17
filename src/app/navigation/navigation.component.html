@@ -1,18 +1,18 @@
 
-@if (shared.screenWidth < 700) {
+@if (shared.screenWidth < 800) {
     <button class="menu-icon" mat-icon-button (click)="shared.mobilMenu = !shared.mobilMenu">
         <mat-icon>menu</mat-icon>
     </button>
 
     <div class="logo-box-mobil">
-        <h2>VIDEOFLIX</h2>
+        <h2 (click)="shared.navigateTo('/videoflix')">VIDEOFLIX</h2>
     </div>
 }
 
-@if (shared.screenWidth > 700) {
+@if (shared.screenWidth > 800) {
     <div class="navigation-panel">
         <div class="logo-box">
-            <h2>VIDEOFLIX</h2>
+            <h2 (click)="shared.navigateTo('/videoflix')">VIDEOFLIX</h2>
         </div>
     
         <div class="links-box">

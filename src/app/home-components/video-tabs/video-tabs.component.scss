@@ -162,8 +162,6 @@ mat-tab.mat-tab-label-active{
         width: calc(100vw - 60px);
         padding-left: 24px;
         padding-right: 24px;
-        // width: calc(100vw - 54px);
-        // margin-left: 24px;
         background: var(--bg-dark);
     }
 }
@@ -174,4 +172,9 @@ h2 {
         margin-left: 24px !important;
         color: var(--flix-red);
     }
+}
+
+.mobil-tabs {
+    padding-bottom: 5vh;
+    height: fit-content;
 }

@@ -69,28 +69,50 @@
     </mat-tab-group>
 } @else {
     <div class="tabs-container">
-        <div class="category-container">
-            @for (category of contentCategories; track category.id) {
-                <h2>{{ category.name }}</h2>
+        <div class="mobil-tabs">
+            <div class="category-container">
+                <h2>All</h2>
         
-                  <div class="content-div">
+                <div class="content-div">
                     <div class="video-box" #allContent>
                         @for (video of videos; track video.id) {
-                            @if (checkVideoCategory(category.id, video.category)) {
-                                <div class="pos-rel">
-                                    <img class="img-style" src='{{ "https://backend.anastasiia-uenal.de" + video.cover_picture }}'>
-                                    <div class="pos-abs">
-                                        <p>{{ video.title }}</p>
-                                        <button mat-fab color="warn" (click)="openVideoOverview(video)">
-                                            <mat-icon>play_circle</mat-icon>
-                                        </button>
-                                    </div>
+                            <div class="pos-rel">
+                                <img class="img-style" src='{{ "https://backend.anastasiia-uenal.de" + video.cover_picture }}'>
+                                <div class="pos-abs">
+                                    <p>{{ video.title }}</p>
+                                    <button mat-fab color="warn" (click)="openVideoOverview(video)">
+                                        <mat-icon>play_circle</mat-icon>
+                                    </button>
                                 </div>
-                            }
+                            </div>
                         }
                     </div>
                 </div>
-            }
+            </div>
+
+            <div class="category-container">
+                @for (category of contentCategories; track category.id) {
+                    <h2>{{ category.name }}</h2>
+            
+                    <div class="content-div">
+                        <div class="video-box" #allContent>
+                            @for (video of videos; track video.id) {
+                                @if (checkVideoCategory(category.id, video.category)) {
+                                    <div class="pos-rel">
+                                        <img class="img-style" src='{{ "https://backend.anastasiia-uenal.de" + video.cover_picture }}'>
+                                        <div class="pos-abs">
+                                            <p>{{ video.title }}</p>
+                                            <button mat-fab color="warn" (click)="openVideoOverview(video)">
+                                                <mat-icon>play_circle</mat-icon>
+                                            </button>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                        </div>
+                    </div>
+                }
+            </div>
         </div>
      </div>
 }

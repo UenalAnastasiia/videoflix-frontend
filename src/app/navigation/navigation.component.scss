@@ -23,12 +23,13 @@
         margin: 0;
         color: var(--flix-red);
         font-weight: 700;
+        cursor: pointer;
 
         @media (max-width: 1450px) {
             margin-top: -16px;
         }
 
-        @media (max-width: 700px) {
+        @media (max-width: 800px) {
             font-size: 28px !important;
         }
     }
@@ -44,13 +45,14 @@
         color: var(--flix-red);
         font-weight: 700;
         font-size: 28px;
+        cursor: pointer;
     }
 }
 
 .links-box {
     display: flex;
 
-    @media (max-width: 700px) {
+    @media (max-width: 800px) {
         flex-direction: column;
         margin-top: 10vh;
 
@@ -67,7 +69,7 @@
     display: flex;
     align-items: center;
 
-    @media (max-width: 700px) {
+    @media (max-width: 800px) {
         flex-direction: column;
     }
 
