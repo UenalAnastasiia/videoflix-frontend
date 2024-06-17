@@ -22,7 +22,13 @@ export class DialogUserImagesComponent {
 
   constructor(private API: APIService, private messageService: SnackbarService, public dialogRef: MatDialogRef<DialogUserImagesComponent>) {}
 
-
+  /**
+   * Saves the user's profile picture.
+   *
+   * This function creates an object with the profile picture and sends it
+   * via the API to update the user data. Afterwards
+   * the dialogue is closed and a confirmation message is displayed.
+   */
   saveUserImg() {
     const body = {
       "image": this.profileImg,

@@ -1,39 +1,57 @@
 <app-navigation></app-navigation>
 
-<div class="main-container settings-container">
-    <div class="div-width">
-        <div>
-            <app-settings></app-settings>
-        </div>
-
-        <div class="set-div">
-            @if (showContent) {
-                <h2>Categories Information</h2>
-                <div class="settings-content">
-                    <div class="div-container">
-                        @if (categoryData.length >= 1) {
-                            @for (category of categoryData; track category.id) {
-                                <div class="category-div" [class.isDeletedColor]="checkValues(category.id)">
-                                    <button mat-icon-button (click)="deleteCategoryFromDB(category.id)" [disabled]="checkValues(category.id)" matTooltip="delete">
-                                        <mat-icon>close</mat-icon>
-                                    </button>
-                    
-                                    <p [class.isDeletedColor]="checkValues(category.id)">{{ category.name }}</p>
-                                </div>
-                            }
-                        } @else {
-                            <div>
-                                <p>You have not created any categories....</p>
-                            </div>
-                        } 
+@if (!shared.mobilDevice) {
+    <div class="main-container settings-container">
+        <div class="div-width">
+            <div>
+                <app-settings></app-settings>
+            </div>
+    
+            <div class="set-div">
+                @if (showContent) {
+                    <h2>Categories Information</h2>
+                    <div class="settings-content">
+                        <div class="div-container">
+                            @if (categoryData.length >= 1) {
+                                @for (category of categoryData; track category.id) {
+                                    <div class="category-div" [class.isDeletedColor]="checkValues(category.id)">
+                                        <button mat-icon-button (click)="deleteCategoryFromDB(category.id)" [disabled]="checkValues(category.id)" matTooltip="delete">
+                                            <mat-icon>close</mat-icon>
+                                        </button>
                         
+                                        <p [class.isDeletedColor]="checkValues(category.id)">{{ category.name }}</p>
+                                    </div>
+                                }
+                            } @else {
+                                <div>
+                                    <p>You have not created any categories....</p>
+                                </div>
+                            } 
+                            
+                        </div>
                     </div>
-                </div>
-            } @else {
-                <div class="loading-box">
-                    <app-loading-spinner></app-loading-spinner>
-                </div>
-            }
+                } @else {
+                    <div class="loading-box">
+                        <app-loading-spinner></app-loading-spinner>
+                    </div>
+                }
+            </div>
         </div>
     </div>
-</div>
+} @else {
+    <div class="main-container settings-container">
+        <div class="div-width">
+            <div>
+                <app-settings></app-settings>
+            </div>
+    
+            <div class="set-div">
+                @if (showContent) {
+                    <div style="position: relative;">
+                        <h2>Please use other Device (not mobile) to change your settings...</h2>
+                    </div>
+                } 
+            </div>
+        </div>
+    </div>
+}
